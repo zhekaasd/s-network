@@ -1,0 +1,92 @@
+
+.profileBanner {
+  min-height: 350px;
+  position: relative;
+
+  .banner {
+    background-image: url("../../other/images/my-bg.jpg");
+
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 350px;
+    position: relative;
+
+    &::before {
+      opacity: .5;
+      background-image: linear-gradient(transparent, black 85%);
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 0;
+    }
+  }
+
+
+  .profilePhoto {
+    position: absolute;
+    bottom: -100px;
+    width: 100%;
+    color: #fff;
+    //border: 1px solid hotpink;
+
+      .container {
+
+        width: 100%;
+        padding: 0 15px;
+        //border: 1px solid peru;
+        margin: 0 auto;
+
+        .photo {
+          text-align: left;
+          display: flex;
+          align-items: center;
+          width: 100%;
+
+
+          & img {
+            border-radius: 100%;
+            border: 3px solid #fff;
+            width: 150px;
+            height: 150px;
+          }
+
+
+      }
+    }
+
+
+
+    //@media screen and (min-width: 1200px) {
+    //  .container {
+    //    max-width: 1170px !important;;
+    //  }
+    //}
+    //
+    //@media screen and (min-width: 992px) {
+    //  .container {
+    //    max-width: 960px;
+    //  }
+    //}
+    //
+    //
+    //@media screen and (min-width: 768px) {
+    //  .container {
+    //    max-width: 720px;
+    //  }
+    //}
+    //
+    //@media screen and (min-width: 576px) {
+    //  .container {
+    //    max-width: 540px;
+    //  }
+    //}
+
+
+
+  }
+
+}
