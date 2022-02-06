@@ -1,0 +1,159 @@
+@import "../../../index";
+
+
+section {
+  .container {
+    @extend .main-container;
+    margin: 50px auto 0;
+    display: flex;
+    border: 1px solid firebrick;
+    //justify-content: space-between;
+
+    .usersBlock {
+      flex: 0 0 20%;
+      border: 1px solid green;
+      height: 100%;
+
+      .searchField {
+        padding: 15px 5px;
+
+      }
+
+      & a {
+        text-decoration: none;
+        color: black;
+        display: block;
+      }
+
+      & img {
+        margin-right: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
+      .active {
+        background-color: fuchsia;
+
+
+        & div {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        & p {
+          width: 75%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .item {
+        display: flex;
+        padding: 12px 5px;
+        border: 1px solid slateblue;
+
+        .itemInfo {
+          width: 100%;
+          padding: 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          & div {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          & p {
+            width: 75%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 4px;
+          }
+
+          .timeMessage {
+            margin-right: 10px;
+          }
+        }
+
+
+
+      }
+
+
+
+
+
+    }
+
+
+
+    .messagesBlock {
+      flex: 0 0 70%;
+      margin-left: 50px;
+      border: 1px solid gold;
+      //padding: 15px 5px;
+
+
+      .userName {
+        padding: 15px 10px;
+        border: 1px solid thistle;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .messagesList {
+        padding: 15px 10px;
+        border: 1px solid rebeccapurple;
+        height: 550px;
+        overflow-y: auto;
+
+        .yourSentMessage {
+            padding: 15px 10px;
+            border: 1px solid gainsboro;
+            margin-bottom: 15px;
+            max-width: 55%;
+            border-radius: 15px;
+            background-color: rebeccapurple;
+            color: whitesmoke;
+        }
+
+        .userSentMessage {
+          @extend .yourSentMessage;
+          color: black;
+
+        }
+
+
+      }
+
+      .addMessageField {
+        padding: 15px 10px;
+        display: flex;
+
+        & div {
+          display: inline-block;
+          width: 100%;
+          margin-right: 75px;
+        }
+
+        & input {
+          width: 100%;
+          padding: 10px 15px;
+        }
+
+
+        & button {
+          padding: 10px 25px;
+        }
+      }
+    }
+
+
+
+  }
+}
+

@@ -1,0 +1,93 @@
+@import "../../../index";
+
+.main {
+  width: 100%;
+
+  .container {
+    @extend .main-container;
+
+    border: 1px solid gold;
+    margin-top: 25px;
+
+
+    .profile {
+
+      display: flex;
+      justify-content: space-between;
+
+
+      & aside {
+        border: 1px solid brown;
+        flex: 0 0 20%;
+        max-width: 20%;
+        height: 100%;
+
+        .sideBlock {
+          display: flex;
+          flex-direction: column;
+        }
+
+      }
+
+      & section {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 15px;
+
+        .posts {
+          height: 100%;
+          border: 1px solid steelblue;
+          display: flex;
+          flex-direction: column;
+
+
+          .addPost {
+            border: 1px solid darkolivegreen;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-bottom: 30px;
+
+            background-color: dimgrey;
+
+            .fieldEntry {
+              flex: 0 0 100%;
+              max-width: 100%;
+              display: flex;
+              align-items: center;
+
+              & img {
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                margin-right: 10px;
+              }
+
+              & input {
+                width: 100%;
+                height: 30px;
+              }
+            }
+
+
+
+            .buttonAddPost {
+              display: flex;
+              justify-items: flex-end;
+
+              & button {
+                display: flex;
+              }
+            }
+          }
+
+          .listPosts {
+
+          }
+        }
+      }
+    }
+  }
+
+}

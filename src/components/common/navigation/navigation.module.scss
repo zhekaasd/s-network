@@ -1,0 +1,35 @@
+@import "../../../index";
+
+.container {
+  @extend .main-container;
+
+  border: 1px solid darkslateblue;
+
+  .navigation {
+    width: 100%;
+    padding: 10px 0;
+
+
+    & ul {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 15px;
+
+
+      & li {
+        list-style-type: none;
+        a {
+
+          color: black;
+          text-decoration: none;
+
+
+          &:hover {
+            color: thistle;
+          }
+        }
+      }
+    }
+
+  }
+}

@@ -1,10 +1,10 @@
-
+@import "../../../index";
 .profileBanner {
   min-height: 350px;
   position: relative;
 
   .banner {
-    background-image: url("../../other/images/my-bg.jpg");
+    background-image: url("../../../other/images/my-bg.jpg");
 
     background-position: center center;
     background-size: cover;
@@ -34,11 +34,7 @@
     //border: 1px solid hotpink;
 
       .container {
-
-        width: 100%;
-        padding: 0 15px;
-        //border: 1px solid peru;
-        margin: 0 auto;
+        @extend .main-container;
 
         .photo {
           text-align: left;
@@ -57,34 +53,6 @@
 
       }
     }
-
-
-
-    //@media screen and (min-width: 1200px) {
-    //  .container {
-    //    max-width: 1170px !important;;
-    //  }
-    //}
-    //
-    //@media screen and (min-width: 992px) {
-    //  .container {
-    //    max-width: 960px;
-    //  }
-    //}
-    //
-    //
-    //@media screen and (min-width: 768px) {
-    //  .container {
-    //    max-width: 720px;
-    //  }
-    //}
-    //
-    //@media screen and (min-width: 576px) {
-    //  .container {
-    //    max-width: 540px;
-    //  }
-    //}
-
 
 
   }

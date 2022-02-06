@@ -1,0 +1,108 @@
+@import "src/index";
+
+.newsPage {
+  margin-top: 50px;
+  .container {
+    @extend .main-container;
+    border: 1px solid tomato;
+    display: flex;
+    justify-content: space-between;
+
+    .owner {
+      flex: 0 0 20%;
+      border: 1px solid peru;
+      height: 300px;
+      background-color: darkslateblue;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+        & img {
+          width: 120px;
+          height: 120px;
+          border-radius: 100%;
+          border: 3px solid whitesmoke;
+          margin: 25px 0;
+        }
+
+        & p {
+          font-size: 18px;
+          font-weight: 700;
+          color: white;
+          margin-bottom: 20px;
+        }
+
+        & span {
+          color: lightpink;
+        }
+
+        & a {
+          text-decoration: none;
+          font-size: 14px;
+          color: white;
+          margin-top: 30px;
+        }
+
+        & a:hover {
+          font-weight: 800;
+          color: gold;
+        }
+
+    }
+
+    .newsfeed {
+      flex: 0 0 50%;
+      max-width: 50%;
+      border: 1px solid fuchsia;
+
+      .form {
+        padding: 20px;
+        margin-bottom: 25px;
+        background-color: royalblue;
+
+        & img {
+          width: 50px;
+          height: 50px;
+          margin-right: 20px;
+        }
+
+        //& img {
+        //  width: 50px;
+        //  height: 50px;
+        //  margin-right: 20px;
+        //}
+        //
+        //& textarea {
+        //  margin: 0 0 10px 0;
+        //  padding: 5px 0;
+        //  height: 80px;
+        //  width: 100%;
+        //}
+        //
+        //& button {
+        //  display: block;
+        //  margin-left: auto;
+        //  border-radius: 5px;
+        //  padding: 8px 25px;
+        //}
+      }
+
+      .formAvatar {
+        @extend .form;
+        display: flex;
+
+        & img {
+          width: 50px;
+          height: 50px;
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .userFollowing {
+      flex: 0 0 20%;
+      border: 1px solid green;
+      height: 100%;
+    }
+  }
+}

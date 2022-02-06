@@ -1,21 +1,21 @@
 import React from "react";
-import "./header.scss";
+import style from "./header.module.scss";
 
 export function Header() {
     return <header>
-        <div className='container'>
+        <div className={style.container}>
 
-            <div className='row'>
+            <div className={style.headerItems}>
 
 
 
-                    <div className='logoHeader'>
+                    <div className={style.logoHeader}>
                         <img src="" alt=""/>
                         <h2>LogoTitle</h2>
                     </div>
 
                     <nav>
-                        <div className='navigation'>
+                        <div className={style.navigation}>
                             <ul>
                                 <li>Text1</li>
                                 <li>Text1</li>
@@ -24,13 +24,13 @@ export function Header() {
                         </div>
                     </nav>
 
-                    <div className='searchBlock'>
+                    <div className={style.searchBlock}>
                         <input type="text" placeholder='search'/>
                         <button> search</button>
                     </div>
 
-                    <div className='userInfo'>
-                        <img src="" alt=""/>
+                    <div className={style.userInfo}>
+                        <img src="" alt="" />
                         <span>John Doe</span>
                     </div>
             </div>

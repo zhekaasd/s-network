@@ -1,3 +1,4 @@
+@import "../../../index";
 
 .profileOwner {
   padding: 20px 0;
@@ -7,9 +8,7 @@
   .profileOwnerWrapper {
 
     .container {
-      width: 100%;
-      margin: 0 auto;
-      padding: 0 15px;
+      @extend .main-container;
       display: flex;
       justify-content: space-between;
       align-items: center;

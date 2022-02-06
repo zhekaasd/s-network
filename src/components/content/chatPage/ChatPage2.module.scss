@@ -1,0 +1,112 @@
+@import "../../../index";
+
+.container {
+  @extend .main-container;
+  margin: 50px auto 0;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid firebrick;
+
+  .d {
+    border: 1px solid green;
+    flex: 0 0 28%;
+
+    .searchField {
+      padding: 15px 5px;
+
+    }
+
+    & a {
+      display: block;
+      background-color: tomato;
+      margin-bottom: 4px;
+
+      & img {
+        margin-right: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+
+    .item {
+      background-color: greenyellow;
+      display: flex;
+      padding: 12px 8px 12px 5px;
+
+      .dataItem {
+        display: flex;
+        width: 100%;
+
+        .infoUser  {
+          display: flex;
+          flex-direction: column;
+          width: 220px;
+          max-width: 90%;
+          & p {
+            margin-top: 2px;
+          }
+          & p:last-child {
+            margin-top: 8px;
+            max-width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+
+        }
+
+
+      }
+    }
+
+    .active {
+      background-color: royalblue;
+    }
+
+  }
+
+  .m {
+    border: 1px solid tomato;
+    flex: 0 0 66%;
+
+    .userName {
+      padding: 15px 10px;
+      border: 1px solid thistle;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .messagesList {
+      padding: 15px 10px;
+      border: 1px solid rebeccapurple;
+      height: 550px;
+      overflow-y: auto;
+
+      .yourSentMessage {
+        padding: 15px 10px;
+        border: 1px solid gainsboro;
+        margin-bottom: 15px;
+        max-width: 55%;
+        border-radius: 15px;
+        background-color: rebeccapurple;
+        color: whitesmoke;
+
+        margin-left: auto;
+      }
+
+      .userSentMessage {
+        padding: 15px 10px;
+        border: 1px solid gainsboro;
+        margin-bottom: 15px;
+        max-width: 55%;
+        border-radius: 15px;
+        background-color: thistle;
+
+      }
+
+
+    }
+  }
+}
