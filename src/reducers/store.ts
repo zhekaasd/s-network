@@ -1,13 +1,15 @@
 import {combineReducers, createStore} from "redux";
-import {newsfeedReducer} from "../reducers/newsfeed-reducer";
-import {dialogsReducer} from "../reducers/dialogs-reducer";
+import {newsfeedReducer} from "./newsfeed-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+import {usersReducer} from "./users-reducer";
 
 
 export type AppStateType = ReturnType<typeof reducers>;
 
 const reducers = combineReducers({
-    newsfeed: newsfeedReducer,
-    dialogs: dialogsReducer
+    newsfeedPage: newsfeedReducer,
+    dialogsPage: dialogsReducer,
+    usersPage: usersReducer
 })
 
 export type AppStoreType = typeof store;

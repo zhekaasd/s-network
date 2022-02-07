@@ -1,5 +1,5 @@
 
-import {AppStateType} from "../../../redux/store";
+import {AppStateType} from "../../../reducers/store";
 import {connect} from "react-redux";
 import {addPost, updatePostText} from "../../../reducers/newsfeed-reducer";
 import {Profile} from "./Profile";
@@ -11,8 +11,8 @@ type MDTPType = {
 type MSTPType = ReturnType<typeof mstp>;
 const mstp = (state: AppStateType) => {
     return {
-        actualPostText: state.newsfeed.actualPostText,
-        posts: state.newsfeed.posts.filter(p => p.value),
+        actualPostText: state.newsfeedPage.actualPostText,
+        posts: state.newsfeedPage.posts.filter(p => p.value),
         avatar: 'true'
     }
 }

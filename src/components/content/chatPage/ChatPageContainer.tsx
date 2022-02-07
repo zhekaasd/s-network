@@ -1,6 +1,6 @@
 
 import {connect} from "react-redux";
-import {AppStateType} from "../../../redux/store";
+import {AppStateType} from "../../../reducers/store";
 import {Dispatch} from "redux";
 import {addMessage, updateMessageText} from "../../../reducers/dialogs-reducer";
 import ChatPage2 from "./ChatPage2";
@@ -10,7 +10,7 @@ type MSTPType = ReturnType<typeof mstp>;
 
 const mstp = (state: AppStateType) => {
     return {
-        messagesPage: state.dialogs
+        messagesPage: state.dialogsPage
     }
 }
 

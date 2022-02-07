@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/store";
+import {AppStateType} from "../../reducers/store";
 import {Dispatch} from "redux";
 import {addPost, updatePostText} from "../../reducers/newsfeed-reducer";
 import NewsPage from "./NewsPage";
@@ -22,7 +22,7 @@ type MSTPType = ReturnType<typeof mapStateToProps>;
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        newsfeedPage: state.newsfeed
+        newsfeedPage: state.newsfeedPage
     }
 }
 
