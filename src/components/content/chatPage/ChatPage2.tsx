@@ -4,16 +4,18 @@ import React, {useEffect, useRef} from "react";
 import photo from "../../../other/images/1920x.webp";
 
 import s from "./ChatPage2.module.scss";
-import Navigation from "../../common/navigation/Navigation";
-import {ProfileBanner} from "../../common/profileBanner/ProfileBanner";
-import {ProfileOwner} from "../../common/profileOwner/ProfileOwner";
+import Navigation from "../common/navigation/Navigation";
 import {AddItemForm} from "../../../AddItemForm";
 import {NavLink} from "react-router-dom";
+import {ProfileUserType} from "../../../reducers/profile-reducer";
+import UserProfile from "../common/UserProfile/UserProfile";
 
 
 function ChatPage2(props: {
-    messagesPage: { messages: Array<MessageType>, users: Array<UserType>, actualMessageText: string},
-    addMessage: () => void, updateMessageText: (value: string) => void})
+    messagesPage: { messages: Array<MessageType>, users: Array<UserType>, actualMessageText: string}
+    addMessage: () => void, updateMessageText: (value: string) => void
+    profile: ProfileUserType | null
+})
 {
 
     const bottomRef: any = useRef();
@@ -27,8 +29,8 @@ function ChatPage2(props: {
 
     return <section>
 
-        <ProfileBanner/>
-        <ProfileOwner/>
+        <UserProfile profile={props.profile} />
+
         <Navigation/>
 
         <div>

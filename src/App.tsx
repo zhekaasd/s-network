@@ -5,7 +5,6 @@ import {Footer} from "./components/footer/Footer";
 import NewsPageContainer from "./components/newsPage/NewsPageContainer";
 import ChatPageContainer from "./components/content/chatPage/ChatPageContainer";
 import ProfileContainer from './components/content/profile/ProfileContainer';
-import { Users } from './components/Users/Users';
 import UsersContainer from "./components/Users/UsersContainer";
 
 
