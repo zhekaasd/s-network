@@ -6,6 +6,7 @@ import {SocialAccounts} from "../../common/socialAccounts/SocialAccounts";
 import {Timeline} from "../../common/Timeline/Timeline";
 import {ProfileUserType} from "../../../reducers/profile-reducer";
 import UserProfile from "../common/UserProfile/UserProfile";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 type ProfilePropsType = {
     posts: Array<PostType>
@@ -24,7 +25,7 @@ export const Profile:React.FC<ProfilePropsType> = ({posts,actualPostText , addPo
     const updatePostTextHandler = (value: string) => {
         updatePostText(value);
     }
-    
+
     return <section className={styles.main}>
 
         <UserProfile profile={restProps.profile} />

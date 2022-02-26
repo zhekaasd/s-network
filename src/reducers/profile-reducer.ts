@@ -1,3 +1,5 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../dal/api";
 
 
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -45,7 +47,15 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 }
 
 type SetUserProfile = { type: typeof SET_USER_PROFILE, profile: ProfileUserType};
-export const setUserProfile = (profile: ProfileUserType): SetUserProfile => {
+export const setUserProfileAC = (profile: ProfileUserType): SetUserProfile => {
     return { type: SET_USER_PROFILE, profile }
+}
+
+
+export const setUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    usersAPI.getUserProfile(userId)
+        .then((response) => {
+            dispatch(setUserProfileAC(response.data));
+        });
 }
 

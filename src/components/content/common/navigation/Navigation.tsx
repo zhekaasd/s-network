@@ -1,11 +1,13 @@
-import {NavLink} from "react-router-dom";
-import React from "react";
+import {NavLink, useParams} from "react-router-dom";
+import React, {useEffect} from "react";
 
 import styles from "./navigation.module.scss";
+import axios from "axios";
 
 
 
 function Navigation() {
+
     return <nav >
         <div className={styles.container}>
             <div className={styles.navigation}>

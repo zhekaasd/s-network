@@ -26,14 +26,13 @@ function UserProfile(props: { profile: ProfileUserType | null }) {
 
 
                     <div className={s.profilePhoto}>
-                                <img src={profilePhoto} alt=""/>
+                                <img src={props.profile?.photos.small ? props.profile.photos.small : profilePhoto} alt=""/>
                     </div>
 
 
                     <div className={s.ownerName}>
-                        {/*<h2>John Doe</h2>*/}
 
-                        <h2>{name ? name : 'Username'}</h2>
+                        <h2>{name ? name : 'John Doe'}</h2>
                         <span>Member since August 2017</span>
                         <span>
                         <i>

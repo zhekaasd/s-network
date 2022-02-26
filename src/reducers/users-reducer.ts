@@ -1,9 +1,12 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../dal/api";
 
 const SET_USERS = 'SET-USERS';
 const TOGGLE_USER = 'TOGGLE-USER';
 const SET_TOTAL_USERS  = 'SET-TOTAL-USERS';
 const CHANGE_CURRENT_PAGE  = 'CHANGE-CURRENT-PAGE';
 const TOGGLE_IS_FETCHING  = 'TOGGLE-IS-FETCHING';
+const FOLLOWING_IN_PROGRESS  = 'FOLLOWING-IN-PROGRESS';
 
 export type User = {
     name: string,
@@ -17,13 +20,16 @@ export type User = {
     followed: boolean
 }
 
-type ActionsType = SetUsersType | FollowingToggleType | SetTotalUsersType | ChangeCurrentPageType | ToggleIsFetchingType;
+type ActionsType = SetUsersType | FollowingToggleType | SetTotalUsersType
+    | ChangeCurrentPageType | ToggleIsFetchingType | toggleIsFollowingInProgressType;
+
 type InitialStateType = {
     users: User[]
     currentPage: number
     totalUsersCount: number
     pageSize: number
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress: number[]
 }
 
 const initialState: InitialStateType = {
@@ -31,7 +37,8 @@ const initialState: InitialStateType = {
     currentPage: 1,
     totalUsersCount: 0,
     pageSize: 20,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
@@ -63,6 +70,15 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
+
+        case FOLLOWING_IN_PROGRESS: {
+            return {
+                ...state,
+                followingInProgress: action.isFetching ? [...state.followingInProgress, action.id]
+                    : state.followingInProgress.filter(id => id !== action.id)
+            }
+        }
+
 
         default:
             return state;
@@ -110,5 +126,63 @@ type ToggleIsFetchingType = {
 }
 
 export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingType => {
-    return { type: TOGGLE_IS_FETCHING, isFetching }
+    return { type: TOGGLE_IS_FETCHING, isFetching}
+}
+
+type toggleIsFollowingInProgressType = {
+    type: typeof FOLLOWING_IN_PROGRESS
+    isFetching: boolean
+    id: number
+}
+
+export const toggleIsFollowingInProgress = (isFetching: boolean, id: number): toggleIsFollowingInProgressType => {
+    return { type: FOLLOWING_IN_PROGRESS, isFetching, id }
+}
+
+
+export const changePageNumberUsers = (pageNumber: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersAPI.changeNumberPage(pageNumber, pageSize)
+            .then((resp) => {
+                dispatch(toggleIsFetching(false));
+                dispatch(changeCurrentPage(pageNumber));
+                dispatch(setUsers(resp.data.items));
+            })
+    }
+}
+
+
+export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize)
+        .then((resp) => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(resp.data.items));
+            dispatch(setTotalUsers(resp.data.totalCount));
+        })
+}
+
+
+export const followUser = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFollowingInProgress(true, userId));
+    usersAPI.followUser(userId)
+        .then((response) => {
+            if(response.data.resultCode === 0) {
+                dispatch(followingToggle(userId));
+                dispatch(toggleIsFollowingInProgress(false, userId));
+            }
+        })
+}
+
+
+export const unfollowUser = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFollowingInProgress(true, userId));
+    usersAPI.unfollowUser(userId)
+        .then((response) => {
+            if(response.data.resultCode === 0) {
+                dispatch(followingToggle(userId));
+                dispatch(toggleIsFollowingInProgress(false, userId));
+            }
+        })
 }

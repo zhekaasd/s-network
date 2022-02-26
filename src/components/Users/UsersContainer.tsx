@@ -1,29 +1,14 @@
-
-import s from "./Users.module.scss"
 import {AppStateType} from "../../reducers/store";
 import {connect} from "react-redux";
-import {
-    changeCurrentPage,
-    followingToggle,
-    setTotalUsers,
-    setUsers,
-    toggleIsFetching,
-    User
-} from "../../reducers/users-reducer";
+import {changePageNumberUsers, followUser, getUsers, unfollowUser, User} from "../../reducers/users-reducer";
 import UsersC from "./UsersC";
 
 
-// type MSTPType = ReturnType<typeof mstp>;
-// type MSTPType2 = {
-//     users: User[]
-// }
-
 type MDTPType = {
-    setUsers: (users: User[]) => void
-    followingToggle: (id: number) => void
-    setTotalUsers: (value: number) => void
-    changeCurrentPage: (page: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+    changePageNumberUsers: (pageNumber: number, pageSize: number) => void
+    followUser: (userId: number) => void
+    unfollowUser: (userId: number) => void
 }
 
 type MSTPType = {
@@ -34,15 +19,17 @@ type MSTPType = {
         pageSize: number
         isFetching: boolean
     }
+    followingInProgress: number[]
 }
 const mapStateToProps = (state: AppStateType): MSTPType => {
     return {
-        usersPage: state.usersPage
+        usersPage: state.usersPage,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
 
 
 export default connect<MSTPType, MDTPType, {}, AppStateType>(mapStateToProps, {
-    setUsers, setTotalUsers, changeCurrentPage, followingToggle, toggleIsFetching
+    getUsers, followUser, unfollowUser, changePageNumberUsers
 })(UsersC);

@@ -3,14 +3,15 @@ import {AppStateType} from "../../../reducers/store";
 import {connect} from "react-redux";
 import {addPost, PostType, updatePostText} from "../../../reducers/newsfeed-reducer";
 import {Profile} from "./Profile";
-import React from "react";
+import React, {useEffect} from "react";
 import {ProfileUserType, setUserProfile} from "../../../reducers/profile-reducer";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 type MDTPType = {
     addPost: () => void
     updatePostText: (value: string) => void
-    setUserProfile: (profile: ProfileUserType) => void
+    setUserProfile: (id: number) => void
 }
 type MSTPType = ReturnType<typeof mstp>;
 const mstp = (state: AppStateType) => {
@@ -22,32 +23,36 @@ const mstp = (state: AppStateType) => {
     }
 }
 
-interface PCI {
+type PCI = {
     addPost: () => void
     updatePostText: (value: string) => void
-    setUserProfile: (profile: ProfileUserType) => void
+    setUserProfile: (id: number) => void
     actualPostText: string
     posts: PostType[]
     avatar: string
     profile: ProfileUserType | null
 
 }
-class ProfileContainer extends React.Component<PCI, any> {
+const ProfileContainer: React.FC<PCI> = (props) => {
 
-    componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/9008')
-            .then((resp) => {
-                this.props.setUserProfile(resp.data);
-            })
-    }
+    let id = Number(useParams().id);
 
-    render() {
-        return <Profile posts={this.props.posts} actualPostText={this.props.actualPostText}
-                        addPost={this.props.addPost} updatePostText={this.props.updatePostText}
-                        profile={this.props.profile}
+
+
+    useEffect(() => {
+        if (!id) {
+            id = 9008;
+        }
+
+        props.setUserProfile(id);
+    }, []);
+
+
+        return <Profile posts={props.posts} actualPostText={props.actualPostText}
+                        addPost={props.addPost} updatePostText={props.updatePostText}
+                        profile={props.profile}
 
         />
-    }
 }
 
 export default connect<MSTPType, MDTPType, {}, AppStateType>(mstp, {

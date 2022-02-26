@@ -1,16 +1,14 @@
 import s from "./Users.module.scss"
 import {User} from "../../reducers/users-reducer";
-import React from "react";
-import axios from "axios";
+import React, {useEffect} from "react";
 import Preloader from "../common/Preloader/Preloader";
 import UserItem from "./UserItem";
 
 interface UsersPropsType {
-    setUsers: (users: User[]) => void
-    followingToggle: (id: number) => void
-    setTotalUsers: (value: number) => void
-    changeCurrentPage: (page: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+    changePageNumberUsers: (pageNumber: number, pageSize: number) => void
+    followUser: (userId: number) => void
+    unfollowUser: (userId: number) => void
     usersPage: {
         users: User[],
         currentPage: number
@@ -18,8 +16,9 @@ interface UsersPropsType {
         pageSize: number
         isFetching: boolean
     }
+    followingInProgress: number[]
 }
-export class UsersC extends React.Component<UsersPropsType, any> {
+export const UsersC: React.FC<UsersPropsType> = (props) =>  {
 /*
     if(props.users.length === 0) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then((resp) => {
@@ -28,38 +27,18 @@ export class UsersC extends React.Component<UsersPropsType, any> {
         })
     }*/
 
-    // useEffect(() => {
-    //     debugger
-    //     axios.get('https://social-network.samuraijs.com/api/1.0/users')
-    //         .then( (resp) => {
-    //             props.setUsers(resp.data.items)
-    //         })
-    // }, )
+    useEffect(() => {
+        props.getUsers(props.usersPage.currentPage, props.usersPage.pageSize);
+    }, [])
 
 
-    componentDidMount() {
-        this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage.currentPage}&count=${this.props.usersPage.pageSize}`)
-            .then((resp) => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(resp.data.items);
-                this.props.setTotalUsers(resp.data.totalCount);
-        })
+    const changePageNumber = (pageNumber: number) => {
+        props.changePageNumberUsers(pageNumber, props.usersPage.pageSize);
     }
 
-    changePageNumber = (pageNumber: number) => {
-        this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersPage.pageSize}`)
-            .then((resp) => {
-                this.props.toggleIsFetching(false);
-                this.props.changeCurrentPage(pageNumber);
-                this.props.setUsers(resp.data.items);
-            })
-    }
 
-    render() {
 
-        let totalPages = this.props.usersPage.totalUsersCount / this.props.usersPage.pageSize;
+        let totalPages = props.usersPage.totalUsersCount / props.usersPage.pageSize;
         let arrPages = [];
 
         for(let i = 1; i <= totalPages; i++) {
@@ -72,22 +51,19 @@ export class UsersC extends React.Component<UsersPropsType, any> {
             <div>
                 {
                     arrPages.map((p, index) => <span key={index}
-                                                     onClick={() => this.changePageNumber(p)}
-                                                     className={this.props.usersPage.currentPage === p ? s.active : ''}>{p}</span>
+                                                     onClick={() => changePageNumber(p)}
+                                                     className={props.usersPage.currentPage === p ? s.active : ''}>{p}</span>
                     )
                 }
             </div>
 
             {
-                this.props.usersPage.isFetching ? <Preloader/>
-                    : <UserItem usersPage={this.props.usersPage} changePageNumber={this.changePageNumber}
-                                followingToggle={this.props.followingToggle}
+                props.usersPage.isFetching ? <Preloader/>
+                    : <UserItem followUser={props.followUser} unfollowUser={props.unfollowUser}
+                                usersPage={props.usersPage} followingInProgress={props.followingInProgress}
                     />
             }
-
-
         </div>
-            }
 
 }
 

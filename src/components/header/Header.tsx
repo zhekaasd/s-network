@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./header.module.scss";
+import {NavLink} from "react-router-dom";
 
-export function Header() {
+export function Header(props: {login: string | null, isAuth: boolean}) {
     return <header>
         <div className={style.container}>
 
             <div className={style.headerItems}>
-
 
 
                     <div className={style.logoHeader}>
@@ -29,10 +29,13 @@ export function Header() {
                         <button> search</button>
                     </div>
 
-                    <div className={style.userInfo}>
-                        <img src="" alt="" />
-                        <span>John Doe</span>
-                    </div>
+                {
+                    props.isAuth ? <div className={style.userInfo}>
+                            <img src="" alt="" />
+                            <span>{props.login}</span>
+                        </div> : <NavLink to={'/login'}>login</NavLink>
+                }
+
             </div>
         </div>
     </header>
