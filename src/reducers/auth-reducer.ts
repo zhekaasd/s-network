@@ -3,7 +3,7 @@ import {authAPI} from "../dal/api";
 
 const AUTH_USER_PROFILE = 'AUTH-USER-PROFILE';
 
-type InitialAuthStateType = {
+export type InitialAuthStateType = {
     login: string | null
     id: string | null
     email: string | null
@@ -39,7 +39,7 @@ type AuthUserProfileType = {
     data: {login: string, id: string, email: string}
 }
 
-const authUserProfileAC = (login: string, id: string, email: string): AuthUserProfileType => {
+export const authUserProfileAC = (login: string, id: string, email: string): AuthUserProfileType => {
     return {type: AUTH_USER_PROFILE, data: {email, id, login} }
 }
 
