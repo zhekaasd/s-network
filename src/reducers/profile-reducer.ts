@@ -27,15 +27,15 @@ export type ProfileUserType = {
 }
 
 type ActionsType = SetUserProfile;
-type InitialStateType = {
+export type InitialStateProfileType = {
     profile: ProfileUserType | null
 }
 
-const initialState: InitialStateType = {
+const initialState: InitialStateProfileType = {
     profile: null
 }
 
-export const profileReducer = (state: InitialStateType = initialState, action: ActionsType) => {
+export const profileReducer = (state: InitialStateProfileType = initialState, action: ActionsType) => {
     switch (action.type) {
         case SET_USER_PROFILE: {
             return {...state, profile: {...action.profile}}

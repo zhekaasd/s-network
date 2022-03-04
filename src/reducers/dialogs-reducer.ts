@@ -3,7 +3,7 @@ const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 
 type ActionsType = AddMessageType | UpdateMessageTextType;
-type InitialStateType = {
+export type InitialStateDialogsType = {
     users: Array<UserType>
     messages: Array<MessageType>
     actualMessageText: string
@@ -21,7 +21,7 @@ export type MessageType = {
     value: boolean
 }
 
-const initialState: InitialStateType = {
+const initialState: InitialStateDialogsType = {
         users: [
             {id: '1', firstName: 'Ivan', lastName: 'Ivanov'},
             {id: '2', firstName: 'Petr', lastName: 'Petrov'},
@@ -42,7 +42,7 @@ const initialState: InitialStateType = {
     };
 
 
-export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ActionsType): InitialStateDialogsType => {
     switch (action.type) {
         case ADD_MESSAGE: {
             return {

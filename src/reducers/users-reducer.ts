@@ -23,7 +23,7 @@ export type User = {
 type ActionsType = SetUsersType | FollowingToggleType | SetTotalUsersType
     | ChangeCurrentPageType | ToggleIsFetchingType | toggleIsFollowingInProgressType;
 
-type InitialStateType = {
+export type InitialStateUsersType = {
     users: User[]
     currentPage: number
     totalUsersCount: number
@@ -32,7 +32,7 @@ type InitialStateType = {
     followingInProgress: number[]
 }
 
-const initialState: InitialStateType = {
+const initialState: InitialStateUsersType = {
     users: [],
     currentPage: 1,
     totalUsersCount: 0,
@@ -41,7 +41,7 @@ const initialState: InitialStateType = {
     followingInProgress: []
 }
 
-export const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsType): InitialStateUsersType => {
     switch (action.type) {
         case SET_USERS: {
             return {...state, users: [...action.users]}

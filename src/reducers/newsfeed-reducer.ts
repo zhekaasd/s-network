@@ -14,7 +14,7 @@ type AddPostType = {
 
 type ActionsType = AddPostType | UpdatePostText;
 
-type InitialStateTimelineType = {
+export type InitialStateTimelineType = {
     posts: Array<PostType>,
     actualPostText: string
 }
