@@ -74,4 +74,5 @@ const UserItem: React.FC<UserItemPropsType> = (props) => {
                 </div>
 }
 
-export default UserItem;
+const UserItemMemo = React.memo(UserItem);
+export default UserItemMemo;
