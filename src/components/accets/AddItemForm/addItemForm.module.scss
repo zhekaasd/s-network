@@ -1,0 +1,11 @@
+.addItemForm {
+  display: grid;
+  row-gap: 1rem;
+
+  & button {
+    display: grid;
+    justify-self: end;
+    background: var(--color-main-3);
+  }
+
+}

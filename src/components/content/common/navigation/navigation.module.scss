@@ -1,11 +1,11 @@
 @import "../../../../index";
 
 .container {
-  @extend .main-container;
+  @extend .container;
 
   border: 1px solid darkslateblue;
 
-  .navigation {
+  .headerNavigation {
     width: 100%;
     padding: 10px 0;
 

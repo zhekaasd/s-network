@@ -4,7 +4,7 @@
   width: 100%;
 
   .container {
-    @extend .main-container;
+    @extend .container;
 
     border: 1px solid gold;
     margin-top: 25px;

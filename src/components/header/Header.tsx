@@ -1,42 +1,48 @@
 import React from "react";
-import style from "./header.module.scss";
+import st from "./header.module.scss";
 import {NavLink} from "react-router-dom";
+import InputWithIcon from "../accets/inputWithIcon/InputWithIcon";
+import EmailIcon from '@mui/icons-material/Email';
+import FeedIcon from '@mui/icons-material/Feed';
+import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 
-export const Header = React.memo((props: {login: string | null, isAuth: boolean}) => {
+import avatar from "../../other/images/Screenshot_3.png";
+
+type HeaderPropsType = {
+    login: string | null
+    isAuth: boolean
+}
+export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...restProps}) => {
     return <header>
-        <div className={style.container}>
+        <div className={st.headerContainer}>
 
-            <div className={style.headerItems}>
+            <a href="/">
+                <h2 className={st.headerLogotype}>LogoTitle</h2>
+            </a>
 
+            <nav className={st.headerNavigation}>
+                <FeedIcon />
+                <EmailIcon />
+                <SearchIcon className={st.searchIcon} />
+            </nav>
 
-                <div className={style.logoHeader}>
-                    <img src="" alt=""/>
-                    <h2>LogoTitle</h2>
-                </div>
+            <nav className={st.headerBurger}>
+                <MenuIcon />
+            </nav>
 
-                <nav>
-                    <div className={style.navigation}>
-                        <ul>
-                            <li>Text1</li>
-                            <li>Text1</li>
-                            <li>Text1</li>
-                        </ul>
-                    </div>
-                </nav>
-
-                <div className={style.searchBlock}>
-                    <input type="text" placeholder='search'/>
-                    <button> search</button>
-                </div>
-
-                {
-                    props.isAuth ? <div className={style.userInfo}>
-                        <img src="" alt="" />
-                        <span>{props.login}</span>
-                    </div> : <NavLink to={'/login'}>login</NavLink>
-                }
-
+            <div className={st.headerSearchBlock}>
+                <InputWithIcon/>
             </div>
+
+
+            {
+                isAuth ? <NavLink to={'/profile'} className={st.headerUserInfo}>
+                        <img src={avatar} alt=""/>
+                    <div>{login}</div>
+                </NavLink> : <NavLink to={'/login'}>login</NavLink>
+            }
+
         </div>
     </header>
 });

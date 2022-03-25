@@ -3,7 +3,7 @@
 .newsPage {
   margin-top: 50px;
   .container {
-    @extend .main-container;
+    @extend .container;
     border: 1px solid tomato;
     display: flex;
     justify-content: space-between;

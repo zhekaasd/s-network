@@ -1,0 +1,27 @@
+.wrapperInput {
+  display: grid;
+  grid-template-columns: 28px auto;
+  justify-self: center;
+  //width: 200px;
+
+  input:hover {
+    //caret-color: var(--color-bg-main);
+  }
+}
+
+/* ------------- MEDIA QUERIES (MEDIUM DEVICES) ------------- */
+
+@media screen and (max-width: 1024px){
+  .wrapperInput {
+    display: none;
+  }
+}
+
+
+/* ------------- MEDIA QUERIES (SMALL DEVICES) ------------- */
+
+@media screen and (max-width: 600px){
+  .wrapperInput {
+    display: none;
+  }
+}
