@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...
                 isAuth ? <NavLink to={'/profile'} className={st.headerUserInfo}>
                         <img src={avatar} alt=""/>
                     <div>{login}</div>
-                </NavLink> : <NavLink to={'/login'}>login</NavLink>
+                </NavLink> : <NavLink className={st.headerUserInfo} to={'/login'}>login</NavLink>
             }
 
         </div>

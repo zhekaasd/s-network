@@ -7,6 +7,7 @@ import {Timeline} from "../../common/Timeline/Timeline";
 import {ProfileUserType} from "../../../reducers/profile-reducer";
 import UserProfile from "../common/UserProfile/UserProfile";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {RandomUsers} from "../../../RandomUsers";
 
 type ProfilePropsType = {
     posts: Array<PostType>
@@ -26,7 +27,7 @@ export const Profile:React.FC<ProfilePropsType> = ({posts,actualPostText , addPo
         updatePostText(value);
     }
 
-    return <section className={styles.main}>
+    return <div className={styles.mainContainer}>
 
         <UserProfile profile={restProps.profile} />
         <Navigation/>
@@ -34,21 +35,16 @@ export const Profile:React.FC<ProfilePropsType> = ({posts,actualPostText , addPo
         <div className={styles.content}>
             <div className={styles.container}>
                 <div className={styles.profile}>
-                    <aside>
+
                         <SocialAccounts />
-                    </aside>
-
-                    <section>
+                    <RandomUsers />
                         <Timeline avatar={restProps.avatar} onClickHandler={addPostHandler} onChangeHandler={updatePostTextHandler} posts={posts} actualPostText={actualPostText} />
-                    </section>
 
-                    <aside>
-                        <div className={styles.sideBlock}>block3</div>
-                    </aside>
+
                 </div>
             </div>
         </div>
 
-    </section>
+    </div>
 }
 

@@ -27,16 +27,47 @@ const Newsfeed: React.FC<NPPropsType> = ({newsfeedPage, addPost, updatePostText,
     return <div className={styles.newsfeedContainer}>
 
 
-        <div className={styles.newsfeedOwner}>
-            <img src={photo} alt=""/>
-            <div className={styles.newsfeedOwnerInfo}>
-                <p>John Doe</p>
-                <span>location!</span>
+        <div >
+{/*
+
+            <div className={styles.newsfeedOwner}>
+                <img src={photo} alt=""/>
+                <div className={styles.newsfeedOwnerInfo}>
+                    <p>John Doe</p>
+                    <span>location!</span>
+                </div>
+                <NavLink to={'/profile'}>
+                    View Profile
+                </NavLink>
             </div>
-            <NavLink to={'/profile'}>
-                View Profile
-            </NavLink>
+
+*/}
+
+
+            <div className={styles.newsfeedOwner2}>
+
+                <div className={styles.newsfeedOwner2SecondColor}></div>
+
+                <div className={styles.newsfeedOwnerPhoto}>
+                    <img src={photo} alt=""/>
+                </div>
+
+                <div className={styles.newsfeedOwnerInfo}>
+                    <p>John Doe</p>
+                    <span>location!</span>
+                </div>
+
+                <NavLink to={'/profile'}>
+                    View Profile
+                </NavLink>
+            </div>
+
+
+
+
         </div>
+
+
 
         <Timeline
             avatar={photo}
@@ -46,10 +77,13 @@ const Newsfeed: React.FC<NPPropsType> = ({newsfeedPage, addPost, updatePostText,
             onClickHandler={addPostHandler}
         />
 
-        <div className={styles.userFollowing}>block3</div>
+
 
     </div>
 }
 
 
 export default Newsfeed;
+
+
+

@@ -1,25 +1,19 @@
-import {NavLink, useParams} from "react-router-dom";
-import React, {useEffect} from "react";
+import {NavLink} from "react-router-dom";
+import React from "react";
 
 import styles from "./navigation.module.scss";
-import axios from "axios";
-
 
 
 function Navigation() {
 
-    return <nav >
-        <div className={styles.container}>
-            <div className={styles.navigation}>
-                <ul>
-                    <li><NavLink to="/profile">Profile</NavLink> </li>
-                    <li><NavLink to="/timeline">Timeline</NavLink> </li>
-                    <li><NavLink to="/messages">Messages</NavLink> </li>
-                    <li><NavLink to="/users">Users</NavLink> </li>
-                    <li><NavLink to="/music">Music</NavLink> </li>
-                    <li><NavLink to="/other">Other</NavLink> </li>
-                </ul>
-            </div>
+    return <nav className={styles.navigationContainer}>
+            <div className={styles.navigationList}>
+
+                    <NavLink to="/profile">Profile</NavLink>
+                    <NavLink to="/time">Time</NavLink>
+                    <NavLink to="/messages">Messages</NavLink>
+                    <NavLink to="/users">Users</NavLink>
+
         </div>
 
     </nav>

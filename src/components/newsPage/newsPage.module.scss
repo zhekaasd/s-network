@@ -7,7 +7,7 @@
   column-gap: 2.6rem;
   margin-top: 60px;
 
-    .newsfeedOwner {
+ /*   .newsfeedOwner {
       display: grid;
       row-gap: 1.4rem;
       align-self: start;
@@ -54,6 +54,78 @@
           color: gold;
         }
 
+    }*/
+
+    .newsfeedOwner2 {
+
+      display: grid;
+      row-gap: 1.4rem;
+      align-self: start;
+      justify-items: center;
+      background: var(--color-bg-second);
+
+      box-shadow: var(--box-shadow);
+      border-radius: var(--border-radius-main-box);
+      position: relative;
+
+      .newsfeedOwner2SecondColor {
+        background: url('../../other/images/background/pict1.jpg') no-repeat;
+        background-size: cover;
+        height: 132px;
+        width: 100%;
+        border-radius: var(--border-radius-main-box);
+      }
+
+      .newsfeedOwnerPhoto {
+
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border-radius: var(--border-radius-main-box);
+        //background-position: top center;
+
+        & img {
+          width: 120px;
+          height: 120px;
+          border-radius: 100%;
+          border: 3px solid whitesmoke;
+        }
+      }
+
+
+
+      .newsfeedOwnerInfo {
+        display: grid;
+        justify-items: center;
+
+        & p {
+          font-size: 18px;
+          font-weight: 700;
+          color: white;
+          margin-bottom: 12px;
+
+          margin-top: 4rem;
+
+        }
+
+        & span {
+          color: var(--color-main-3);
+        }
+      }
+
+
+      & a {
+        text-decoration: none;
+        font-size: 14px;
+        color: white;
+        margin: 10px 0rem;
+      }
+
+      & a:hover {
+        font-weight: 800;
+        color: gold;
+      }
     }
 
 
@@ -91,10 +163,18 @@
 @media screen and (max-width: 800px) {
   .newsfeedContainer {
     grid-template-columns: 1fr;
+    row-gap: 4rem;
     //grid-template-columns: 240px 1fr;
 
     .userFollowing {
       display: none;
+    }
+
+    .newsfeedOwner2 {
+
+      .newsfeedOwner2SecondColor {
+        background-position: bottom;
+      }
     }
   }
 }

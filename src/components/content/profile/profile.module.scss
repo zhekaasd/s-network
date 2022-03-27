@@ -1,6 +1,6 @@
 @import "../../../index";
 
-.main {
+.mainContainer {
   width: 100%;
 
   .container {
@@ -22,10 +22,7 @@
         max-width: 20%;
         height: 100%;
 
-        .sideBlock {
-          display: flex;
-          flex-direction: column;
-        }
+
 
       }
 
