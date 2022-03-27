@@ -1,16 +1,29 @@
+@import "../../../../index";
 
-.myPostWrapper {
+
+.postContainer {
+  padding: 1rem;
+
   margin-bottom: 30px;
-  background-color: dimgrey;
+  border-radius: var(--border-radius-main-box);
+  background: var(--color-bg-second);
+
+  & > div {
+    padding: .2rem 0;
+  }
+
+
 
   .postData {
     display: flex;
+
+
 
     & img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      padding: 10px;
+      margin: .2rem .6rem 0 0;
     }
 
     & div {
@@ -18,29 +31,50 @@
       flex-direction: column;
       justify-content: center;
     }
+
+    .fullName {
+
+      & span {
+        font-weight: 300;
+        font-size: .9rem;
+      }
+
+      & p {
+        font-weight: 700;
+      }
+    }
   }
 
-  & p {
-    padding: 10px;
+  .postText {
+      padding: .6rem 0;
+      position: relative;
+
+    //&:after {
+    //  content: '';
+    //  width: 100%;
+    //  height: 2px;
+    //  background: var(--color-bg-main);
+    //  position: absolute;
+    //  left: 0;
+    //  bottom: -.4rem;
+    //
+    //}
   }
 
   .line {
     width: 100%;
     padding: 0;
-    border: 1px solid thistle;
-    margin: 5px 0;
+    border: 1px solid var(--color-bg-main);
+    margin: 4px 0;
+    opacity: .6;
+    background: darkgrey;
   }
 
   .blockCounts {
-    padding: 10px;
+    margin: .6rem 0 0 0;
     & span {
       margin-right: 10px;
     }
   }
 }
 
-
-.userPostWrapper {
-  @extend .myPostWrapper;
-  background-color: greenyellow;
-}

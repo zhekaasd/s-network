@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../reducers/store";
 import {Dispatch} from "redux";
 import {addPost, updatePostText} from "../../reducers/newsfeed-reducer";
-import NewsPage from "./NewsPage";
+import Newsfeed from "./Newsfeed";
 
 
 type MDTPType = ReturnType<typeof mapDispatchToProps>;
@@ -26,4 +26,4 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-export default connect<MSTPType, MDTPType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(NewsPage);
+export default connect<MSTPType, MDTPType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(Newsfeed);

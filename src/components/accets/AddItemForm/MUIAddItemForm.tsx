@@ -2,15 +2,15 @@ import React from 'react';
 import TextareaCustom from "../textarea/TextareaCustom";
 import ButtonCustom from "../buton/ButtonCustom";
 
-import styles from "./addItemForm.module.scss";
+import styles from "./MUIaddItemForm.module.scss";
 
-type AddItemFormPropsType = {
+type MUIAddItemFormPropsType = {
     value: string
     onClick: () => void
     onChange: (value: string) => void
     numberRows?: number
 }
-const AddItemForm: React.FC<AddItemFormPropsType> = ({value, onClick, onChange,
+const MUIAddItemForm: React.FC<MUIAddItemFormPropsType> = ({value, onClick, onChange,
                                                          numberRows, ...restProps}) => {
     return (
         <div className={styles.addItemForm}>
@@ -20,4 +20,4 @@ const AddItemForm: React.FC<AddItemFormPropsType> = ({value, onClick, onChange,
     );
 };
 
-export default AddItemForm;
+export default MUIAddItemForm;

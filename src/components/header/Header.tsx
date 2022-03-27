@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...
             </nav>
 
             <nav className={st.headerBurger}>
-                <MenuIcon />
+                <MenuIcon  />
             </nav>
 
             <div className={st.headerSearchBlock}>
