@@ -1,15 +1,59 @@
 .socialBlock {
   display: flex;
   flex-direction: column;
-  .item {
-    background-color: saddlebrown;
-    margin-top: 10px;
-    padding: 10px;
 
-    & a {
+
+    .item {
+      padding: 10px 0 10px 0;
+      background-color: saddlebrown;
       color: white;
       text-decoration: none;
+      display: flex;
+      align-items: center;
 
+    }
+
+
+}
+
+
+@media screen and (max-width: 1024px) {
+  .socialBlock {
+    .item {
+      font-size: .9rem;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .socialBlock {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    .item {
+      align-self: flex-start;
+      & span {
+        margin-left: .4rem;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 640px) {
+  .socialBlock {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    .item {
+      justify-content: center;
+
+      & span {
+        display: none;
+      }
+
+      &:last-child {
+        grid-column-start: 2;
+        grid-column-end: 4;
+      }
     }
   }
 }

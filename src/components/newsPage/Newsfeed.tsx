@@ -6,6 +6,7 @@ import {PostType} from "../../state/store";
 import styles from "./newsPage.module.scss";
 import photo from "../../other/images/1920x.webp";
 import {Timeline} from "../common/Timeline/Timeline";
+import {RandomUsers} from "../../RandomUsers";
 
 
 type NPPropsType = {
@@ -63,7 +64,9 @@ const Newsfeed: React.FC<NPPropsType> = ({newsfeedPage, addPost, updatePostText,
             </div>
 
 
-
+            <div className={styles.randomUsers}>
+                <RandomUsers />
+            </div>
 
         </div>
 
@@ -77,6 +80,10 @@ const Newsfeed: React.FC<NPPropsType> = ({newsfeedPage, addPost, updatePostText,
             onClickHandler={addPostHandler}
         />
 
+
+        <div className={styles.randomUsersRight}>
+            <RandomUsers  />
+        </div>
 
 
     </div>

@@ -1,90 +1,43 @@
 @import "../../../index";
 
-.mainContainer {
+.contentContainer {
   width: 100%;
 
-  .container {
+  .mainContainer {
     @extend .container;
 
     border: 1px solid gold;
     margin-top: 25px;
 
 
-    .profile {
-
-      display: flex;
-      justify-content: space-between;
-
-
-      & aside {
-        border: 1px solid brown;
-        flex: 0 0 20%;
-        max-width: 20%;
-        height: 100%;
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    column-gap: 3.6rem;
+  }
 
 
+  @media screen and (max-width: 1024px) {
+    .mainContainer {
 
-      }
-
-      & section {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 0 15px;
-
-        .posts {
-          height: 100%;
-          border: 1px solid steelblue;
-          display: flex;
-          flex-direction: column;
-
-
-          .addPost {
-            border: 1px solid darkolivegreen;
-            padding: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            margin-bottom: 30px;
-
-            background-color: dimgrey;
-
-            .fieldEntry {
-              flex: 0 0 100%;
-              max-width: 100%;
-              display: flex;
-              align-items: center;
-
-              & img {
-                width: 50px;
-                height: 50px;
-                border-radius: 100%;
-                margin-right: 10px;
-              }
-
-              & input {
-                width: 100%;
-                height: 30px;
-              }
-            }
-
-
-
-            .buttonAddPost {
-              display: flex;
-              justify-items: flex-end;
-
-              & button {
-                display: flex;
-              }
-            }
-          }
-
-          .listPosts {
-
-          }
-        }
-      }
     }
   }
 
+  @media screen and (max-width: 800px) {
+    .mainContainer {
+      grid-template-columns: 1fr;
+      column-gap: 2.6rem;
+    }
+  }
+
+
+  @media screen and (max-width: 640px) {
+    .mainContainer {
+      width: var(--container-width-lg);
+      grid-template-columns: 1fr;
+
+    }
+  }
 }
+
+
+

@@ -15,6 +15,7 @@
     font-size: 14px;
     line-height: 1.5rem;
     padding: 0;
+    margin-bottom: .4rem;
   }
 
 
@@ -39,8 +40,6 @@
       z-index: 0;
     }
   }
-
-
 
 
   .profileOwner {
@@ -100,8 +99,10 @@
 
         & img {
           left: 50%;
-          top: -100px;
+          top: -80px;
           transform: translate(-50%);
+          width: 120px;
+          height: 120px;
         }
 
         .ownerName {
@@ -113,10 +114,22 @@
         }
 
       }
+
+
     }
 
   }
 
+
+  /* --------------- MEDIA REQUEST : [640] --------------- */
+
+  @media screen and (max-width: 640px) {
+
+    .banner {
+      min-height: 200px;
+    }
+
+  }
 }
 
 

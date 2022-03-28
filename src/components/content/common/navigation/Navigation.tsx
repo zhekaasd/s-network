@@ -10,7 +10,7 @@ function Navigation() {
             <div className={styles.navigationList}>
 
                     <NavLink to="/profile">Profile</NavLink>
-                    <NavLink to="/time">Time</NavLink>
+                    <NavLink to="/timeline">Timeline</NavLink>
                     <NavLink to="/messages">Messages</NavLink>
                     <NavLink to="/users">Users</NavLink>
 

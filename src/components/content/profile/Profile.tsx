@@ -1,13 +1,13 @@
 import React from "react";
-import styles from './profile.module.scss';
 import Navigation from "../common/navigation/Navigation";
 import {PostType} from "../../../state/store";
 import {SocialAccounts} from "../../common/socialAccounts/SocialAccounts";
 import {Timeline} from "../../common/Timeline/Timeline";
 import {ProfileUserType} from "../../../reducers/profile-reducer";
 import UserProfile from "../common/UserProfile/UserProfile";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
-import {RandomUsers} from "../../../RandomUsers";
+
+
+import styles from './profile.module.scss';
 
 type ProfilePropsType = {
     posts: Array<PostType>
@@ -27,22 +27,19 @@ export const Profile:React.FC<ProfilePropsType> = ({posts,actualPostText , addPo
         updatePostText(value);
     }
 
-    return <div className={styles.mainContainer}>
+    return <div className={styles.contentContainer}>
 
         <UserProfile profile={restProps.profile} />
         <Navigation/>
 
-        <div className={styles.content}>
-            <div className={styles.container}>
-                <div className={styles.profile}>
-
-                        <SocialAccounts />
-                    <RandomUsers />
-                        <Timeline avatar={restProps.avatar} onClickHandler={addPostHandler} onChangeHandler={updatePostTextHandler} posts={posts} actualPostText={actualPostText} />
-
-
+        <div className={styles.mainContainer}>
+                <div>
+                    <SocialAccounts/>
+                    {/*<RandomUsers/>*/}
                 </div>
-            </div>
+                <Timeline avatar={restProps.avatar} onClickHandler={addPostHandler}
+                          onChangeHandler={updatePostTextHandler} posts={posts} actualPostText={actualPostText}/>
+
         </div>
 
     </div>

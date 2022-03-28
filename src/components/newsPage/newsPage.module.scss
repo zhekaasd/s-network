@@ -119,13 +119,17 @@
         text-decoration: none;
         font-size: 14px;
         color: white;
-        margin: 10px 0rem;
+        margin: 10px 0;
       }
 
       & a:hover {
         font-weight: 800;
         color: gold;
       }
+    }
+
+    .randomUsers {
+      display: none;
     }
 
 
@@ -137,6 +141,7 @@
       background: #ad5178;
     }
 
+
 }
 
 
@@ -144,8 +149,14 @@
   .newsfeedContainer {
     grid-template-columns: 240px 1fr;
 
-    .userFollowing {
+    .randomUsersRight {
       display: none;
+    }
+
+    .randomUsers {
+
+      display: grid;
+      align-self: start;
     }
   }
 }
@@ -153,10 +164,6 @@
 @media screen and (max-width: 1024px) {
   .newsfeedContainer {
     grid-template-columns: 240px 1fr;
-
-    .userFollowing {
-      display: none;
-    }
   }
 }
 

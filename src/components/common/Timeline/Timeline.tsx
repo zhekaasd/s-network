@@ -1,6 +1,4 @@
 import styles from "./Timeline.module.scss";
-import photo from "../../../other/images/1920x.webp";
-import {AddItemForm} from "../../../AddItemForm";
 import React from "react";
 import {Post} from "../../content/profile/Post/Post";
 import {PostType} from "../../../reducers/newsfeed-reducer";
