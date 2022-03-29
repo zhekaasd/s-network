@@ -20,9 +20,9 @@
 
     --transition: all 400ms ease;
 
-    --container-width-lg: 70%;
-    --container-width-md: 81%;
-    --container-width-sm: 85%;
+    --container-width-lg: 65%;
+    --container-width-md: 77%;
+    --container-width-sm: 81%;
 
     --box-shadow: 0 3px 5px 3px rgba(34, 60, 80, 0.2);
     --border-radius-main-box: 4px;
@@ -48,7 +48,7 @@ body {
 /* --------------- GENERAL STYLES --------------- */
 
 
-.container {
+.usersContainer {
     width: var(--container-width-sm);
     margin: 0 auto;
 }
@@ -74,7 +74,7 @@ img {
 /* --------------- MEDIA REQUEST : [1024] --------------- */
 
 @media screen and (max-width: 1024px) {
-    .container {
+    .usersContainer {
         width: var(--container-width-md);
     }
 }
@@ -85,7 +85,7 @@ img {
 /* --------------- MEDIA REQUEST : [640] --------------- */
 
 @media screen and (max-width: 640px) {
-    .container {
+    .usersContainer {
         width: var(--container-width-lg);
     }
 }

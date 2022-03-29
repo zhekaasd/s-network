@@ -1,7 +1,7 @@
 @import "../../../../index";
 
 .navigationContainer {
-  @extend .container;
+  @extend .usersContainer;
   background: var(--color-bg-second);
 
 

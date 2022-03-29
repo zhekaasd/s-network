@@ -45,10 +45,13 @@ export const UsersC: React.FC<UsersPropsType> = (props) =>  {
             arrPages.push(i);
         }
 
-        return <div className={s.container}>
+        return <div className={s.usersContainer}>
+
             <h1 style={{fontSize: '74px'}}>USERS</h1>
 
-            <div>
+
+
+            <div className={s.usersCurrentPage}>
                 {
                     arrPages.map((p, index) => <span key={index}
                                                      onClick={() => changePageNumber(p)}

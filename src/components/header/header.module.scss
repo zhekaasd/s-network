@@ -10,7 +10,7 @@ header {
   align-items: center;
 
   .headerContainer {
-    @extend .container;
+    @extend .usersContainer;
     display: grid;
     grid-template-columns: 14% 2fr 1.4fr 14%;
     column-gap: 2rem;
@@ -61,7 +61,7 @@ header {
 /* --------------- MEDIA REQUEST : [1024] --------------- */
 
 @media screen and (max-width: 1024px) {
-  .container {
+  .usersContainer {
 
     width: var(--container-width-md);
     grid-template-columns: 1fr 2fr 1fr;
@@ -87,7 +87,7 @@ header {
 /* --------------- MEDIA REQUEST : [640] --------------- */
 
 @media screen and (max-width: 640px) {
-  .container {
+  .usersContainer {
     width: var(--container-width-lg);
     grid-template-columns: auto 2fr 1fr;
     column-gap: .6rem;

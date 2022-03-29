@@ -1,7 +1,7 @@
 @import "src/index";
 
 .newsfeedContainer {
-  @extend .container;
+  @extend .usersContainer;
   display: grid;
   grid-template-columns: 240px 3fr 240px;
   column-gap: 2.6rem;

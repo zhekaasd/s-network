@@ -50,7 +50,7 @@
 
 
     .profileOwnerContainer {
-      @extend .container;
+      @extend .usersContainer;
       display: flex;
       justify-content: space-between;
       align-items: center;

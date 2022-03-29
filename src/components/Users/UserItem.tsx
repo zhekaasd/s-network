@@ -3,6 +3,9 @@ import {User} from "../../reducers/users-reducer";
 import photo from "../../other/images/Screenshot_3.png";
 import React from "react";
 import {NavLink} from "react-router-dom";
+import ButtonCustom from "../accets/buton/ButtonCustom";
+import {AddItemForm} from "../../AddItemForm";
+import MUIAddItemForm from "../accets/AddItemForm/MUIAddItemForm";
 
 
 type UserItemPropsType = {
@@ -18,6 +21,38 @@ type UserItemPropsType = {
     followingInProgress: number[]
 }
 
+type FakeLocationType = {
+    location: {
+        country: {
+            id: string
+            title: string
+            city: {
+                id: string
+                title: string
+            }
+        }
+    }
+}
+
+type FakeItemUserType = User & FakeLocationType;
+
+const fakeItemUser: FakeItemUserType[] = [
+    {
+        name: 'John Doe',
+        id: 123,
+        uniqueUrlName: 'johndoe123',
+        photos: {
+            small: '',
+            large: ''
+        },
+        status: 'Status from John Doe',
+        followed: false,
+        location: {
+            country: {title: 'Russia', id: '321', city: {id: '44', title: 'Moscow'}}
+        }
+    }
+]
+
 const UserItem: React.FC<UserItemPropsType> = (props) => {
 
 
@@ -30,13 +65,24 @@ const UserItem: React.FC<UserItemPropsType> = (props) => {
     }
 
 
+    let newArr: FakeItemUserType[] = props.usersPage.users.map( (item ) => {
+
+        return {
+            ...item,
+            photos: {...item.photos},
+            location: {
+                country: {title: 'Russia', id: '321', city: {id: '44', title: 'Moscow'}}
+            }}
+    } );
 
 
-    return <div style={{display: 'flex', justifyContent: 'center'}}>
+    return  <div className={s.items}>
 
-                    <div className={s.wrapper}>
+
+
+
                         {
-                            props.usersPage.users.map(u => {
+                            newArr.map(u => {
 
                                 const followUser = () => {
                                     props.followUser(u.id);
@@ -45,32 +91,36 @@ const UserItem: React.FC<UserItemPropsType> = (props) => {
                                     props.unfollowUser(u.id);
                                 }
 
+
+
                                 return <div key={u.id} className={s.item}>
-                                    <div className={s.user}>
-                                        <div style={{height: '86px', backgroundColor: 'gray'}}></div>
+
+                                        <div className={s.itemBackgroundImage}></div>
 
                                         <img src={u.photos.small ? u.photos.small : photo} alt="phhh"/>
                                         <div className={s.userData}>
-                                            <p>{u.name}</p>
-                                            <span>{u.status ? u.status : ':]'}</span>
-                                            {/*<span>location</span>*/}
+                                            <h3>{u.name}</h3>
+                                            <span>{u.location.country.city.title}</span>
+
 
                                             {
                                                 u.followed ?
-                                                    <button disabled={props.followingInProgress.some((id) => id === u.id)} onClick={unfollowUser}
-                                                            style={{display: 'block'}}>Unfollow</button>
-                                                    : <button disabled={props.followingInProgress.some((id) => id === u.id)} onClick={followUser}
-                                                              style={{display: 'block'}}>Follow</button>
+                                                    <ButtonCustom sizeButton={'small'} disabled={props.followingInProgress.some((id) => id === u.id)} onClick={unfollowUser}>
+                                                        Unfollow</ButtonCustom>
+                                                    : <ButtonCustom sizeButton={'small'} disabled={props.followingInProgress.some((id) => id === u.id)} onClick={followUser}>
+                                                        Follow
+                                                    </ButtonCustom>
+
                                             }
 
-                                            <div style={{border: '1px solid gray', width: '100%', margin: '6px 0'}}></div>
+
+
+                                            <div className={s.line}></div>
                                             <NavLink to={'/profile/' + u.id}>view profile</NavLink>
                                         </div>
                                     </div>
-                                </div>
                             })
                         }
-                    </div>
                 </div>
 }
 
