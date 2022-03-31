@@ -4,11 +4,14 @@ import React, {useEffect, useRef} from "react";
 import photo from "../../../other/images/1920x.webp";
 
 import s from "./ChatPage2.module.scss";
+
 import Navigation from "../common/navigation/Navigation";
 import {AddItemForm} from "../../../AddItemForm";
 import {NavLink} from "react-router-dom";
 import {ProfileUserType} from "../../../reducers/profile-reducer";
 import UserProfile from "../common/UserProfile/UserProfile";
+import InputCustom from "../../accets/input/InputCustom";
+import MUIAddItemForm from "../../accets/AddItemForm/MUIAddItemForm";
 
 
 function ChatPage2(props: {
@@ -22,65 +25,72 @@ function ChatPage2(props: {
 
     useEffect(() => {
         bottomRef.current.scrollIntoView({block:'start'});
-    },[props.messagesPage.messages])
+    },[props.messagesPage.messages]);
+
 
     let userSentMessageFilter = props.messagesPage.messages.filter(m => !m.value);
     let lastMessage = userSentMessageFilter[userSentMessageFilter.length - 1].messageText;
 
-    return <section>
+
+    return <div>
 
         <UserProfile profile={props.profile} />
 
         <Navigation/>
 
-        <div>
-            <div className={s.container}>
-                <div className={s.d}>
-                    <div className={s.searchField}>
-                        <input type="text"/>
-                        <button>search</button>
-                        search field
-                    </div>
-
-                    {props.messagesPage.users.map(u => <NavLink key={u.id}
-                        className={(navDate) => navDate.isActive ? s.item + ' ' + s.active : s.item} to={'/messages/' + u.id}>
-                        <img src={photo} alt=""/>
-                        <div className={s.dataItem}>
-                            <div className={s.infoUser}>
-                                <p>{u.firstName + ' ' + u.lastName}</p>
-                                <p>{lastMessage}</p>
-                            </div>
-                            <span>time</span>
-                        </div>
-                    </NavLink>)}
-
+        <div className={s.chatPageContainer}>
+            <div className={s.chatPageDialogsBlock}>
+                <div className={s.chatPageSearchBlock}>
+                    <InputCustom widthField typeField={'outlined'} sizeField={'small'} />
                 </div>
 
-                <div className={s.m}>Messages
-                    <div className={s.userName}>
-                        <div>
-                            <p>John Doe</p>
-                            <span >online</span>
-                        </div>
-                        <div style={{display: "flex"}}>
-                            <div><img src="#" alt="icon1"/></div>
-                            <div><img src="#" alt="icon2"/></div>
-                            <div><img src="#" alt="icon3"/></div>
-                        </div>
-                    </div>
+                {props.messagesPage.users.map(u => <NavLink
+                    key={u.id}
+                    className={({isActive}) => isActive ? s.chatPageDialogsItem + ' ' + s.active : s.chatPageDialogsItem}
+                    to={'/messages/' + u.id}>
 
-                    <div className={s.messagesList}>
-                        {
-                            props.messagesPage.messages.map( m => <p key={m.id} ref={bottomRef} className={m.value ? s.yourSentMessage : s.userSentMessage}>{m.messageText}</p> )
-                        }
-                    </div>
+                    <img src={photo} alt=""/>
 
-                    <AddItemForm onClick={props.addMessage} onChange={props.updateMessageText} value={props.messagesPage.actualMessageText} />
+                    <div className={s.chatPageDialogsItemInfo}>
+
+                        <div className={s.chatPageDialogsItemDetailsInfo}>
+                            <h3>{u.firstName} <span>{u.lastName}</span></h3>
+                            <p>{lastMessage}</p>
+                        </div>
+
+                        <span>{new Date().getHours() + ':' + new Date().getMinutes()}</span>
+                    </div>
+                </NavLink>)}
+
+            </div>
+
+            <div className={s.m}>
+                <div className={s.userName}>
+                    <div className={s.mData}>
+                        <p>John Doe</p>
+                        <span>online</span>
+                    </div>
+                    <div>
+                        <span>last seen within a mount</span>
+                    </div>
                 </div>
+
+                <div className={s.messagesList}>
+                    {
+                        props.messagesPage.messages.map(m => <p key={m.id} ref={bottomRef}
+                                                                className={m.value ? s.yourSentMessage : s.userSentMessage}>{m.messageText}</p>)
+                    }
+                </div>
+
+                <div className={s.addItemForm}>
+                    <MUIAddItemForm onClick={props.addMessage}
+                                    onChange={props.updateMessageText}
+                                    value={props.messagesPage.actualMessageText} />
+                </div>
+
             </div>
         </div>
-
-    </section>
+    </div>
 }
 
 export default ChatPage2;

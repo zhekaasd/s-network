@@ -45,7 +45,7 @@ export const UsersC: React.FC<UsersPropsType> = (props) =>  {
             arrPages.push(i);
         }
 
-        return <div className={s.usersContainer}>
+        return <div className={s.container}>
 
             <h1 style={{fontSize: '74px'}}>USERS</h1>
 

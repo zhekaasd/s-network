@@ -11,7 +11,9 @@
     font-weight: 700;
   }
 
-  & span {
+
+/*-- Исправить кнопку --*/
+  & > span {
     font-size: 14px;
     line-height: 1.5rem;
     padding: 0;
@@ -50,7 +52,7 @@
 
 
     .profileOwnerContainer {
-      @extend .usersContainer;
+      @extend .container;
       display: flex;
       justify-content: space-between;
       align-items: center;

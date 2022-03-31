@@ -4,7 +4,7 @@
   width: 100%;
 
   .mainContainer {
-    @extend .usersContainer;
+    @extend .container;
 
     border: 1px solid gold;
     margin-top: 25px;

@@ -1,61 +1,104 @@
 @import "../../../index";
 
-.usersContainer {
-  @extend .usersContainer;
+.chatPageContainer {
+  @extend .container;
   margin: 50px auto 0;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 332px 1fr;
+  grid-column-gap: 2rem;
   border: 1px solid firebrick;
 
-  .d {
+  .chatPageDialogsBlock {
     border: 1px solid green;
-    flex: 0 0 28%;
+    display: grid;
+    align-self: start;
+    row-gap: 0.4rem;
 
-    .searchField {
-      padding: 15px 5px;
+    .chatPageSearchBlock {
+      padding: 1rem 2rem;
 
     }
 
     & a {
       display: block;
       background-color: tomato;
-      margin-bottom: 4px;
 
       & img {
         margin-right: 10px;
-        width: 50px;
-        height: 50px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
       }
     }
 
-    .item {
-      background-color: greenyellow;
-      display: flex;
+
+
+    .chatPageDialogsItem {
+      display: grid;
+      align-items: center;
+      grid-template-columns: auto 1fr;
       padding: 12px 8px 12px 5px;
 
-      .dataItem {
-        display: flex;
-        width: 100%;
+      .chatPageDialogsItemInfo {
+        display: grid;
+        grid-template-columns: 1fr auto;
 
-        .infoUser  {
-          display: flex;
-          flex-direction: column;
-          width: 220px;
-          max-width: 90%;
+
+        & span {
+          font-size: .9rem;
+        }
+
+        .chatPageDialogsItemDetailsInfo  {
+
           & p {
-            margin-top: 2px;
-          }
-          & p:last-child {
             margin-top: 8px;
-            max-width: 90%;
+            width: 200px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            font-size: 14px;
           }
 
+          & h3 {
+            font-weight: 700;
+            font-size: 1rem;
+          }
 
         }
+
+
+        /* --------------- MEDIA REQUEST : [1024] --------------- */
+
+        @media screen and (max-width: 1024px) {
+          .chatPageDialogsItemDetailsInfo {
+            width: 162px;
+
+            & p {
+              width: 170px;
+            }
+
+
+          }
+        }
+
+        /* --------------- MEDIA REQUEST : [1024] --------------- */
+
+        @media screen and (max-width: 640px) {
+          .chatPageDialogsItemDetailsInfo {
+            width: 82px;
+
+            & p {
+              width: 82px;
+            }
+
+            span {
+              display: none;
+            }
+
+
+          }
+        }
+
 
 
       }
@@ -69,13 +112,30 @@
 
   .m {
     border: 1px solid tomato;
-    flex: 0 0 66%;
 
     .userName {
-      padding: 15px 10px;
-      border: 1px solid thistle;
+      padding: 8px 10px;
+      line-height: 1.4rem;
+
       display: flex;
       justify-content: space-between;
+
+      & span {
+        font-size: 12px;
+        opacity: .8;
+      }
+
+      .mData {
+
+        & > span {
+          color: green;
+        }
+
+        & p {
+          font-weight: 700;
+
+        }
+      }
     }
 
     .messagesList {
@@ -83,16 +143,17 @@
       border: 1px solid rebeccapurple;
       height: 550px;
       overflow-y: auto;
+      display: grid;
+      align-content: center;
 
       .yourSentMessage {
         padding: 15px 10px;
         border: 1px solid gainsboro;
         margin-bottom: 15px;
-        max-width: 55%;
+        max-width: 90%;
         border-radius: 15px;
         background-color: rebeccapurple;
         color: whitesmoke;
-
         margin-left: auto;
       }
 
@@ -100,13 +161,71 @@
         padding: 15px 10px;
         border: 1px solid gainsboro;
         margin-bottom: 15px;
-        max-width: 55%;
+        max-width: 90%;
         border-radius: 15px;
         background-color: thistle;
-
+        margin-right: auto;
       }
 
 
+      /* --------------- MEDIA REQUEST : [1024] --------------- */
+
+      @media screen and (max-width: 1024px) {
+        .yourSentMessage, .userSentMessage {
+          font-size: 14px;
+        }
+      }
+
     }
+
+    .addItemForm {
+      margin: 40px;
+    }
+
+
+
+
+
+    /* --------------- MEDIA REQUEST : [640] --------------- */
+
+    @media screen and (max-width: 640px) {
+      .userName {
+        flex-direction: column;
+        align-items: center;
+        .mData {
+          text-align: center;
+
+          & > span {
+            margin-bottom: 8px;
+            display: block;
+          }
+        }
+      }
+    }
+
+  }
+
+
+
+}
+
+/* --------------- MEDIA REQUEST : [1024] --------------- */
+
+@media screen and (max-width: 1024px) {
+  .chatPageContainer {
+    grid-template-columns: 280px 1fr;
   }
 }
+
+
+
+
+/* --------------- MEDIA REQUEST : [800] --------------- */
+
+@media screen and (max-width: 800px) {
+  .chatPageContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+

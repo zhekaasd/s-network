@@ -21,37 +21,75 @@ type UserItemPropsType = {
     followingInProgress: number[]
 }
 
-type FakeLocationType = {
+type FakeLocationUserType = User & {
     location: {
-        country: {
-            id: string
-            title: string
-            city: {
-                id: string
-                title: string
-            }
-        }
+        id: string
+        title: string
     }
 }
 
-type FakeItemUserType = User & FakeLocationType;
+function randomNumber() {
+    let randomN = (Math.floor(Math.random() * 10));
+    return randomN > 4 ? randomN - 5 : randomN;
+}
 
-const fakeItemUser: FakeItemUserType[] = [
-    {
-        name: 'John Doe',
-        id: 123,
-        uniqueUrlName: 'johndoe123',
-        photos: {
-            small: '',
-            large: ''
-        },
-        status: 'Status from John Doe',
-        followed: false,
-        location: {
-            country: {title: 'Russia', id: '321', city: {id: '44', title: 'Moscow'}}
-        }
+
+const getRandomLocationCity = () => {
+
+    const randomCountryNumber = randomNumber();
+    const randomCityNumber = randomNumber();
+
+    const usersWithFakeLocation = [
+        {id: 0, country: 'Russia', cities: [
+                {id: 0, title: 'Moscow'},
+                {id: 1, title: 'Saint Petersburg'},
+                {id: 2, title: 'Novosibirsk'},
+                {id: 3, title: 'Yekaterinburg'},
+                {id: 4, title: 'Kaliningrad'},
+            ]},
+        {id: 1, country: 'Belarus', cities: [
+                {id: 0, title: 'Minsk'},
+                {id: 1, title: 'Gomel'},
+                {id: 2, title: 'Mogilev'},
+                {id: 3, title: 'Vitebsk'},
+                {id: 4, title: 'Grodno'},
+            ]},
+        {id: 2, country: 'Ukraine', cities: [
+                {id: 0, title: 'Kyiv'},
+                {id: 1, title: 'Odessa'},
+                {id: 2, title: 'Yalta'},
+                {id: 3, title: 'Poltava'},
+                {id: 4, title: 'Kherson'},
+            ]},
+        {id: 3, country: 'Kazakhstan', cities: [
+                {id: 0, title: 'Almaty'},
+                {id: 1, title: 'Shymkent'},
+                {id: 2, title: 'Karaganda'},
+                {id: 3, title: 'Nur-Sultan'},
+                {id: 4, title: 'Pavlodar'},
+            ]},
+        {id: 4, country: 'Armenia', cities: [
+                {id: 0, title: 'Yerevan'},
+                {id: 1, title: 'Gyumri'},
+                {id: 2, title: 'Vagharshapat'},
+                {id: 3, title: 'Abovyan'},
+                {id: 4, title: 'Artashat'},
+            ]},
+    ];
+
+    let getLocation = usersWithFakeLocation.find(el => el.id === randomCountryNumber);
+    let getCountry;
+
+    if (getLocation) {
+        getCountry = getLocation.cities.find( city => city.id === randomCityNumber);
     }
-]
+
+
+    return getCountry;
+
+}
+
+
 
 const UserItem: React.FC<UserItemPropsType> = (props) => {
 
@@ -65,14 +103,13 @@ const UserItem: React.FC<UserItemPropsType> = (props) => {
     }
 
 
-    let newArr: FakeItemUserType[] = props.usersPage.users.map( (item ) => {
+    let newArr = props.usersPage.users.map( (item ) => {
 
         return {
             ...item,
             photos: {...item.photos},
-            location: {
-                country: {title: 'Russia', id: '321', city: {id: '44', title: 'Moscow'}}
-            }}
+            location: getRandomLocationCity()
+        }
     } );
 
 
@@ -92,7 +129,6 @@ const UserItem: React.FC<UserItemPropsType> = (props) => {
                                 }
 
 
-
                                 return <div key={u.id} className={s.item}>
 
                                         <div className={s.itemBackgroundImage}></div>
@@ -100,7 +136,7 @@ const UserItem: React.FC<UserItemPropsType> = (props) => {
                                         <img src={u.photos.small ? u.photos.small : photo} alt="phhh"/>
                                         <div className={s.userData}>
                                             <h3>{u.name}</h3>
-                                            <span>{u.location.country.city.title}</span>
+                                            <span>{u.location && u.location.title}</span>
 
 
                                             {

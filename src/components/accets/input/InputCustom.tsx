@@ -1,9 +1,19 @@
 import React from 'react';
 import {TextField} from "@mui/material";
 
-const InputCustom = () => {
+type InputCustomPropsType = {
+    sizeField?: "small" | "medium"
+    typeField?: "standard" | "filled" | "outlined"
+    widthField?: boolean
+}
+const InputCustom = (props: InputCustomPropsType) => {
     return (
-        <TextField />
+        <TextField
+            variant={props.typeField ? props.typeField : 'standard'}
+            size={props.sizeField ? props.sizeField : 'medium'}
+            fullWidth={props.widthField}
+
+        />
     );
 };
 

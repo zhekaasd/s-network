@@ -48,7 +48,7 @@ body {
 /* --------------- GENERAL STYLES --------------- */
 
 
-.usersContainer {
+.container {
     width: var(--container-width-sm);
     margin: 0 auto;
 }
@@ -74,7 +74,7 @@ img {
 /* --------------- MEDIA REQUEST : [1024] --------------- */
 
 @media screen and (max-width: 1024px) {
-    .usersContainer {
+    .container {
         width: var(--container-width-md);
     }
 }
@@ -85,7 +85,7 @@ img {
 /* --------------- MEDIA REQUEST : [640] --------------- */
 
 @media screen and (max-width: 640px) {
-    .usersContainer {
+    .container {
         width: var(--container-width-lg);
     }
 }
