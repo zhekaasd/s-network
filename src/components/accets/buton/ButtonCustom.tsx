@@ -13,7 +13,11 @@ type ButtonCustomPropsType = {
 
 const ButtonCustom: React.FC<ButtonCustomPropsType> = ({onClick, disabled, sizeButton, ...restProps}) => {
     return (
-        <Button size={sizeButton ? sizeButton : 'medium'} disabled={disabled} color={'success'} variant={'contained'} onClick={onClick}> {restProps.children ? restProps.children : 'child' } </Button>
+        <Button size={sizeButton ? sizeButton : 'medium'}
+                disabled={disabled} color={'primary'}
+                variant={'contained'} onClick={onClick}>
+            {restProps.children ? restProps.children : 'child' }
+        </Button>
     );
 };
 

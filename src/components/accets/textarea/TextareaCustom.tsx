@@ -10,12 +10,14 @@ type TextareaCustomPropsType = {
 }
 const TextareaCustom: React.FC<TextareaCustomPropsType> = ({value, onChange, numberRows}) => {
 
+/*--- size of textarea field ---*/
     const rows = numberRows ? numberRows : 1;
 
     return (
         <TextField multiline rows={rows}
                    className={styles.textarea}
                    value={value}
+                   placeholder={'What is new, John Doe?'}
                    onChange={(e) => onChange(e.currentTarget.value)} />
     );
 };

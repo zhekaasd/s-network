@@ -1,0 +1,171 @@
+@import "../../index.scss";
+
+
+header {
+
+  background-color: var(--color-bg-second);
+  box-shadow: var(--box-shadow);
+  height: 72px;
+  display: grid;
+  align-items: center;
+
+  .headerContainer {
+    @extend .container;
+    display: grid;
+    grid-template-columns: 14% 2fr 1.4fr 14%;
+    column-gap: 2rem;
+    align-items: center;
+
+    .headerLogotype {
+      color: var(--color-main-3);
+      font-size: 2.2rem;
+    }
+
+    .headerNavigation {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: .2rem;
+
+      .searchIcon {
+        display: none;
+      }
+
+      .itemIcon {
+        opacity: .6;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .headerBurger {
+      display: none;
+    }
+
+    .headerSearchBlock {
+      padding: 0 1rem;
+    }
+
+    .headerUserInfo {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      overflow: hidden;
+
+      & img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: .4rem;
+        border: 2px solid var(--color-bg-main);
+      }
+
+      & h4 {
+        overflow: hidden;
+        color: var(--color-main-3);
+        opacity: .6;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        & span {
+          color: var(--color-main-3);
+          margin: 6px 0 0 4px;
+        }
+      }
+    }
+  }
+}
+
+
+/* --------------- MEDIA REQUEST : [1024] --------------- */
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: var(--container-width-md);
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .headerNavigation {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+
+      .searchIcon {
+        opacity: .6;
+        display: grid;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .headerSearchBlock {
+      display: none;
+    }
+  }
+}
+
+
+/* --------------- MEDIA REQUEST : [800] --------------- */
+
+@media screen and (max-width: 800px) {
+  .headerContainer {
+    & a {
+      .headerLogotype {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+}
+
+/* --------------- MEDIA REQUEST : [640] --------------- */
+
+@media screen and (max-width: 640px) {
+  .container {
+    width: var(--container-width-lg);
+    grid-template-columns: auto 2fr 1fr;
+    column-gap: .6rem;
+    align-items: center;
+
+    a {
+      .headerLogotype {
+        font-size: 1.2rem;
+      }
+    }
+
+    .headerNavigation {
+      display: none;
+    }
+
+    .headerBurger {
+      opacity: .6;
+      display: grid;
+      justify-items: start;
+      margin-top: .2rem;
+
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+
+    .headerUserInfo {
+      & h4 {
+        display: none;
+      }
+
+      & img {
+        width: 40px;
+        height: 40px;
+        margin: 0 .4rem 0 0;
+      }
+    }
+  }
+}

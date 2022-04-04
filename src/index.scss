@@ -12,15 +12,22 @@
 }
 
 :root {
-    --color-bg-main: #ecd9ed;
-    --color-bg-second: #ad5178;
-    --color-main: #6e304b;
-    --color-main-2: #e2ae6c;
-    --color-main-3: #22161c;
+    --color-bg-main-bg: radial-gradient(circle, rgba(255,165,120,1) 20%, rgba(234,176,187,1) 100%);
+
+    --color-bg-main: #9cacbf;
+    --color-bg-second: #2b6684;
+    --color-main: #012e67;
+    --color-main-2: #032e42;
+    --color-main-3: #0a1417;
+
+    --color-white: #fff;
+    --color-black: #121214;
+
+
 
     --transition: all 400ms ease;
 
-    --container-width-lg: 65%;
+    --container-width-lg: 74%;
     --container-width-md: 77%;
     --container-width-sm: 81%;
 
@@ -42,6 +49,7 @@ body {
     font-family: 'Lato', sans-serif;
     line-height: 1.7;
     background: var(--color-bg-main);
+    color: var(--color-black);
 }
 
 
@@ -54,11 +62,20 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-    font-weight: 500;
+    font-weight: 700;
 };
 
 h1 {
     font-size: 2.5rem;
+}
+
+p {
+    font-weight: 400;
+}
+
+span {
+    font-weight: 300;
+    font-size: 14px;
 }
 
 img {
@@ -69,9 +86,7 @@ img {
 
 
 
-
-
-/* --------------- MEDIA REQUEST : [1024] --------------- */
+/* --------------- MEDIA REQUEST: [1024] --------------- */
 
 @media screen and (max-width: 1024px) {
     .container {
@@ -79,10 +94,7 @@ img {
     }
 }
 
-
-
-
-/* --------------- MEDIA REQUEST : [640] --------------- */
+/* --------------- MEDIA REQUEST: [640] --------------- */
 
 @media screen and (max-width: 640px) {
     .container {

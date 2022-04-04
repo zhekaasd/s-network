@@ -1,8 +1,10 @@
-import styles from "./Timeline.module.scss";
 import React from "react";
-import {Post} from "../../content/profile/Post/Post";
+import {Post} from "./Post/Post";
 import {PostType} from "../../../reducers/newsfeed-reducer";
-import MUIAddItemForm from "../../accets/AddItemForm/MUIAddItemForm";
+import MUIAddItemForm from "../AddItemForm/MUIAddItemForm";
+
+/*--- css import ---*/
+import styles from "./Timeline.module.scss";
 
 
 type TimelinePropsType = {
@@ -12,24 +14,25 @@ type TimelinePropsType = {
     posts: PostType[]
     actualPostText: string
 }
-export const Timeline: React.FC<TimelinePropsType> = (props) => {
 
-    /*-- Мапим все посты из стейта --*/
-    let posts = props.posts.map(p => <Post key={p.id} value={p.value} postText={p.postText}
-                                           likesCount={p.likesCount} commentsCount={p.commentsCount}/>);
+export const Timeline: React.FC<TimelinePropsType> = ({onChangeHandler, onClickHandler, actualPostText,
+                                                          posts, ...restProps}) => {
 
-    return <div className={styles.postContainer}>
-        <div className={props.avatar ? styles.formAvatar : styles.form}>
-            {props.avatar && <img style={{borderRadius: "100%"}} src={props.avatar} alt="???"/>}
+/*-- mapping posts from state data --*/
+    let mappingPosts = posts.map(p => <Post key={p.id} value={p.value} postText={p.postText}
+        likesCount={p.likesCount} commentsCount={p.commentsCount} />);
 
-            {/*<AddItemForm onClick={props.onClickHandler} onChange={props.onChangeHandler}*/}
-            {/*             value={props.actualPostText}/>*/}
 
-            <MUIAddItemForm onClick={props.onClickHandler} onChange={props.onChangeHandler}
-                            value={props.actualPostText} numberRows={3}/>
+    return <div className={styles.timelineContainer}>
+
+        <div className={restProps.avatar ? styles.formAddPostWithAvatar : styles.formAddPost}>
+            {restProps.avatar && <img src={restProps.avatar} alt="???"/>}
+
+            <MUIAddItemForm onClick={onClickHandler} onChange={onChangeHandler}
+                            value={actualPostText} numberRows={3} />
         </div>
 
+        {mappingPosts}
 
-        {posts}
     </div>
 }

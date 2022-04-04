@@ -7,6 +7,8 @@ import styles from "./inputWithIcon.module.scss";
 type InputWithIConPropsType = {
     styleInput?: "standard" | "filled" | "outlined" | undefined
 }
+
+
 const InputWithIcon: React.FC<InputWithIConPropsType> = ({styleInput}) => {
 
     const inputVariant = styleInput ? styleInput : "standard";

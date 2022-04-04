@@ -1,0 +1,139 @@
+@import "../../index";
+
+.homePageContainer {
+  @extend .container;
+  display: grid;
+  grid-template-columns: 240px 3fr 240px;
+  column-gap: 2.6rem;
+  margin-top: 60px;
+
+  & a {
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+    margin: 10px 0;
+  }
+
+  & a:hover {
+    font-weight: 800;
+    color: var(--color-main-3);
+  }
+
+  .homePageColumnLeft {
+    .homePageAccountBlock {
+      display: grid;
+      row-gap: 1.4rem;
+      align-self: start;
+      justify-items: center;
+      background: var(--color-bg-second);
+      box-shadow: var(--box-shadow);
+      border-radius: var(--border-radius-main-box);
+      position: relative;
+
+      .homePageBackgroundBanner {
+        background: url('../../other/images/background/pict1.jpg') no-repeat;
+        background-size: cover;
+        height: 132px;
+        width: 100%;
+        border-top-left-radius: var(--border-radius-main-box);
+        border-top-right-radius: var(--border-radius-main-box);
+      }
+
+      .homePageAccountPhoto {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border-radius: var(--border-radius-main-box);
+        //background-position: top center;
+
+        & img {
+          width: 120px;
+          height: 120px;
+          border-radius: 100%;
+          border: 3px solid whitesmoke;
+        }
+      }
+
+      .homePageAccountInfo {
+        display: grid;
+        justify-items: center;
+
+        & p {
+          font-size: 18px;
+          font-weight: 700;
+          color: white;
+          margin-bottom: 12px;
+          margin-top: 4rem;
+        }
+
+        & span {
+          color: var(--color-main-3);
+        }
+      }
+    }
+  }
+
+  .homePageRandomUsers {
+    display: none;
+  }
+
+  .userFollowing {
+    border: 1px solid green;
+    height: 200px;
+    display: grid;
+    align-self: start;
+    background: #ad5178;
+  }
+}
+
+/* --------------- MEDIA REQUEST: [1200] --------------- */
+@media screen and (max-width: 1200px) {
+  .homePageContainer {
+    grid-template-columns: 240px 1fr;
+
+    .homePageColumnLeft {
+      .homePageRandomUsers {
+        margin-top: 2rem;
+        display: block;
+        box-shadow: var(--box-shadow);
+      }
+    }
+
+    .homePageColumnRight {
+      display: none;
+    }
+
+    .randomUsers {
+      display: grid;
+      align-self: start;
+    }
+  }
+}
+
+
+/* --------------- MEDIA REQUEST: [1024] --------------- */
+@media screen and (max-width: 1024px) {
+  .homePageContainer {
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+/* --------------- MEDIA REQUEST: [800] --------------- */
+@media screen and (max-width: 800px) {
+  .homePageContainer {
+    grid-template-columns: 1fr;
+    row-gap: 4rem;
+    //grid-template-columns: 240px 1fr;
+
+    .userFollowing {
+      display: none;
+    }
+
+    .homePageAccountBlock {
+      .homePageBackgroundBanner {
+        background-position: bottom;
+      }
+    }
+  }
+}

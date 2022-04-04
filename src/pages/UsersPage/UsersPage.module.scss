@@ -1,0 +1,22 @@
+@import "../../index";
+
+.usersContainer {
+  @extend .container;
+  border: 1px solid hotpink;
+
+  .usersCurrentPage {
+
+    overflow: hidden;
+
+    .active {
+      font-weight: 700;
+    }
+  }
+
+
+}
+
+
+
+
+

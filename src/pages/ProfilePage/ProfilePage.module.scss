@@ -1,0 +1,36 @@
+@import "../../index";
+
+
+.mainContainer {
+  @extend .container;
+  border: 1px solid gold;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  column-gap: 3.6rem;
+}
+
+
+/* --------------- MEDIA REQUEST : [1024] --------------- */
+@media screen and (max-width: 1024px) {
+  .mainContainer {
+
+  }
+}
+
+/* --------------- MEDIA REQUEST : [800] --------------- */
+@media screen and (max-width: 800px) {
+  .mainContainer {
+    grid-template-columns: 1fr;
+    column-gap: 2.6rem;
+  }
+}
+
+/* --------------- MEDIA REQUEST : [640] --------------- */
+@media screen and (max-width: 640px) {
+  .mainContainer {
+    width: var(--container-width-lg);
+    grid-template-columns: 1fr;
+
+  }
+}
