@@ -6,28 +6,31 @@
   display: grid;
   grid-template-columns: 332px 1fr;
   grid-column-gap: 2rem;
-  border: 1px solid firebrick;
 
   .chatPageDialogsBlock {
-    border: 1px solid green;
     display: grid;
     align-self: start;
-    row-gap: 0.4rem;
+    row-gap: .2rem;
+
 
     .chatPageSearchBlock {
       padding: 1rem 2rem;
+      background: var(--color-bg-second);
+      border-radius: var(--border-radius-main-box);
 
     }
 
     & a {
       display: block;
-      background-color: tomato;
+      background: var(--color-bg-second);
+      color: var(--color-white);
 
       & img {
         margin-right: 10px;
         width: 56px;
         height: 56px;
         border-radius: 50%;
+        border: 2px solid var(--color-bg-main);
       }
     }
 
@@ -38,11 +41,12 @@
       align-items: center;
       grid-template-columns: auto 1fr;
       padding: 12px 8px 12px 5px;
+      border-radius: var(--border-radius-main-box);
+      box-shadow: var(--box-shadow);
 
       .chatPageDialogsItemInfo {
         display: grid;
         grid-template-columns: 1fr auto;
-
 
         & span {
           font-size: .9rem;
@@ -56,7 +60,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 14px;
+            font-size: .8rem;
           }
 
           & h3 {
@@ -94,13 +98,8 @@
             span {
               display: none;
             }
-
-
           }
         }
-
-
-
       }
     }
 
@@ -110,15 +109,18 @@
 
   }
 
-  .m {
-    border: 1px solid tomato;
+  .chatPageMessagesBlock {
+    background: var(--color-bg-second);
+    color: var(--color-white);
+    border-radius: var(--border-radius-main-box);
+    box-shadow: var(--box-shadow);
 
     .userName {
       padding: 8px 10px;
       line-height: 1.4rem;
-
       display: flex;
       justify-content: space-between;
+
 
       & span {
         font-size: 12px;
@@ -128,23 +130,23 @@
       .mData {
 
         & > span {
-          color: green;
+          color: var(--color-bg-main-bg);
+          //font-size: 14px;
         }
 
         & p {
           font-weight: 700;
-
         }
       }
     }
 
     .messagesList {
       padding: 15px 10px;
-      border: 1px solid rebeccapurple;
       height: 550px;
       overflow-y: auto;
       display: grid;
-      align-content: center;
+      font-size: .8rem;
+      //align-content: center;
 
       .yourSentMessage {
         padding: 15px 10px;
@@ -152,8 +154,7 @@
         margin-bottom: 15px;
         max-width: 90%;
         border-radius: 15px;
-        background-color: rebeccapurple;
-        color: whitesmoke;
+        background-color: #ad5178;
         margin-left: auto;
       }
 
@@ -163,7 +164,7 @@
         margin-bottom: 15px;
         max-width: 90%;
         border-radius: 15px;
-        background-color: thistle;
+        background-color: var(--color-main-3);
         margin-right: auto;
       }
 
@@ -178,12 +179,15 @@
 
     }
 
-    .addItemForm {
-      margin: 40px;
+    .line {
+      width: 100%;
+      height: 4px;
+      background: var(--color-bg-main);
     }
 
-
-
+    .addItemForm {
+      padding: 20px;
+    }
 
 
     /* --------------- MEDIA REQUEST : [640] --------------- */
@@ -209,11 +213,25 @@
 
 }
 
+.customAddItemForm {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 2rem;
+  align-items: center;
+
+  & button {
+    min-width: 42px;
+    height: 42px;
+    border-radius: 50%;
+  }
+}
+
 /* --------------- MEDIA REQUEST : [1024] --------------- */
 
 @media screen and (max-width: 1024px) {
   .chatPageContainer {
     grid-template-columns: 280px 1fr;
+
   }
 }
 
@@ -225,7 +243,37 @@
 @media screen and (max-width: 800px) {
   .chatPageContainer {
     grid-template-columns: 1fr;
+    .chatPageDialogsBlock {
+      margin-bottom: 3rem;
+
+      .chatPageDialogsItem {
+        .chatPageDialogsItemInfo {
+          .chatPageDialogsItemDetailsInfo {
+            display: grid;
+            width: 100%;
+            & p {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 
+
+/* --------------- MEDIA REQUEST : [640] --------------- */
+
+@media screen and (max-width: 640px) {
+  .customAddItemForm {
+    grid-template-columns: 1fr;
+    & button {
+      justify-self: center;
+      border-radius: 4px;
+      align-content: center;
+      justify-content: center;
+      height: 32px;
+    }
+  }
+}

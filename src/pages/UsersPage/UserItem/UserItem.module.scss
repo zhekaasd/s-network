@@ -7,23 +7,29 @@
   justify-content: space-between;
 
   .item {
-    background-color: whitesmoke;
+    background-color: var(--color-bg-second);
     position: relative;
+    color: var(--color-white);
+    border-radius: var(--border-radius-main-box);
+    box-shadow: var(--box-shadow);
 
 
-    img {
+    & img {
       position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 90px;
       height: 90px;
-      border: 1px solid lightskyblue;
+      border: 1px solid var(--color-white);
       border-radius: 50%;
     }
 
     .itemBackgroundImage {
       height: 90px;
       background-color: gray;
+
+      border-top-left-radius: var(--border-radius-main-box);
+      border-top-right-radius: var(--border-radius-main-box);
     }
 
     .userData {
@@ -44,12 +50,20 @@
       & a {
         margin: 0;
         padding: 0;
+        color: whitesmoke;
         line-height: 2rem;
+        font-weight: 500;
         font-size: 14px;
+
+        &:hover {
+          color: var(--color-main-3);
+          font-weight: 700;
+        }
       }
 
       & button {
-        margin: 1rem 0 .6rem;
+        margin: 1.6rem 0 1rem;
+        font-size: .7rem;
       }
 
       .line {

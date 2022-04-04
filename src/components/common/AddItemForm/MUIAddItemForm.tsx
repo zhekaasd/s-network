@@ -9,13 +9,20 @@ type MUIAddItemFormPropsType = {
     onClick: () => void
     onChange: (value: string) => void
     numberRows?: number
+    classNameCustom?: string
+    childrenButton?: string
 }
-const MUIAddItemForm: React.FC<MUIAddItemFormPropsType> = ({value, onClick, onChange,
+const MUIAddItemForm: React.FC<MUIAddItemFormPropsType> = ({value, onClick, onChange, childrenButton,
                                                          numberRows, ...restProps}) => {
+
+
+
+    const addItemFormFinal = `${styles.addItemForm} ${restProps.classNameCustom ? restProps.classNameCustom : ''}`
+
     return (
-        <div className={styles.addItemForm}>
+        <div className={addItemFormFinal}>
             <TextareaCustom numberRows={numberRows} onChange={onChange} value={value}  />
-            <ButtonCustom onClick={onClick} />
+            <ButtonCustom onClick={onClick}> {childrenButton ? childrenButton : 'Send'} </ButtonCustom>
         </div>
     );
 };

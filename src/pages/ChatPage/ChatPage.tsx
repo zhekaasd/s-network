@@ -10,6 +10,8 @@ import InputCustom from "../../components/accets/input/InputCustom";
 import s from "./ChatPage.module.scss";
 import photo from "../../other/images/1920x.webp";
 import Navigation from "../../components/common/Navigation/Navigation";
+import {PATH} from "../../components/RoutesComponent/RoutesComponent";
+import {Line} from "../../components/common/Line/Line";
 
 
 function ChatPage(props: {
@@ -35,6 +37,7 @@ function ChatPage(props: {
         <ProfileMainInfoContainer />
         <Navigation />
 
+{/*--- Messages list ---*/}
         <div className={s.chatPageContainer}>
             <div className={s.chatPageDialogsBlock}>
                 <div className={s.chatPageSearchBlock}>
@@ -44,14 +47,14 @@ function ChatPage(props: {
                 {props.messagesPage.users.map(u => <NavLink
                     key={u.id}
                     className={({isActive}) => isActive ? s.chatPageDialogsItem + ' ' + s.active : s.chatPageDialogsItem}
-                    to={'/messages/' + u.id}>
+                    to={PATH.MESSAGES + '/' + u.id}>
 
                     <img src={photo} alt=""/>
 
                     <div className={s.chatPageDialogsItemInfo}>
 
                         <div className={s.chatPageDialogsItemDetailsInfo}>
-                            <h3>{u.firstName} <span>{u.lastName}</span></h3>
+                            <h3>{u.firstName} {u.lastName}</h3>
                             <p>{lastMessage}</p>
                         </div>
 
@@ -61,10 +64,10 @@ function ChatPage(props: {
 
             </div>
 
-            <div className={s.m}>
+            <div className={s.chatPageMessagesBlock}>
                 <div className={s.userName}>
                     <div className={s.mData}>
-                        <p>John Doe</p>
+                        <h3>John Doe</h3>
                         <span>online</span>
                     </div>
                     <div>
@@ -72,6 +75,8 @@ function ChatPage(props: {
                     </div>
                 </div>
 
+                <Line />
+{/*--- Messages list ---*/}
                 <div className={s.messagesList}>
                     {
                         props.messagesPage.messages.map(m => <p key={m.id} ref={bottomRef}
@@ -79,10 +84,15 @@ function ChatPage(props: {
                     }
                 </div>
 
+                <Line />
+{/*--- Add text message form ---*/}
                 <div className={s.addItemForm}>
                     <MUIAddItemForm onClick={props.addMessage}
                                     onChange={props.updateMessageText}
-                                    value={props.messagesPage.actualMessageText} />
+                                    value={props.messagesPage.actualMessageText}
+                                    classNameCustom={s.customAddItemForm}
+                                    childrenButton={'➤'}
+                    />
                 </div>
 
             </div>
@@ -91,3 +101,5 @@ function ChatPage(props: {
 }
 
 export default ChatPage;
+
+

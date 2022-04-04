@@ -37,7 +37,7 @@ export const ProfileMainInfo:React.FC<PMIPropsType> = ({profile, ...restProps}) 
                     <span>Status</span>
                 </div>
 
-                <ButtonCustom onClick={() => alert('callback edit profile is calling')}/>
+                <ButtonCustom onClick={() => alert('callback edit profile is calling')}>edit</ButtonCustom>
             </div>
         </div>
 

@@ -16,7 +16,7 @@ const ButtonCustom: React.FC<ButtonCustomPropsType> = ({onClick, disabled, sizeB
         <Button size={sizeButton ? sizeButton : 'medium'}
                 disabled={disabled} color={'primary'}
                 variant={'contained'} onClick={onClick}>
-            {restProps.children ? restProps.children : 'child' }
+            {restProps.children}
         </Button>
     );
 };

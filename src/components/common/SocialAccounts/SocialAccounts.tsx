@@ -11,12 +11,13 @@ export const SocialAccounts = () => {
         'www.linkedin.com','www.youtube.com', 'www.lastitem.com'
     ];
 
-    let socialAcc = social.map( s => <a className={styles.item} href="#http://www.example.com">
+    let socialAcc = social.map( (s,index) => <a className={styles.item} key={s + index} href="#http://www.example.com">
         <FacebookIcon />
         <span>{s}</span>
     </a> )
 
-    return <div className={styles.socialBlock}>
+    return <div className={styles.socialAccounts}>
+        <h2 className={styles.socialAccountsTitle}>Social Accounts</h2>
         {socialAcc}
     </div>
 }

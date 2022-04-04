@@ -24,3 +24,26 @@
   }
 
 }
+
+/* --------------- MEDIA REQUEST : [800] --------------- */
+
+@media screen and (max-width: 800px) {
+  .timelineContainer {
+    .formAddPost {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+/* --------------- MEDIA REQUEST : [640] --------------- */
+
+@media screen and (max-width: 640px) {
+  .timelineContainer {
+    .formAddPostWithAvatar {
+      grid-template-columns: 1fr;
+      & img {
+        display: none;
+      }
+    }
+  }
+}

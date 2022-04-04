@@ -7,6 +7,7 @@ import ButtonCustom from "../../../components/accets/buton/ButtonCustom";
 
 /*--- css import ---*/
 import styles from "./UserItem.module.scss";
+import {Line} from "../../../components/common/Line/Line";
 
 type UserItemPropsType = {
     usersPage: {
@@ -116,47 +117,48 @@ const UserItem: React.FC<UserItemPropsType> = (props) => {
     return  <div className={styles.items}>
 
 
+        {
+            newArr.map(u => {
+
+                const followUser = () => {
+                    props.followUser(u.id);
+                }
+                const unfollowUser = () => {
+                    props.unfollowUser(u.id);
+                }
+
+
+                return <div key={u.id} className={styles.item}>
+
+                    <div className={styles.itemBackgroundImage}></div>
+
+                    <img src={u.photos.small ? u.photos.small : photo} alt="phhh"/>
+                    <div className={styles.userData}>
+                        <h3>{u.name}</h3>
+                        <span>{u.location && u.location.title}</span>
 
 
                         {
-                            newArr.map(u => {
+                            u.followed ?
+                                <ButtonCustom sizeButton={'small'}
+                                              disabled={props.followingInProgress.some((id) => id === u.id)}
+                                              onClick={unfollowUser}>
+                                    Unfollow</ButtonCustom>
+                                : <ButtonCustom sizeButton={'small'}
+                                                disabled={props.followingInProgress.some((id) => id === u.id)}
+                                                onClick={followUser}>
+                                    Follow
+                                </ButtonCustom>
 
-                                const followUser = () => {
-                                    props.followUser(u.id);
-                                }
-                                const unfollowUser = () => {
-                                    props.unfollowUser(u.id);
-                                }
-
-
-                                return <div key={u.id} className={styles.item}>
-
-                                        <div className={styles.itemBackgroundImage}></div>
-
-                                        <img src={u.photos.small ? u.photos.small : photo} alt="phhh"/>
-                                        <div className={styles.userData}>
-                                            <h3>{u.name}</h3>
-                                            <span>{u.location && u.location.title}</span>
-
-
-                                            {
-                                                u.followed ?
-                                                    <ButtonCustom sizeButton={'small'} disabled={props.followingInProgress.some((id) => id === u.id)} onClick={unfollowUser}>
-                                                        Unfollow</ButtonCustom>
-                                                    : <ButtonCustom sizeButton={'small'} disabled={props.followingInProgress.some((id) => id === u.id)} onClick={followUser}>
-                                                        Follow
-                                                    </ButtonCustom>
-
-                                            }
-
-
-
-                                            <div className={styles.line}></div>
-                                            <NavLink to={'/profile/' + u.id}>view profile</NavLink>
-                                        </div>
-                                    </div>
-                            })
                         }
+
+
+                        <Line/>
+                        <NavLink to={'/profile/' + u.id}>view profile</NavLink>
+                    </div>
+                </div>
+            })
+        }
                 </div>
 }
 

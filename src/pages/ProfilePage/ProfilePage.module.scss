@@ -3,7 +3,6 @@
 
 .mainContainer {
   @extend .container;
-  border: 1px solid gold;
   margin-top: 25px;
   display: grid;
   grid-template-columns: 25% 1fr;
