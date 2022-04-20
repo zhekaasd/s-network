@@ -1,11 +1,11 @@
-
-
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
-import ChatPageContainer from "../../pages/ChatPage/ChatPageContainer";
+import {Navigate, Route, Routes} from "react-router-dom";
 import HomePageContainer from "../../pages/HomePage/HomePageContainer";
-import ProfileContainer from "../../pages/ProfilePage/ProfilePageContainer";
+import NotFound from "../../pages/NotFound/NotFound";
+import Login from "../Login/Login";
 import UsersPageContainer from "../../pages/UsersPage/UsersPageContainer";
+import ProfilePageContainer from "../../pages/ProfilePage/ProfilePageContainer";
+import ChatPageContainer from "../../pages/ChatPage/ChatPageContainer";
 
 
 export const PATH = {
@@ -13,26 +13,23 @@ export const PATH = {
     USERS: '/users',
     MESSAGES: '/messages',
     LOGIN: '/login',
-    HOME: '/',
+    HOME: '/'
 }
 
 const RoutesComponent = () => {
     return (
         <>
             <Routes>
-                <Route path={PATH.HOME} element={ <HomePageContainer  />} />
+                {/*<Route path={'/*'} element={ <NotFound /> }  />*/}
 
-                <Route path={PATH.PROFILE} element={ <ProfileContainer  /> } >
-                    {/*<Route path={'/profile'} element={ <ProfileContainer  /> } >*/}
-                    <Route path={':id'} element={ <ProfileContainer /> } />
-                </Route>
-
-                <Route path={PATH.USERS} element={ <UsersPageContainer  /> } />
-
-                <Route path={PATH.MESSAGES} element={ <ChatPageContainer /> } >
-                    <Route path={':id'} element={<ChatPageContainer /> } />
-                    {/*<Route path={':id'} />*/}
-                </Route>
+                <Route path={'*'} element={<NotFound/>}/>
+                <Route path={`${PATH.HOME}`} element={<HomePageContainer/>}/>
+                <Route path={PATH.LOGIN} element={<Login/>}/>
+                <Route path={PATH.USERS} element={<UsersPageContainer/>}/>
+                <Route path={`${PATH.PROFILE}/:id`} element={ <ProfilePageContainer  /> } />
+                <Route path={`${PATH.PROFILE}`} element={ <Navigate to={'/'} replace /> }  />
+                <Route path={`${PATH.MESSAGES}`} element={<ChatPageContainer/>}/>
+                <Route path={`${PATH.MESSAGES}/:id`} element={<ChatPageContainer/>}/>
             </Routes>
         </>
     );

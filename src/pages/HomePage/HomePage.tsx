@@ -1,12 +1,15 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
-import {PostType} from "../../state/store";
+import {NavLink} from "react-router-dom";
 import {Timeline} from "../../components/common/Timeline/Timeline";
 import {RandomUsers} from "../../RandomUsers";
 import {PATH} from "../../components/RoutesComponent/RoutesComponent";
+import {AppStateType} from "../../reducers/store";
+import {PostType} from "../../reducers/newsfeed-reducer";
+import {useSelector} from "react-redux";
 
 /*--- css import ---*/
-import styles from "./homePage.module.scss";
+import styles from "./HomePage.module.scss";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import photo from "../../other/images/1920x.webp";
 
 
@@ -22,6 +25,9 @@ type HPPropsType = {
 
 const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, updatePostText, ...restProps}) => {
 
+    const profileData = useSelector((state: AppStateType) => state.auth.profile);
+    const authUserId = useSelector((state: AppStateType) => state.auth.id);
+
     const addPostHandler = () => {
         addPost();
     }
@@ -35,15 +41,17 @@ const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, updatePostText,
                 <div className={styles.homePageBackgroundBanner}></div>
 
                 <div className={styles.homePageAccountPhoto}>
-                    <img src={photo} alt=""/>
+                    <img src={profileData?.photos.small ? profileData?.photos.small : photo} alt=""/>
                 </div>
 
                 <div className={styles.homePageAccountInfo}>
-                    <p>John Doe</p>
-                    <span>location!</span>
+                    {/*<p>{profileData?.fullName}</p>*/}
+                    <p>{profileData?.fullName}</p>
+                    <span> <LocationOnIcon fontSize={'small'} /> 154 Engelsa Prospekt, Suite 226, St. Petersburg</span>
+
                 </div>
 
-                <NavLink to={PATH.PROFILE}>
+                <NavLink to={PATH.PROFILE + '/' + authUserId}>
                     View Profile
                 </NavLink>
             </div>
@@ -56,7 +64,6 @@ const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, updatePostText,
 
 
         <Timeline
-            avatar={photo}
             posts={newsfeedPage.posts}
             actualPostText={newsfeedPage.actualPostText}
             onChangeHandler={updatePostText}

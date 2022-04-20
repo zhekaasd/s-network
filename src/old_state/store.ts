@@ -10,7 +10,7 @@ export type StoreType = {
     _callSubscribe: (store: StoreType) => void
 }
 
-export type StateType = {
+type StateType = {
     messagesPage: {
         users: Array<UserType>
         messages: Array<MessageType>
@@ -22,19 +22,19 @@ export type StateType = {
     }
 }
 
-export type UserType = {
+type UserType = {
     id: string
     firstName: string
     lastName: string
 }
 
-export type MessageType = {
+type MessageType = {
     id: string
     messageText: string
     value: boolean
 }
 
-export type PostType = {
+type PostType = {
     id: string
     value: boolean
     postText: string
@@ -42,7 +42,7 @@ export type PostType = {
     commentsCount: number
 }
 
-export let store: StoreType = {
+let store: StoreType = {
     _state: {
         messagesPage: {
             users: [

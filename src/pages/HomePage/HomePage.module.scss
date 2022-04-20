@@ -31,7 +31,7 @@
       position: relative;
 
       .homePageBackgroundBanner {
-        background: url('../../other/images/background/pict1.jpg') no-repeat;
+        background: url('../../other/images/background/my-banner.jpg') no-repeat;
         background-size: cover;
         height: 132px;
         width: 100%;
@@ -41,7 +41,7 @@
 
       .homePageAccountPhoto {
         position: absolute;
-        top: 20%;
+        top: 72px;
         left: 50%;
         transform: translate(-50%, 0);
         border-radius: var(--border-radius-main-box);
@@ -58,6 +58,7 @@
       .homePageAccountInfo {
         display: grid;
         justify-items: center;
+        padding: 0 10px;
 
         & p {
           font-size: 18px;
@@ -65,10 +66,21 @@
           color: white;
           margin-bottom: 12px;
           margin-top: 4rem;
+          word-break: break-all;
+          text-align: center;
+
         }
 
         & span {
           color: var(--color-main-3);
+          word-break: break-all;
+          text-align: center;
+          display: flex;
+          padding: 0 20px;
+
+          & svg {
+            color: darkorange;
+          }
         }
       }
     }

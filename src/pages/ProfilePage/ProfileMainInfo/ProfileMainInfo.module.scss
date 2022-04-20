@@ -28,8 +28,7 @@
 
 
     .banner {
-      background-image: url("../../../other/images/my-bg.jpg");
-
+      //background-image: url("../../../other/images/background/my-banner.jpg");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -47,12 +46,16 @@
         width: 100%;
         z-index: 0;
       }
+
+      & img {
+        height: 350px;
+      }
     }
 
 
     .profileOwner {
       padding: 20px 0;
-      background: #313131;
+      background: var(--color-bg-second);
       width: 100%;
       position: relative;
 
@@ -83,6 +86,9 @@
           & span {
             display: block;
             color: darkgrey;
+            & svg {
+              color: darkorange;
+            }
           }
         }
 
@@ -116,7 +122,7 @@
           .ownerName {
             margin: 75px 0 20px 0;
 
-            & span, h3 {
+            & span, h3, p {
               text-align: center;
             }
           }

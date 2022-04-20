@@ -1,23 +1,26 @@
-import {MessageType, UserType} from "../../state/store";
 import React, {useEffect, useRef} from "react";
 import {NavLink} from "react-router-dom";
-import {ProfileUserType} from "../../reducers/profile-reducer";
+import {ProfileUserWithFakeLocationType} from "../../reducers/profile-reducer";
 import MUIAddItemForm from "../../components/common/AddItemForm/MUIAddItemForm";
-import ProfileMainInfoContainer from "../ProfilePage/ProfileMainInfo/ProfileMainInfoContainer";
-import InputCustom from "../../components/accets/input/InputCustom";
+import InputCustom from "../../components/accets/components/input/InputCustom";
 
 /*--- css import ---*/
 import s from "./ChatPage.module.scss";
 import photo from "../../other/images/1920x.webp";
-import Navigation from "../../components/common/Navigation/Navigation";
 import {PATH} from "../../components/RoutesComponent/RoutesComponent";
 import {Line} from "../../components/common/Line/Line";
+import {MessageType, UserType} from "../../reducers/dialogs-reducer";
 
 
 function ChatPage(props: {
-    messagesPage: { messages: Array<MessageType>, users: Array<UserType>, actualMessageText: string}
-    addMessage: () => void, updateMessageText: (value: string) => void
-    profile: ProfileUserType | null
+    messagesPage: {
+        messages: Array<MessageType>,
+        users: Array<UserType>,
+        actualMessageText: string
+    }
+    addMessage: () => void,
+    updateMessageText: (value: string) => void
+    profile: ProfileUserWithFakeLocationType | null
 })
 {
 
@@ -33,9 +36,6 @@ function ChatPage(props: {
 
 
     return <div>
-
-        <ProfileMainInfoContainer />
-        <Navigation />
 
 {/*--- Messages list ---*/}
         <div className={s.chatPageContainer}>

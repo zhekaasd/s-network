@@ -5,7 +5,7 @@ import {
     setTotalUsers,
     setUsers, toggleIsFetching, toggleIsFollowingInProgress,
     User,
-    usersReducer
+    usersReducer, UserWithFakeLocation
 } from "./users-reducer";
 
 
@@ -14,9 +14,9 @@ let startState: InitialStateUsersType;
 beforeEach(() => {
    startState = {
        users: [
-           {id: 11, followed: false, name: 'Chel', photos: {small: '', large: ''}, status: 'Status text Chel', uniqueUrlName: ''},
-           {id: 12, followed: false, name: 'Fedor', photos: {small: '', large: ''}, status: 'Status text Fedor', uniqueUrlName: ''},
-           {id: 13, followed: false, name: 'Roman', photos: {small: '', large: ''}, status: 'Status text Roman', uniqueUrlName: ''},
+           {id: 11, followed: false, name: 'Chel', photos: {small: '', large: ''}, status: 'Status text Chel', uniqueUrlName: '', locationUser: {id: 1, title: 'Moscow'}},
+           {id: 12, followed: false, name: 'Fedor', photos: {small: '', large: ''}, status: 'Status text Fedor', uniqueUrlName: '', locationUser: {id: 2, title: 'Ufa'}},
+           {id: 13, followed: false, name: 'Roman', photos: {small: '', large: ''}, status: 'Status text Roman', uniqueUrlName: '', locationUser: {id: 3, title: 'Minsk'}},
        ],
        currentPage: 1,
        totalUsersCount: 0,
@@ -28,10 +28,10 @@ beforeEach(() => {
 
 
 test('set users should be correct', () => {
-    let users: Array<User> = [
-        {id: 1, followed: false, name: 'Alex', photos: {small: '', large: ''}, status: 'Status text Alex', uniqueUrlName: ''},
-        {id: 2, followed: false, name: 'Ivan', photos: {small: '', large: ''}, status: 'Status text Ivan', uniqueUrlName: ''},
-        {id: 3, followed: false, name: 'Sasha', photos: {small: '', large: ''}, status: 'Status text Sasha', uniqueUrlName: ''},
+    let users: Array<UserWithFakeLocation> = [
+        {id: 1, followed: false, name: 'Alex', photos: {small: '', large: ''}, status: 'Status text Alex', uniqueUrlName: '', locationUser: {id: 1, title: 'Moscow'}},
+        {id: 2, followed: false, name: 'Ivan', photos: {small: '', large: ''}, status: 'Status text Ivan', uniqueUrlName: '', locationUser: {id: 2, title: 'Ufa'}},
+        {id: 3, followed: false, name: 'Sasha', photos: {small: '', large: ''}, status: 'Status text Sasha', uniqueUrlName: '', locationUser: {id: 3, title: 'Minsk'}},
     ];
 
     let endState = usersReducer(startState, setUsers(users));

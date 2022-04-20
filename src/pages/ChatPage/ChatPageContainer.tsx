@@ -1,8 +1,10 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../reducers/store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {addMessage, updateMessageText} from "../../reducers/dialogs-reducer";
 import ChatPage from "./ChatPage";
+import withRedirect from "../../HOC/Redirect/withRedirect";
+import React from "react";
 
 
 type MSTPType = ReturnType<typeof mstp>;
@@ -27,6 +29,8 @@ const mdtp = (dispatch: Dispatch) => {
     }
 }
 
-const ChatPageContainer = connect<MSTPType, MDTPType, {}, AppStateType>(mstp, mdtp)(ChatPage);
 
-export default ChatPageContainer;
+export default compose<React.ComponentType>(
+    connect<MSTPType, MDTPType, {}, AppStateType>(mstp, mdtp),
+    withRedirect
+)(ChatPage);

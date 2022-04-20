@@ -5,31 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./reducers/store";
-import {createTheme, ThemeProvider} from "@mui/material";
 
 /*--- import styles ---*/
 import './index.scss';
-
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#0a1417'
-        },
-        secondary: {
-            main: '#0a1417',
-        },
-    },
-});
-
 
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <ThemeProvider theme={theme}>
                     <App/>
-                </ThemeProvider>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,

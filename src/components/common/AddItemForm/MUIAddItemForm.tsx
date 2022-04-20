@@ -1,6 +1,6 @@
 import React from 'react';
-import TextareaCustom from "../../accets/textarea/TextareaCustom";
-import ButtonCustom from "../../accets/buton/ButtonCustom";
+import TextareaCustom from "../../accets/components/textarea/TextareaCustom";
+import ButtonCustom from "../../accets/components/buton/ButtonCustom";
 
 import styles from "./MUIaddItemForm.module.scss";
 

@@ -1,5 +1,10 @@
 import {Dispatch} from "redux";
 import {usersAPI} from "../dal/api";
+import {
+    FakeLocationBannerUserType,
+    getRandomBackgroundBanner,
+    getRandomLocationCity
+} from "../fakeLocation/fakeLocation";
 
 
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -26,9 +31,13 @@ export type ProfileUserType = {
     }
 }
 
+/*--- User profile with fake location ---*/
+export type ProfileUserWithFakeLocationType = ProfileUserType & FakeLocationBannerUserType;
+
+
 type ActionsType = SetUserProfile;
 export type InitialStateProfileType = {
-    profile: ProfileUserType | null
+    profile: ProfileUserWithFakeLocationType | null
 }
 
 const initialState: InitialStateProfileType = {
@@ -46,8 +55,8 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
     }
 }
 
-type SetUserProfile = { type: typeof SET_USER_PROFILE, profile: ProfileUserType};
-export const setUserProfileAC = (profile: ProfileUserType): SetUserProfile => {
+type SetUserProfile = { type: typeof SET_USER_PROFILE, profile: ProfileUserWithFakeLocationType};
+export const setUserProfileAC = (profile: ProfileUserWithFakeLocationType): SetUserProfile => {
     return { type: SET_USER_PROFILE, profile }
 }
 
@@ -55,7 +64,16 @@ export const setUserProfileAC = (profile: ProfileUserType): SetUserProfile => {
 export const setUserProfile = (userId: number) => (dispatch: Dispatch) => {
     usersAPI.getUserProfile(userId)
         .then((response) => {
-            dispatch(setUserProfileAC(response.data));
+/*---get user data from server, changed type item, add fake location ---*/
+            let data = {
+                ...response.data,
+                contacts: {...response.data.contacts},
+                photos: {...response.data.photos},
+                locationUser: getRandomLocationCity(),
+                backgroundBanner: getRandomBackgroundBanner()
+                }
+
+            dispatch(setUserProfileAC(data));
         });
 }
 

@@ -1,6 +1,12 @@
 import {AppStateType} from "../../reducers/store";
 import {connect} from "react-redux";
-import {changePageNumberUsers, followUser, getUsers, unfollowUser, User} from "../../reducers/users-reducer";
+import {
+    changePageNumberUsers,
+    followUser,
+    getUsers,
+    unfollowUser,
+    UserWithFakeLocation
+} from "../../reducers/users-reducer";
 import UsersPage from "./UsersPage";
 
 
@@ -13,7 +19,7 @@ type MDTPType = {
 
 type MSTPType = {
     usersPage: {
-        users: User[],
+        users: UserWithFakeLocation[],
         currentPage: number
         totalUsersCount: number
         pageSize: number
@@ -21,6 +27,7 @@ type MSTPType = {
     }
     followingInProgress: number[]
 }
+
 const mapStateToProps = (state: AppStateType): MSTPType => {
     return {
         usersPage: state.usersPage,

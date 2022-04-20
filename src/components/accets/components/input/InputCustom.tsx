@@ -6,7 +6,8 @@ type InputCustomPropsType = {
     typeField?: "standard" | "filled" | "outlined"
     widthField?: boolean
 }
-const InputCustom = (props: InputCustomPropsType) => {
+
+const InputCustom: React.FC<InputCustomPropsType> = (props) => {
     return (
         <TextField
             variant={props.typeField ? props.typeField : 'standard'}

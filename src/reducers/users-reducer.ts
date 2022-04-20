@@ -1,5 +1,10 @@
 import {Dispatch} from "redux";
 import {usersAPI} from "../dal/api";
+import {
+    FakeLocationBannerUserType,
+    getRandomBackgroundBanner,
+    getRandomLocationCity
+} from "../fakeLocation/fakeLocation";
 
 const SET_USERS = 'SET-USERS';
 const TOGGLE_USER = 'TOGGLE-USER';
@@ -17,20 +22,25 @@ export type User = {
         large: string
     },
     status: string,
-    followed: boolean
+    followed: boolean,
 }
+
+/*--- User profile with fake location ---*/
+export type UserWithFakeLocation = User & FakeLocationBannerUserType;
+
 
 type ActionsType = SetUsersType | FollowingToggleType | SetTotalUsersType
     | ChangeCurrentPageType | ToggleIsFetchingType | toggleIsFollowingInProgressType;
 
 export type InitialStateUsersType = {
-    users: User[]
+    users: UserWithFakeLocation[]
     currentPage: number
     totalUsersCount: number
     pageSize: number
     isFetching: boolean,
     followingInProgress: number[]
 }
+
 
 const initialState: InitialStateUsersType = {
     users: [],
@@ -44,7 +54,9 @@ const initialState: InitialStateUsersType = {
 export const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsType): InitialStateUsersType => {
     switch (action.type) {
         case SET_USERS: {
-            return {...state, users: [...action.users]}
+            return {
+                ...state, users: [...action.users]
+            }
         }
 
         case TOGGLE_USER: {
@@ -88,9 +100,9 @@ export const usersReducer = (state: InitialStateUsersType = initialState, action
 
 type SetUsersType = {
     type: typeof SET_USERS
-    users: Array<User>
+    users: Array<UserWithFakeLocation>
 }
-export const setUsers = (users: User[]): SetUsersType => {
+export const setUsers = (users: UserWithFakeLocation[]): SetUsersType => {
     return {type: SET_USERS, users}
 }
 
@@ -145,9 +157,16 @@ export const changePageNumberUsers = (pageNumber: number, pageSize: number) => {
         dispatch(toggleIsFetching(true));
         usersAPI.changeNumberPage(pageNumber, pageSize)
             .then((resp) => {
+/*---get user data from server, changed type item, add fake location ---*/
+                let data = [...resp.data.items.map( (u: User) => ({
+                    ...u,
+                    locationUser: getRandomLocationCity(),
+                    backgroundBanner: getRandomBackgroundBanner()
+                }))];
+
                 dispatch(toggleIsFetching(false));
                 dispatch(changeCurrentPage(pageNumber));
-                dispatch(setUsers(resp.data.items));
+                dispatch(setUsers(data));
             })
     }
 }
@@ -157,8 +176,15 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Di
     dispatch(toggleIsFetching(true));
     usersAPI.getUsers(currentPage, pageSize)
         .then((resp) => {
+/*---get user data from server, changed type item, add fake location ---*/
+            let data = [...resp.data.items.map( (u: User[]) => ({
+                ...u,
+                locationUser: getRandomLocationCity(),
+                backgroundBanner: getRandomBackgroundBanner()
+            }))];
+
             dispatch(toggleIsFetching(false));
-            dispatch(setUsers(resp.data.items));
+            dispatch(setUsers(data));
             dispatch(setTotalUsers(resp.data.totalCount));
         })
 }

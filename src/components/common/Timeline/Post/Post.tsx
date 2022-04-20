@@ -1,37 +1,82 @@
 import React, {useState} from "react";
-
-/*--- css import ---*/
-import avatar from "../../../../other/images/postAvatar1.jpg";
-import avatar2 from "../../../../other/images/users.png";
-import styles from "./post.module.scss";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../../../reducers/store";
+import {useParams} from "react-router-dom";
+
+/*--- css import ---*/
+import avatar2 from "../../../../other/images/icon/users.png";
+import photo from "../../../../other/images/1920x.webp";
+import styles from "./Post.module.scss";
+
+type PostPropsType = {
+    postText: string,
+    /*--- Значение с помощью которого имитируется пост от другого пользователя ---*/
+    value?: boolean,
+    commentsCount: number,
+    likesCount: number,
+    isParams: number | undefined
+}
+export const Post: React.FC<PostPropsType> = ({
+                                                  postText, commentsCount, likesCount,
+                                                  value, ...restProps
+                                              }) => {
 
 
-export function Post( props: {postText: string, value?: boolean, commentsCount: number, likesCount: number} ) {
+/*--- Data from user profile ---*/
+    const userProfile = useSelector((state: AppStateType) => state.profilePage.profile);
+/*--- Data from auth user profile ---*/
+    const authUserProfile = useSelector((state: AppStateType) => state.auth.profile);
+/*--- Params userId data ---*/
+    const {id} = useParams();
 
-/*--- Заглушка имитирующая переданную в пропсах фотографию ---*/
-    let value = props.value;
-    if(value === undefined) {
-        value = true;
+    let [countLikes, setCountLikes] = useState(likesCount);
+    let [active, setActive] = useState<boolean>(false);
+
+    const countLikesHandler = () => {
+        if (active) {
+            setCountLikes(countLikes - 1);
+            setActive(false);
+        } else {
+            setCountLikes(countLikes + 1);
+            setActive(true);
+        }
     }
 
-    let [countLikes, setCountLikes] = useState(props.likesCount);
 
-    return <div className={styles.postContainer}>
+    return id ? <div className={styles.postContainer}>
 
-        <div className={styles.postData}>
-            <img  src={value ? avatar : avatar2} alt="avatar" />
-            <div className={styles.postDataName}>
-                <p>{value ? 'John Doe' : 'User 1'}</p>
-                <span>{new Date().toLocaleTimeString()}</span>
+            <div className={styles.postData}>
+                <img src={value ? userProfile?.photos.small : avatar2} alt="avatar"/>
+                <div className={styles.postDataName}>
+                    <p>{value ? userProfile?.fullName : 'User 1'}</p>
+                    <span>{new Date().toLocaleTimeString()}</span>
+                </div>
+            </div>
+            <p className={styles.postText}>{postText}</p>
+            <div className={styles.line}></div>
+            <div className={styles.postLikeCommentBlock}>
+                <span> <ThumbUpIcon className={active ? styles.activeSvg : ''} onClick={countLikesHandler}
+                                    fontSize={'small'}/> {countLikes}</span>
+                <span className={styles.comments}> <ChatBubbleIcon fontSize={'small'}/> {commentsCount}</span>
             </div>
         </div>
-        <p className={styles.postText}>{props.postText}</p>
-        <div className={styles.line}></div>
-        <div className={styles.postLikeCommentBlock}>
-            <span> <ThumbUpIcon onClick={() => setCountLikes(countLikes + 1)} fontSize={'small'} /> {countLikes}</span>
-            <span className={styles.comments}> <ChatBubbleIcon fontSize={'small'} /> {props.commentsCount}</span>
+        : <div className={styles.postContainer}>
+
+            <div className={styles.postData}>
+                <img src={value ? authUserProfile?.photos.small : avatar2} alt="avatar"/>
+                <div className={styles.postDataName}>
+                    <p>{value ? authUserProfile?.fullName : 'John Doe'}</p>
+                    <span>{new Date().toLocaleTimeString()}</span>
+                </div>
+            </div>
+            <p className={styles.postText}>{postText}</p>
+            <div className={styles.line}></div>
+            <div className={styles.postLikeCommentBlock}>
+                <span> <ThumbUpIcon className={active ? styles.activeSvg : ''} onClick={countLikesHandler}
+                                    fontSize={'small'}/> {countLikes}</span>
+                <span className={styles.comments}> <ChatBubbleIcon fontSize={'small'}/> {commentsCount}</span>
+            </div>
         </div>
-    </div>
 }

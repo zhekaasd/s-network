@@ -1,14 +1,12 @@
-
 import React, {useEffect} from "react";
 import UserItem from "./UserItem/UserItem";
-import ProfileMainInfoContainer from "../ProfilePage/ProfileMainInfo/ProfileMainInfoContainer";
 
 
 /*--- css import ---*/
 import s from "./UsersPage.module.scss"
-import {User} from "../../reducers/users-reducer";
+//import {User} from "../../reducers/users-reducer";
 import Preloader from "../../components/common/Preloader/Preloader";
-import Navigation from "../../components/common/Navigation/Navigation";
+import {UserWithFakeLocation} from "../../reducers/users-reducer";
 
 interface UsersPropsType {
     getUsers: (currentPage: number, pageSize: number) => void
@@ -16,7 +14,7 @@ interface UsersPropsType {
     followUser: (userId: number) => void
     unfollowUser: (userId: number) => void
     usersPage: {
-        users: User[],
+        users: UserWithFakeLocation[],
         currentPage: number
         totalUsersCount: number
         pageSize: number
@@ -24,61 +22,66 @@ interface UsersPropsType {
     }
     followingInProgress: number[]
 }
-export const UsersPage: React.FC<UsersPropsType> = (props) =>  {
-/*
-    if(props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then((resp) => {
-            debugger
-            props.setUsers(resp.data.items);
-        })
-    }*/
+
+export const UsersPage: React.FC<UsersPropsType> = ({usersPage, ...props}) => {
+    /*
+        if(props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then((resp) => {
+                debugger
+                props.setUsers(resp.data.items);
+            })
+        }*/
+
+
+    //const usersPage = useSelector((state: AppStateType) => state.usersPage);
+
 
     useEffect(() => {
-        props.getUsers(props.usersPage.currentPage, props.usersPage.pageSize);
+        props.getUsers(usersPage.currentPage, usersPage.pageSize);
     }, [])
 
 
     const changePageNumber = (pageNumber: number) => {
-        props.changePageNumberUsers(pageNumber, props.usersPage.pageSize);
+        props.changePageNumberUsers(pageNumber, usersPage.pageSize);
     }
 
 
+    let totalPages = usersPage.totalUsersCount / usersPage.pageSize;
+    let arrPages = [];
 
-        let totalPages = props.usersPage.totalUsersCount / props.usersPage.pageSize;
-        let arrPages = [];
-
-        for(let i = 1; i <= totalPages; i++) {
-            arrPages.push(i);
-        }
-
-
-        return <>
-            <ProfileMainInfoContainer />
-            <Navigation />
+    for (let i = 1; i <= totalPages; i++) {
+        arrPages.push(i);
+    }
 
 
-            <div className={s.usersContainer}>
+    return <>
+        {/*<ProfileMainInfoContainer />*/}
+        {/*<Navigation />*/}
 
-                <h1 style={{fontSize: '74px'}}>USERS</h1>
+
+        <div className={s.usersContainer}>
+
+            <h1 style={{fontSize: '74px'}}>USERS</h1>
 
 
-                <div className={s.usersCurrentPage}>
-                    {
-                        arrPages.map((p, index) => <span key={index}
-                                                         onClick={() => changePageNumber(p)}
-                                                         className={props.usersPage.currentPage === p ? s.active : ''}>{p}</span>
-                        )
-                    }
-                </div>
-
+            <div className={s.usersCurrentPage}>
                 {
-                    props.usersPage.isFetching ? <Preloader/>
-                        : <UserItem followUser={props.followUser} unfollowUser={props.unfollowUser}
-                                    usersPage={props.usersPage} followingInProgress={props.followingInProgress}
-                        />
+                    arrPages.map((p, index) => <span key={index}
+                                                     onClick={() => changePageNumber(p)}
+                                                     className={usersPage.currentPage === p ? s.active : ''}>{p}</span>
+                    )
                 }
             </div>
-        </>
+
+            {
+                usersPage.isFetching ? <Preloader/>
+                    : <UserItem followUser={props.followUser} unfollowUser={props.unfollowUser}
+                                usersPage={usersPage}
+                                followingInProgress={props.followingInProgress}
+                    />
+            }
+        </div>
+    </>
 
 }
 

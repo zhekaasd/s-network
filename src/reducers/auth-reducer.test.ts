@@ -9,7 +9,7 @@ test('authorized should be correct', () => {
         isAuth: false
     };
 
-    const endState = authReducer(startState, authUserProfileAC('user', '1', 'user@gmail.com'));
+    const endState = authReducer(startState, authUserProfileAC('user', 1, 'user@gmail.com'));
 
     expect(endState.login).toBe('user');
     expect(endState.isAuth).toBe(true);

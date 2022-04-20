@@ -14,7 +14,7 @@
     box-shadow: var(--box-shadow);
 
 
-    & img {
+    & > img {
       position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -28,8 +28,12 @@
       height: 90px;
       background-color: gray;
 
-      border-top-left-radius: var(--border-radius-main-box);
-      border-top-right-radius: var(--border-radius-main-box);
+
+      & img {
+        height: 90px;
+        border-top-right-radius: var(--border-radius-main-box);
+        border-top-left-radius: var(--border-radius-main-box);
+      }
     }
 
     .userData {

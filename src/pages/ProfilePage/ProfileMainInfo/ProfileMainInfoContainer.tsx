@@ -1,9 +1,8 @@
 import {AppStateType} from "../../../reducers/store";
 import {connect} from "react-redux";
 import {ProfileMainInfo} from "./ProfileMainInfo";
-import React, {useEffect} from "react";
-import {ProfileUserType, setUserProfile} from "../../../reducers/profile-reducer";
-import {useParams} from "react-router-dom";
+import React from "react";
+import {ProfileUserWithFakeLocationType, setUserProfile} from "../../../reducers/profile-reducer";
 
 type MDTPType = {
     setUserProfile: (id: number) => void
@@ -11,32 +10,19 @@ type MDTPType = {
 type MSTPType = ReturnType<typeof mstp>;
 const mstp = (state: AppStateType) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth,
     }
 }
 
-type CCType = {
+type ProfileMainInfoContainerPropsType = {
     setUserProfile: (id: number) => void
-    profile: ProfileUserType | null
-
+    profile: ProfileUserWithFakeLocationType | null
 }
 
-const ProfileMainInfoContainer: React.FC<CCType> = (props) => {
-
-    let id = Number(useParams().id);
-
-
-
-    useEffect(() => {
-        if (!id) {
-            id = 9008;
-        }
-
-        props.setUserProfile(id);
-    }, []);
-
+const ProfileMainInfoContainer: React.FC<ProfileMainInfoContainerPropsType> = (props) => {
 
         return <ProfileMainInfo profile={props.profile} />
 }
 
-export default connect<MSTPType, MDTPType, {}, AppStateType>(mstp, {setUserProfile})(ProfileMainInfo);
+export default connect<MSTPType, MDTPType, {}, AppStateType>(mstp, {setUserProfile})(ProfileMainInfoContainer);

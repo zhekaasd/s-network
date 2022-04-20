@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
-import styles from "./inputWithIcon.module.scss";
+import styles from "./InputWithIcon.module.scss";
 
 type InputWithIConPropsType = {
     styleInput?: "standard" | "filled" | "outlined" | undefined

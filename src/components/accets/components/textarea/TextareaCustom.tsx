@@ -1,7 +1,7 @@
 import React from 'react';
 import {TextField} from "@mui/material";
 
-import styles from "./textareaCustom.module.scss";
+import styles from "./TextareaCustom.module.scss";
 
 type TextareaCustomPropsType = {
     value: string
