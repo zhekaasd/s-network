@@ -23,7 +23,20 @@ export const usersAPI = {
         return axiosInstance.delete(`follow/${id}`);
     },
     getUserProfile(id: number) {
+        console.warn('This method is relocate to "profileAPI".')
+        return profileAPI.getUserProfile(id);
+    }
+}
+
+export const profileAPI = {
+    getUserProfile(id: number) {
         return axiosInstance.get(`profile/${id}`);
+    },
+    getStatusProfile(id: number) {
+        return axiosInstance.get(`profile/status/${id}`)
+    },
+    updateStatusProfile(status: string) {
+        return axiosInstance.put(`profile/status`, {status: status})
     }
 }
 
