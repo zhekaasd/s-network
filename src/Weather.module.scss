@@ -3,11 +3,13 @@
   margin-top: 50px;
   position: relative;
   width: 300px;
-  border: 1px solid burlywood;
 
   .weatherContent {
     background: greenyellow;
     padding: 2rem;
+
+    border-radius: var(--border-radius-main-box);
+    box-shadow: var(--box-shadow);
 
     .locationWeather {
       display: flex;

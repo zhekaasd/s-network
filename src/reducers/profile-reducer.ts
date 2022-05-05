@@ -97,7 +97,6 @@ export const setStatusProfile = (status: string): SetStatusProfileType => {
 export const getStatusProfile = (userId: number) => (dispatch: Dispatch) => {
     profileAPI.getStatusProfile(userId)
         .then((response) => {
-            debugger
 
             dispatch(setStatusProfile(response.data))
         })

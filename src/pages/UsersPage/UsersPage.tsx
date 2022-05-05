@@ -38,7 +38,7 @@ export const UsersPage: React.FC<UsersPropsType> = ({usersPage, ...props}) => {
 
     useEffect(() => {
         props.getUsers(usersPage.currentPage, usersPage.pageSize);
-    }, [])
+    }, [usersPage.currentPage, usersPage.pageSize])
 
 
     const changePageNumber = (pageNumber: number) => {

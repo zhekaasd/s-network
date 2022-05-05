@@ -150,7 +150,7 @@ export function getRandomUsers(array: Array<any>) {
         array = array.filter( (el, index) => {
             if(index !== num) {
                 return el;
-            } else { debugger
+            } else {
                 newArr.push(el);
             }
         });
