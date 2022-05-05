@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import UsersPageContainer from "../../pages/UsersPage/UsersPageContainer";
 import ProfilePageContainer from "../../pages/ProfilePage/ProfilePageContainer";
 import ChatPageContainer from "../../pages/ChatPage/ChatPageContainer";
+import Weather from "../../Weather";
 
 
 export const PATH = {
@@ -24,6 +25,7 @@ const RoutesComponent = () => {
 
                 <Route path={'*'} element={<NotFound/>}/>
                 <Route path={`${PATH.HOME}`} element={<HomePageContainer/>}/>
+                <Route path={`weather`} element={<Weather />}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.USERS} element={<UsersPageContainer/>}/>
                 <Route path={`${PATH.PROFILE}/:id`} element={ <ProfilePageContainer  /> } />

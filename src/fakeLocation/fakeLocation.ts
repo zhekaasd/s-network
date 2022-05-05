@@ -136,3 +136,25 @@ export const getRandomBackgroundBanner = () => {
 
     return backgroundBanner.find(el => el.id === randomBgNumber);
 }
+
+
+
+/*--- get random 5 elements of array ---*/
+
+export function getRandomUsers(array: Array<any>) {
+    let newArr: Array<any> = [];
+
+    while (newArr.length < 5) {
+        let num = randomNumber(array.length);
+
+        array = array.filter( (el, index) => {
+            if(index !== num) {
+                return el;
+            } else { debugger
+                newArr.push(el);
+            }
+        });
+    }
+
+    return newArr;
+}

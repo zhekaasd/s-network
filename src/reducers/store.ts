@@ -5,6 +5,7 @@ import {usersReducer} from "./users-reducer";
 import {profileReducer} from "./profile-reducer";
 import {authReducer} from "./auth-reducer";
 import thunk from "redux-thunk";
+import {weatherReducer} from "./weather-reducer";
 
 
 export type AppStateType = ReturnType<typeof reducers>;
@@ -14,7 +15,8 @@ const reducers = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     profilePage: profileReducer,
-    auth: authReducer
+    auth: authReducer,
+    weather: weatherReducer
 })
 
 export type AppStoreType = typeof store;

@@ -173,9 +173,9 @@ export const changePageNumberUsers = (pageNumber: number, pageSize: number) => {
 
 
 export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
-    dispatch(toggleIsFetching(true));
+    dispatch(toggleIsFetching(true)); debugger
     usersAPI.getUsers(currentPage, pageSize)
-        .then((resp) => {
+        .then((resp) => { debugger
 /*---get user data from server, changed type item, add fake location ---*/
             let data = [...resp.data.items.map( (u: User[]) => ({
                 ...u,

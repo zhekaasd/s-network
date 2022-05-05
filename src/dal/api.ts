@@ -7,7 +7,9 @@ let axiosInstance = axios.create({
     headers: {
         "API-KEY": 'cc4cd378-9de6-4087-b594-6c01a4372074'
     }
-})
+});
+
+
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
@@ -43,5 +45,12 @@ export const profileAPI = {
 export const authAPI = {
     auth() {
         return axiosInstance.get(`auth/me`);
+    }
+}
+
+export const weatherAPI = {
+    getWeather(city: string) {
+        //return axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=ru&appid=17aace2073b8f40a5f7204cd838a2ae4&units=metric`);
+        return axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=17aace2073b8f40a5f7204cd838a2ae4&units=metric`);
     }
 }

@@ -46,7 +46,7 @@ export const UsersPage: React.FC<UsersPropsType> = ({usersPage, ...props}) => {
     }
 
 
-    let totalPages = usersPage.totalUsersCount / usersPage.pageSize;
+    let totalPages = Math.ceil(usersPage.totalUsersCount / usersPage.pageSize);
     let arrPages = [];
 
     for (let i = 1; i <= totalPages; i++) {

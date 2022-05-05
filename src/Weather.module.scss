@@ -1,0 +1,38 @@
+.weatherContainer {
+
+  margin-top: 50px;
+  position: relative;
+  width: 300px;
+  border: 1px solid burlywood;
+
+  .weatherContent {
+    background: greenyellow;
+    padding: 2rem;
+
+    .locationWeather {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .iconWeather {
+      text-align: center;
+
+      margin: 40px 0;
+
+      & svg {
+        font-size: 8rem;
+      }
+    }
+
+    .temp {
+      display: flex;
+      justify-content: space-between;
+
+      & ul {
+        & span {
+          display: block;
+        }
+      }
+    }
+  }
+}
