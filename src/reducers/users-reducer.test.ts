@@ -14,9 +14,9 @@ let startState: InitialStateUsersType;
 beforeEach(() => {
    startState = {
        users: [
-           {id: 11, followed: false, name: 'Chel', photos: {small: '', large: ''}, status: 'Status text Chel', uniqueUrlName: '', locationUser: {id: 1, title: 'Moscow'}},
-           {id: 12, followed: false, name: 'Fedor', photos: {small: '', large: ''}, status: 'Status text Fedor', uniqueUrlName: '', locationUser: {id: 2, title: 'Ufa'}},
-           {id: 13, followed: false, name: 'Roman', photos: {small: '', large: ''}, status: 'Status text Roman', uniqueUrlName: '', locationUser: {id: 3, title: 'Minsk'}},
+           {id: 11, followed: false, name: 'Chel', photos: {small: '', large: ''}, status: 'Status text Chel', uniqueUrlName: '', locationUser: {id: 1, title: 'Moscow'}, backgroundBanner: {banner: '', id: 3123}},
+           {id: 12, followed: false, name: 'Fedor', photos: {small: '', large: ''}, status: 'Status text Fedor', uniqueUrlName: '', locationUser: {id: 2, title: 'Ufa'}, backgroundBanner: {banner: '', id: 2123}},
+           {id: 13, followed: false, name: 'Roman', photos: {small: '', large: ''}, status: 'Status text Roman', uniqueUrlName: '', locationUser: {id: 3, title: 'Minsk'}, backgroundBanner: {banner: '', id: 1123}},
        ],
        currentPage: 1,
        totalUsersCount: 0,
@@ -29,9 +29,9 @@ beforeEach(() => {
 
 test('set users should be correct', () => {
     let users: Array<UserWithFakeLocation> = [
-        {id: 1, followed: false, name: 'Alex', photos: {small: '', large: ''}, status: 'Status text Alex', uniqueUrlName: '', locationUser: {id: 1, title: 'Moscow'}},
-        {id: 2, followed: false, name: 'Ivan', photos: {small: '', large: ''}, status: 'Status text Ivan', uniqueUrlName: '', locationUser: {id: 2, title: 'Ufa'}},
-        {id: 3, followed: false, name: 'Sasha', photos: {small: '', large: ''}, status: 'Status text Sasha', uniqueUrlName: '', locationUser: {id: 3, title: 'Minsk'}},
+        {id: 1, followed: false, name: 'Alex', photos: {small: '', large: ''}, status: 'Status text Alex', uniqueUrlName: '', locationUser: {id: 1, title: 'Moscow'}, backgroundBanner: {banner: '', id: 123}},
+        {id: 2, followed: false, name: 'Ivan', photos: {small: '', large: ''}, status: 'Status text Ivan', uniqueUrlName: '', locationUser: {id: 2, title: 'Ufa'}, backgroundBanner: {banner: '', id: 143}},
+        {id: 3, followed: false, name: 'Sasha', photos: {small: '', large: ''}, status: 'Status text Sasha', uniqueUrlName: '', locationUser: {id: 3, title: 'Minsk'}, backgroundBanner: {banner: '', id: 153}},
     ];
 
     let endState = usersReducer(startState, setUsers(users));

@@ -6,7 +6,8 @@ test('authorized should be correct', () => {
         login: null,
         id: null,
         email: null,
-        isAuth: false
+        isAuth: false,
+        profile: null
     };
 
     const endState = authReducer(startState, authUserProfileAC('user', 1, 'user@gmail.com'));

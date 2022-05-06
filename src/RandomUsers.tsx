@@ -1,27 +1,69 @@
 import React, {useEffect, useState} from "react";
 
 import styles from "./randomUsers.module.scss";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./reducers/store";
 import {usersAPI} from "./dal/api";
 import {getRandomBackgroundBanner, getRandomLocationCity, getRandomUsers} from "./fakeLocation/fakeLocation";
-import {setUsers, User} from "./reducers/users-reducer";
+import {followUser, setUsers, unfollowUser, User, UserWithFakeLocation} from "./reducers/users-reducer";
 import {Link, NavLink} from "react-router-dom";
 import ButtonCustom from "./components/accets/components/buton/ButtonCustom";
 
 import iconUser from "./other/images/icon/users.png";
 import {PATH} from "./components/RoutesComponent/RoutesComponent";
 
-export const RandomUsers = () => {
 
-    const currentPage = useSelector((state: AppStateType) => state.usersPage.currentPage);
-    const usersRandom = useSelector((state: AppStateType) => state.usersPage.users);
+type MDTPT = {
+    unfollowUser: (id: number) => void
+    followUser: (id: number) => void
+}
+type MSTPT = ReturnType<typeof mapStateToProps>;
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        usersRandom: state.usersPage.users,
+        currentPage: state.usersPage.currentPage,
+        followingInProgress: state.usersPage.followingInProgress
+    }
+}
+
+
+const RandomItem = (props: {
+    name: string,
+    photo: string,
+    id: number,
+    followed: boolean,
+    unfollowUser: (id: number) => void
+    followUser: (id: number) => void
+    followingInProgress: number[]
+}) => {
+
+    return <div className={styles.randomUser}>
+        <NavLink to={`${PATH.PROFILE}/${props.id}`} className={styles.randomUserInfo}>
+            <img src={props.photo ? props.photo : iconUser} alt="#"/>
+            <p>{props.name}</p>
+        </NavLink>
+        {
+            props.followed ? <ButtonCustom disabled={props.followingInProgress.some((id) => id === props.id)} sizeButton={'small'} onClick={() => props.unfollowUser(props.id)}>Unfollow</ButtonCustom>
+                : <ButtonCustom disabled={props.followingInProgress.some((id) => id === props.id)} sizeButton={'small'} onClick={() => props.followUser(props.id)}>Follow</ButtonCustom>
+        }
+    </div>
+}
+
+
+type RandomUsersPropsType = {
+    usersRandom: UserWithFakeLocation[],
+    currentPage: number,
+    unfollowUser: (id: number) => void,
+    followUser: (id: number) => void
+    followingInProgress: number[]
+}
+const RandomUsers: React.FC<RandomUsersPropsType> = (props) => {
 
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        usersAPI.getUsers(currentPage, 100)
+        usersAPI.getUsers(props.currentPage, 100)
             .then((resp) => {
                 usersAPI.changeNumberPage(Math.ceil(resp.data.totalCount / 100 ), 100)
                     .then((resp) => {
@@ -50,6 +92,7 @@ export const RandomUsers = () => {
             })
     }, []);
 
+
     return (
 
 
@@ -60,25 +103,16 @@ export const RandomUsers = () => {
                     <NavLink to={PATH.USERS}>See All</NavLink>
                 </div>
                 {
-                    usersRandom.map( el => <RandomItem key={el.id} photo={el.photos.small} name={el.name} />)
+                    props.usersRandom.map( el => <RandomItem followingInProgress={props.followingInProgress} key={el.id} followUser={props.followUser} unfollowUser={props.unfollowUser} followed={el.followed} id={el.id} photo={el.photos.small} name={el.name} />)
                 }
             </div>
 
     );
 };
 
-const RandomItem = (props: {name: string, photo: string}) => {
 
-    let [follow, setFollow] = useState<boolean>(false);
+export default connect<MSTPT, MDTPT, {}, AppStateType>(mapStateToProps, {
+    unfollowUser, followUser
+})(RandomUsers);
 
-    return <div className={styles.randomUser}>
-        <div className={styles.randomUserInfo}>
-            <img src={props.photo ? props.photo : iconUser} alt="#"/>
-            <p>{props.name}</p>
-        </div>
-        {
-            !follow ? <ButtonCustom sizeButton={'small'} onClick={() => setFollow(true)}>Unfollow</ButtonCustom>
-                : <ButtonCustom sizeButton={'small'} onClick={() => setFollow(false)}>Follow</ButtonCustom>
-        }
-    </div>
-}
+

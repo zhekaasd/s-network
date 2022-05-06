@@ -31,8 +31,18 @@
       justify-content: space-between;
 
       & ul {
+
+
+
         & span {
-          display: block;
+          display: flex;
+          align-items: center;
+
+          & svg {
+
+            font-size: 1.1rem;
+            margin-right: 4px;
+          }
         }
       }
     }

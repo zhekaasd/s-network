@@ -2,7 +2,7 @@ import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import HomePageContainer from "../../pages/HomePage/HomePageContainer";
 import NotFound from "../../pages/NotFound/NotFound";
-import Login from "../Login/Login";
+import Login from "../../pages/Login/Login";
 import UsersPageContainer from "../../pages/UsersPage/UsersPageContainer";
 import ProfilePageContainer from "../../pages/ProfilePage/ProfilePageContainer";
 import ChatPageContainer from "../../pages/ChatPage/ChatPageContainer";
@@ -25,7 +25,6 @@ const RoutesComponent = () => {
 
                 <Route path={'*'} element={<NotFound/>}/>
                 <Route path={`${PATH.HOME}`} element={<HomePageContainer/>}/>
-                <Route path={`weather`} element={<Weather />}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.USERS} element={<UsersPageContainer/>}/>
                 <Route path={`${PATH.PROFILE}/:id`} element={ <ProfilePageContainer  /> } />

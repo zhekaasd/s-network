@@ -4,7 +4,7 @@ import {Button} from "@mui/material";
 import s from "./ButtonCustom.module.scss";
 
 type ButtonCustomPropsType = {
-    onClick: () => void
+    onClick?: () => void
     disabled?: boolean
     sizeButton?: "small" | "medium" | "large"
 }

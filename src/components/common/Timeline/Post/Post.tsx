@@ -44,6 +44,8 @@ export const Post: React.FC<PostPropsType> = ({
         }
     }
 
+    const currentTime = new Date().toLocaleTimeString();
+
 
     return id ? <div className={styles.postContainer}>
 
@@ -51,7 +53,7 @@ export const Post: React.FC<PostPropsType> = ({
                 <img src={value ? userProfile?.photos.small : avatar2} alt="avatar"/>
                 <div className={styles.postDataName}>
                     <p>{value ? userProfile?.fullName : 'User 1'}</p>
-                    <span>{new Date().toLocaleTimeString()}</span>
+                    <span>{currentTime}</span>
                 </div>
             </div>
             <p className={styles.postText}>{postText}</p>
@@ -68,7 +70,7 @@ export const Post: React.FC<PostPropsType> = ({
                 <img src={value ? authUserProfile?.photos.small : avatar2} alt="avatar"/>
                 <div className={styles.postDataName}>
                     <p>{value ? authUserProfile?.fullName : 'John Doe'}</p>
-                    <span>{new Date().toLocaleTimeString()}</span>
+                    <span>{currentTime}</span>
                 </div>
             </div>
             <p className={styles.postText}>{postText}</p>

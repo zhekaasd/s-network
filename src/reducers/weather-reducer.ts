@@ -1,3 +1,5 @@
+import {Dispatch} from "redux";
+import {weatherAPI} from "../dal/api";
 
 type TempType = {
     temp: number,
@@ -19,14 +21,14 @@ type WindType = {
 type WeatherType = {id: number, main: string, description: string ,icon: string};
 
 
-type InitialStateWeatherType = {
+export type InitialStateWeatherType = {
     weather: WeatherType | null
     main: TempType | null,
     wind: WindType | null,
     name: string | null
 }
 
-const initialState = {
+const initialState: InitialStateWeatherType = {
     weather: null,
     wind: null,
     main: null,
@@ -50,4 +52,19 @@ export const weatherReducer = (state: InitialStateWeatherType = initialState, ac
 type setWeatherType = ReturnType<typeof setWeather>;
 export const setWeather = (weather: WeatherType, main: TempType, wind: WindType, name: string) => {
     return {type: 'SET-W', data: {weather, wind, main, name}}
+}
+
+
+export const changeWeatherCity = (city: string) => (dispatch: Dispatch) => {
+    weatherAPI.getWeather(city)
+        .then((response) => {
+            debugger
+            if (response.status === 200) {
+                let weather = response.data.weather[0];
+                let {main, name, wind} = response.data;
+                dispatch(setWeather(weather, main, wind, name));
+            }
+        }).catch((err) => { debugger
+             throw new Error('Uncorrected name of city');
+    })
 }

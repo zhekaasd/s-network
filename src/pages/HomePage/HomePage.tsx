@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import {Timeline} from "../../components/common/Timeline/Timeline";
-import {RandomUsers} from "../../RandomUsers";
+import RandomUsers from "../../RandomUsers";
 import {PATH} from "../../components/RoutesComponent/RoutesComponent";
 import {AppStateType} from "../../reducers/store";
 import {PostType} from "../../reducers/newsfeed-reducer";
@@ -11,6 +11,7 @@ import {useSelector} from "react-redux";
 import styles from "./HomePage.module.scss";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import photo from "../../other/images/1920x.webp";
+import Weather from "../../Weather";
 
 
 type HPPropsType = {
@@ -57,7 +58,7 @@ const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, updatePostText,
             </div>
 
             <div className={styles.homePageRandomUsers}>
-                <RandomUsers/>
+                <RandomUsers />
             </div>
 
         </div>
@@ -72,7 +73,8 @@ const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, updatePostText,
 
 
         <div className={styles.homePageColumnRight}>
-            <RandomUsers/>
+            <RandomUsers />
+            <Weather />
         </div>
 
     </div>
