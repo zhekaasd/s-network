@@ -11,6 +11,7 @@ import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import CloudIcon from '@mui/icons-material/Cloud';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const Weather = () => {
 
@@ -20,7 +21,6 @@ const Weather = () => {
 
     const [changeMode, setChangeMode] = useState<boolean>(false);
     const [city, setCity] = useState<string>(weather.name ? weather.name : 'Moscow');
-
 
 
     useEffect(() => {
@@ -49,16 +49,26 @@ const Weather = () => {
             <div className={st.weatherContainer}>
                 <div className={st.weatherContent}>
                     <div className={st.locationWeather}>
-                        {/*<span>Moscow</span>*/}
-                        <span onDoubleClick={() => setChangeMode(true)}>{!changeMode ? weather.name
-                            : <input autoFocus onBlur={onBlurHandler} onChange={onChangeHandler} type="text" value={city}/> }</span> <span>{currentTime}</span></div>
+
+                        <div className={st.locationWeatherCityTitle}>
+                            <span >{!changeMode ? weather.name
+                                : <input autoFocus onBlur={onBlurHandler} onChange={onChangeHandler} type="text"
+                                         value={city}/>}</span>
+                            <SettingsIcon onClick={() => setChangeMode(true)} fontSize={'small'} />
+                        </div>
+
+                        <span>
+                            {currentTime}
+                        </span>
+                    </div>
                     <div className={st.iconWeather}>
 
                         {
-                            weather.weather?.main === 'Thunderstorm' ||  weather.weather?.main === 'Drizzle' ||  weather.weather?.main === 'Rain' ? <ThunderstormIcon fontSize={'large'} />
-                                : weather.weather?.main === 'Snow' ? <AcUnitIcon fontSize={'large'} />
-                                    : weather.weather?.main === 'Clear' ? <LightModeIcon fontSize={'large'} />
-                                        : <CloudIcon fontSize={'large'} />
+                            weather.weather?.main === 'Thunderstorm' || weather.weather?.main === 'Drizzle' || weather.weather?.main === 'Rain' ?
+                                <ThunderstormIcon fontSize={'large'}/>
+                                : weather.weather?.main === 'Snow' ? <AcUnitIcon fontSize={'large'}/>
+                                    : weather.weather?.main === 'Clear' ? <LightModeIcon fontSize={'large'}/>
+                                        : <CloudIcon fontSize={'large'}/>
 
                         }
 
@@ -67,9 +77,9 @@ const Weather = () => {
                     </div>
                     <div className={st.temp}>
                         <ul>
-                            <span> <OpacityIcon fontSize={'small'} />  {weather.main?.humidity}% </span>
-                            <span> <AirIcon /> {weather.wind?.speed} m/s</span>
-                            <span> <BeachAccessIcon /> {weather.weather?.description}</span>
+                            <span> <OpacityIcon fontSize={'small'}/> {weather.main?.humidity}% </span>
+                            <span> <AirIcon/> {weather.wind?.speed} m/s</span>
+                            <span> <BeachAccessIcon/> {weather.weather?.description}</span>
                         </ul>
                         <h1>{Math.floor(weather.main?.temp as number)}°</h1>
                     </div>

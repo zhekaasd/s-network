@@ -17,6 +17,14 @@ const Login = () => {
                 <ButtonCustom>login</ButtonCustom>
 
             </div>
+
+
+            <form >
+                <div><input type="text" placeholder={'login'}/></div>
+                <div><input type="password" placeholder={'password'}/></div>
+                <div><input type="checkbox"/>remeber me</div>
+                <button>login</button>
+            </form>
         </>
     );
 };

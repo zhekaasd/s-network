@@ -14,6 +14,25 @@
     .locationWeather {
       display: flex;
       justify-content: space-between;
+
+      .locationWeatherCityTitle {
+        & span {
+          margin-right: 4px;
+        }
+        & svg {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            color: #9cacbf;
+          }
+        }
+
+        & input {
+          width: 75%;
+        }
+      }
     }
 
     .iconWeather {
@@ -23,6 +42,7 @@
 
       & svg {
         font-size: 8rem;
+
       }
     }
 
