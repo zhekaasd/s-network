@@ -37,5 +37,5 @@ const HomePageContainer = (props: MSTPType & MDTPType) => {
 
 export default compose<ComponentType>(
     connect<MSTPType, MDTPType, {}, AppStateType>(mapStateToProps, mapDispatchToProps),
-    withRedirect
+    /*withRedirect*/
 )(HomePageContainer)

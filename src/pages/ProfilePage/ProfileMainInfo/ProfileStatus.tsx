@@ -1,5 +1,4 @@
 import React from "react";
-import InputCustom from "../../../components/accets/components/input/InputCustom";
 
 interface ProfileStatusI {
     status: string

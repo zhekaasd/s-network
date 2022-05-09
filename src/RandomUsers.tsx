@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 
 import styles from "./randomUsers.module.scss";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {AppStateType} from "./reducers/store";
 import {usersAPI} from "./dal/api";
 import {getRandomBackgroundBanner, getRandomLocationCity, getRandomUsers} from "./fakeLocation/fakeLocation";
 import {followUser, setUsers, unfollowUser, User, UserWithFakeLocation} from "./reducers/users-reducer";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import ButtonCustom from "./components/accets/components/buton/ButtonCustom";
 
 import iconUser from "./other/images/icon/users.png";

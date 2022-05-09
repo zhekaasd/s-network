@@ -6,7 +6,6 @@ import Login from "../../pages/Login/Login";
 import UsersPageContainer from "../../pages/UsersPage/UsersPageContainer";
 import ProfilePageContainer from "../../pages/ProfilePage/ProfilePageContainer";
 import ChatPageContainer from "../../pages/ChatPage/ChatPageContainer";
-import Weather from "../../Weather";
 
 
 export const PATH = {

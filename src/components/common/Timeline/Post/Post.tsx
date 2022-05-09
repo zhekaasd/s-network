@@ -7,7 +7,6 @@ import {useParams} from "react-router-dom";
 
 /*--- css import ---*/
 import avatar2 from "../../../../other/images/icon/users.png";
-import photo from "../../../../other/images/1920x.webp";
 import styles from "./Post.module.scss";
 
 type PostPropsType = {

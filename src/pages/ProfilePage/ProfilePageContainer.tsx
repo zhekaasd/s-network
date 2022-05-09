@@ -47,6 +47,7 @@ const ProfilePageContainer: React.FC<ProfilePageContainerType> = (props) => {
     }, []);
 
 
+
         return <ProfilePage posts={props.posts} actualPostText={props.actualPostText} updateStatus={props.updateStatus}
                             addPost={props.addPost} updatePostText={props.updatePostText}
                             profile={props.profile} status={props.status} isAuth={props.isAuth}

@@ -20,7 +20,7 @@ export const Timeline: React.FC<TimelinePropsType> = ({onChangeHandler, onClickH
                                                           posts, ...restProps}) => {
 
     const profileData = useSelector((state: AppStateType) => state.profilePage.profile);
-    const authId = useSelector((state: AppStateType) => state.auth.id);
+    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth);
     const authUserPhoto = useSelector((state: AppStateType) => state.auth.profile);
 
 /*-- mapping posts from state data --*/
@@ -31,7 +31,7 @@ export const Timeline: React.FC<TimelinePropsType> = ({onChangeHandler, onClickH
     return <div className={styles.timelineContainer}>
 
         {
-            authId !== profileData?.userId ? ''
+            !isAuth ? ''
                 : <div className={profileData?.photos.small ? styles.formAddPostWithAvatar : styles.formAddPost}>
                 {profileData?.photos.small && <img src={profileData?.photos.small} alt="???"/>}
                 <MUIAddItemForm onClick={onClickHandler} onChange={onChangeHandler}

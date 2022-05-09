@@ -7,7 +7,7 @@ import styles from './ProfileMainInfo.module.scss';
 import profilePhoto from "../../../other/images/icon/users.png";
 import myBanner from "../../../other/images/background/my-banner.jpg";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ProfileStatusFn from "./ProfileStatusFn";
+import ProfileStatus from "./ProfileStatus";
 
 type PMIPropsType = {
     profile: ProfileUserWithFakeLocationType | null
@@ -42,7 +42,7 @@ export const ProfileMainInfo:React.FC<PMIPropsType> = ({profile, ...restProps}) 
                         <h3>{profile?.fullName && toUpperFirstCharName(profile.fullName)}</h3>
                         <span> <LocationOnIcon fontSize={'small'} /> Member since August 2017</span>
                         {/*<p>{profile?.aboutMe ? profile?.aboutMe : 'About me...'}</p>*/}
-                        <ProfileStatusFn status={restProps.status}
+                        <ProfileStatus status={restProps.status}
                                        updateStatus={restProps.updateStatus} />
 
                     </div>

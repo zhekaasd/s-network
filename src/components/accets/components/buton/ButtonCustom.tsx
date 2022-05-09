@@ -7,12 +7,13 @@ type ButtonCustomPropsType = {
     onClick?: () => void
     disabled?: boolean
     sizeButton?: "small" | "medium" | "large"
+    onSubmit?: any
 }
 
 
 const ButtonCustom: React.FC<ButtonCustomPropsType> = ({onClick, disabled, sizeButton, ...restProps}) => {
     return (
-        <Button className={s.buttonStyle} size={sizeButton ? sizeButton : 'medium'}
+        <Button onSubmit={restProps.onSubmit} className={s.buttonStyle} size={sizeButton ? sizeButton : 'medium'}
                 disabled={disabled}
                 variant={'contained'} onClick={onClick}>
             {restProps.children}
