@@ -3,28 +3,44 @@ import TextareaCustom from "../../accets/components/textarea/TextareaCustom";
 import ButtonCustom from "../../accets/components/buton/ButtonCustom";
 
 import styles from "./MUIaddItemForm.module.scss";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {FormControlHOC} from "../../../HOC/FormControlHOC";
+import {maxLength, required} from "../../../utils/validators";
 
-type MUIAddItemFormPropsType = {
-    value: string
-    onClick: () => void
-    onChange: (value: string) => void
-    numberRows?: number
+// type MUIAddItemFormPropsType = InjectedFormProps & {
+//     value: string
+//     onClick: () => void
+//     onChange: (value: string) => void
+//     numberRows?: number
+//     classNameCustom?: string
+//     childrenButton?: string
+// }
+
+type MUIAddItemFormPropsType =  {
     classNameCustom?: string
     childrenButton?: string
 }
-const MUIAddItemForm: React.FC<MUIAddItemFormPropsType> = ({value, onClick, onChange, childrenButton,
-                                                         numberRows, ...restProps}) => {
+
+const TextArea = FormControlHOC(TextareaCustom);
+
+const maxLength10 = maxLength(10);
 
 
 
-    const addItemFormFinal = `${styles.addItemForm} ${restProps.classNameCustom ? restProps.classNameCustom : ''}`
+const MUIAddItemForm: React.FC<InjectedFormProps & MUIAddItemFormPropsType> = ({childrenButton, ...restProps}) => {
+
+    const addItemFormFinalStyles = `${styles.addItemForm} ${restProps.classNameCustom ? restProps.classNameCustom : ''}`;
+
+    console.log(restProps);
 
     return (
-        <div className={addItemFormFinal}>
-            <TextareaCustom numberRows={numberRows} onChange={onChange} value={value}  />
-            <ButtonCustom onClick={onClick}> {childrenButton ? childrenButton : 'Send'} </ButtonCustom>
-        </div>
+        <form onSubmit={restProps.handleSubmit} className={addItemFormFinalStyles}>
+            <Field type={'text'} component={TextArea} name={'value'} validate={[required, maxLength10]} />
+            <ButtonCustom type={'submit'}> {childrenButton ? childrenButton : 'Send'} </ButtonCustom>
+        </form>
     );
 };
 
-export default MUIAddItemForm;
+export default reduxForm({
+    form: 'addItemForm',
+})(MUIAddItemForm);

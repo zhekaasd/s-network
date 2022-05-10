@@ -1,6 +1,6 @@
 import {AppStateType} from "../../reducers/store";
 import {connect, useSelector} from "react-redux";
-import {addPost, updatePostText} from "../../reducers/newsfeed-reducer";
+import {addPost} from "../../reducers/newsfeed-reducer";
 import React, {useEffect} from "react";
 import {ProfilePage} from "./ProfilePage";
 import {useParams} from "react-router-dom";
@@ -8,8 +8,7 @@ import {getStatusProfile, setUserProfile, updateStatus} from "../../reducers/pro
 import {compose} from "redux";
 
 type MDTPType = {
-    addPost: () => void
-    updatePostText: (value: string) => void
+    addPost: (value: string) => void
     setUserProfile: (id: number) => void
     getStatusProfile: (userId: number) => void
     updateStatus: (status: string) => void
@@ -17,8 +16,7 @@ type MDTPType = {
 type MSTPType = ReturnType<typeof mstp>;
 const mstp = (state: AppStateType) => {
     return {
-        actualPostText: state.newsfeedPage.actualPostText,
-        posts: state.newsfeedPage.posts.filter(p => p.value),
+        posts: state.newsfeedPage.posts.filter(p => p.whoseMessageItIs),
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth,
         status: state.profilePage.status
@@ -44,12 +42,11 @@ const ProfilePageContainer: React.FC<ProfilePageContainerType> = (props) => {
         props.setUserProfile(id);
         props.getStatusProfile(id);
 
-    }, []);
+    }, [id]);
 
 
 
-        return <ProfilePage posts={props.posts} actualPostText={props.actualPostText} updateStatus={props.updateStatus}
-                            addPost={props.addPost} updatePostText={props.updatePostText}
+        return <ProfilePage posts={props.posts} updateStatus={props.updateStatus} addPost={props.addPost}
                             profile={props.profile} status={props.status} isAuth={props.isAuth}
 
         />
@@ -59,8 +56,7 @@ const ProfilePageContainer: React.FC<ProfilePageContainerType> = (props) => {
 
 export default compose<React.ComponentType>(
     connect<MSTPType, MDTPType, {}, AppStateType>(mstp, {
-        addPost,
-        updatePostText, setUserProfile, getStatusProfile, updateStatus
+        addPost, setUserProfile, getStatusProfile, updateStatus
     }),
     // withRedirect
 )(ProfilePageContainer)

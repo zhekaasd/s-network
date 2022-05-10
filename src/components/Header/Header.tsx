@@ -26,7 +26,6 @@ export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...
 
     //console.log(profile);
 
-
     return <header>
         <div className={st.headerContainer}>
 

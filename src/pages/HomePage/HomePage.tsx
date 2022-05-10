@@ -16,22 +16,18 @@ import Weather from "../../Weather";
 
 type HPPropsType = {
     newsfeedPage: {
-        posts: Array<PostType>,
-        actualPostText: string
+        posts: Array<PostType>
     }
-    addPost: () => void
-    updatePostText: (value: string) => void
+    addPost: (value: string) => void
 }
 
 
-const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, updatePostText, ...restProps}) => {
+const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, ...restProps}) => {
 
     const profileData = useSelector((state: AppStateType) => state.auth.profile);
     const authUserId = useSelector((state: AppStateType) => state.auth.id);
 
-    const addPostHandler = () => {
-        addPost();
-    }
+
 
     return <div className={styles.homePageContainer}>
 
@@ -66,9 +62,7 @@ const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, updatePostText,
 
         <Timeline
             posts={newsfeedPage.posts}
-            actualPostText={newsfeedPage.actualPostText}
-            onChangeHandler={updatePostText}
-            onClickHandler={addPostHandler}
+            addPost={addPost}
         />
 
 

@@ -1,4 +1,4 @@
-import {addMessage, dialogsReducer, InitialStateDialogsType, updateMessageText} from "./dialogs-reducer";
+import {addMessage, chatReducer, InitialStateDialogsType} from "./chat-reducer";
 
 let startState: InitialStateDialogsType;
 
@@ -18,22 +18,15 @@ beforeEach(() => {
             {id: '14', value: false, messageText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam deleniti nulla possimus. Atque cum delectus dolores exercitationem, fugit ipsum libero'},
             {id: '15', value: true, messageText: 'dolores exercitationem, fugit ipsum libero'},
             {id: '16', value: false, messageText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam deleniti nulla possimus.'},
-        ],
-        actualMessageText: ''
+        ]
     };
 })
 
 test('add message should be correct', () => {
 
-    let endState = dialogsReducer(startState, addMessage());
+    const value = 'add message';
+    let endState = chatReducer(startState, addMessage(value));
 
     expect(endState.messages.length).toBe(7);
-    expect(endState.actualMessageText).toBe('');
-})
-
-
-test('update post text', () => {
-    let endState = dialogsReducer(startState, updateMessageText('text value'));
-
-    expect(endState.actualMessageText).toBe('text value');
+    expect(endState.messages[endState.messages.length - 1].messageText).toBe(value);
 })

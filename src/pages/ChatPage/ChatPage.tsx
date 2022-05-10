@@ -9,7 +9,7 @@ import s from "./ChatPage.module.scss";
 import photo from "../../other/images/1920x.webp";
 import {PATH} from "../../components/RoutesComponent/RoutesComponent";
 import {Line} from "../../components/common/Line/Line";
-import {MessageType, UserType} from "../../reducers/dialogs-reducer";
+import {MessageType, UserType} from "../../reducers/chat-reducer";
 
 
 function ChatPage(props: {
@@ -18,7 +18,7 @@ function ChatPage(props: {
         users: Array<UserType>,
         actualMessageText: string
     }
-    addMessage: () => void,
+    addMessage: (value: string) => void,
     updateMessageText: (value: string) => void
     profile: ProfileUserWithFakeLocationType | null
 })
@@ -34,6 +34,11 @@ function ChatPage(props: {
     let userSentMessageFilter = props.messagesPage.messages.filter(m => !m.value);
     let lastMessage = userSentMessageFilter[userSentMessageFilter.length - 1].messageText;
 
+
+    const submit = (formData: any) => {
+        props.addMessage(formData.value);
+        console.log(formData);
+    }
 
     return <div>
 
@@ -87,12 +92,14 @@ function ChatPage(props: {
                 <Line />
 {/*--- Add text message form ---*/}
                 <div className={s.addItemForm}>
-                    <MUIAddItemForm onClick={props.addMessage}
+  {/*                  <MUIAddItemForm onClick={props.addMessage}
                                     onChange={props.updateMessageText}
                                     value={props.messagesPage.actualMessageText}
                                     classNameCustom={s.customAddItemForm}
                                     childrenButton={'➤'}
-                    />
+                    />*/}
+
+                    <MUIAddItemForm onSubmit={submit} />
                 </div>
 
             </div>

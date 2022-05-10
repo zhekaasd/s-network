@@ -8,6 +8,8 @@ import profilePhoto from "../../../other/images/icon/users.png";
 import myBanner from "../../../other/images/background/my-banner.jpg";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ProfileStatus from "./ProfileStatus";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../../reducers/store";
 
 type PMIPropsType = {
     profile: ProfileUserWithFakeLocationType | null
@@ -19,18 +21,18 @@ type PMIPropsType = {
 export const ProfileMainInfo:React.FC<PMIPropsType> = ({profile, ...restProps}) => {
 
 
-
     const toUpperFirstCharName = (name: string) => {
         return name.split('').map((char, index) => index === 0 ? char.toUpperCase() : char).join('')
     }
 
+    const authId = useSelector((state: AppStateType) => state.auth.id);
 
     return <div className={styles.profileMainInfoContainer}>
 
         <div className={styles.profileBannerImp}>
     {/*--- Background banner ---*/}
             <div className={styles.banner}>
-                <img src={profile?.userId === 9008 ? myBanner : profile?.backgroundBanner.banner} alt=""/>
+                <img src={profile?.userId === authId ? myBanner : profile?.backgroundBanner.banner} alt=""/>
             </div>
 
             <div className={styles.profileOwner}>

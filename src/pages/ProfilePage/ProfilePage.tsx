@@ -10,30 +10,20 @@ import {ProfileMainInfo} from "./ProfileMainInfo/ProfileMainInfo";
 import {ProfileUserWithFakeLocationType} from "../../reducers/profile-reducer";
 
 type ProfilePropsType = {
-    addPost: () => void
-    updatePostText: (value: string) => void
+    addPost: (value: string) => void
     posts: Array<PostType>
-    actualPostText: string
     profile: ProfileUserWithFakeLocationType | null
     isAuth: boolean
     status: string
-
     updateStatus: (status: string) => void
 }
 
 
-export const ProfilePage: React.FC<ProfilePropsType> = ({addPost, updatePostText, posts, actualPostText,
-                                                            status, profile, isAuth,
-                                                            updateStatus, ...restProps}) => {
+export const ProfilePage: React.FC<ProfilePropsType> = ({addPost, posts, status, profile,
+                                                            isAuth, updateStatus, ...restProps}) => {
 
 
-    const addPostHandler = () => {
-        addPost();
-    }
 
-    const updatePostTextHandler = (value: string) => {
-        updatePostText(value);
-    }
 
 
 
@@ -47,8 +37,7 @@ export const ProfilePage: React.FC<ProfilePropsType> = ({addPost, updatePostText
             {/*<RandomUsers/>*/}
 {/*            </div>*/}
 
-            <Timeline onClickHandler={addPostHandler}
-                      onChangeHandler={updatePostTextHandler} posts={posts} actualPostText={actualPostText}/>
+            <Timeline addPost={addPost} posts={posts}/>
         </div>
     </div>
 }

@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {newsfeedReducer} from "./newsfeed-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {chatReducer} from "./chat-reducer";
 import {usersReducer} from "./users-reducer";
 import {profileReducer} from "./profile-reducer";
 import {authReducer} from "./auth-reducer";
@@ -14,7 +14,7 @@ export type AppStateType = ReturnType<typeof reducers>;
 
 const reducers = combineReducers({
     newsfeedPage: newsfeedReducer,
-    dialogsPage: dialogsReducer,
+    dialogsPage: chatReducer,
     usersPage: usersReducer,
     profilePage: profileReducer,
     auth: authReducer,

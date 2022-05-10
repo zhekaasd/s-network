@@ -1,9 +1,8 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../reducers/store";
 import {compose, Dispatch} from "redux";
-import {addPost, updatePostText} from "../../reducers/newsfeed-reducer";
+import {addPost} from "../../reducers/newsfeed-reducer";
 import HomePage from "./HomePage";
-import withRedirect from "../../HOC/Redirect/withRedirect";
 import {ComponentType} from "react";
 
 
@@ -11,11 +10,8 @@ type MDTPType = ReturnType<typeof mapDispatchToProps>;
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        addPost() {
-            dispatch(addPost());
-        },
-        updatePostText(value: string) {
-            dispatch(updatePostText(value));
+        addPost(value: string) {
+            dispatch(addPost(value));
         }
     }
 }
@@ -31,7 +27,7 @@ const mapStateToProps = (state: AppStateType) => {
 
 const HomePageContainer = (props: MSTPType & MDTPType) => {
 
-    return <HomePage newsfeedPage={props.newsfeedPage} addPost={props.addPost} updatePostText={props.updatePostText} />
+    return <HomePage newsfeedPage={props.newsfeedPage} addPost={props.addPost} />
 }
 
 

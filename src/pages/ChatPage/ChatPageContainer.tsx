@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../reducers/store";
 import {compose, Dispatch} from "redux";
-import {addMessage, updateMessageText} from "../../reducers/dialogs-reducer";
+import {addMessage} from "../../reducers/chat-reducer";
 import ChatPage from "./ChatPage";
 import withRedirect from "../../HOC/Redirect/withRedirect";
 import React from "react";
@@ -20,11 +20,8 @@ type MDTPType = ReturnType<typeof mdtp>;
 
 const mdtp = (dispatch: Dispatch) => {
     return {
-        addMessage() {
-            dispatch(addMessage());
-        },
-        updateMessageText(value: string) {
-            dispatch(updateMessageText(value))
+        addMessage(value: string) {
+            dispatch(addMessage(value));
         }
     }
 }
