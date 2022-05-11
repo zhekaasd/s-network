@@ -22,8 +22,7 @@ type MUIAddItemFormPropsType =  {
 }
 
 const TextArea = FormControlHOC(TextareaCustom);
-
-const maxLength10 = maxLength(10);
+const maxLength10 = maxLength(100);
 
 
 
@@ -35,7 +34,7 @@ const MUIAddItemForm: React.FC<InjectedFormProps & MUIAddItemFormPropsType> = ({
 
     return (
         <form onSubmit={restProps.handleSubmit} className={addItemFormFinalStyles}>
-            <Field type={'text'} component={TextArea} name={'value'} validate={[required, maxLength10]} />
+            <Field type={'text'} component={TextArea} name={'value'} validate={[maxLength10]} />
             <ButtonCustom type={'submit'}> {childrenButton ? childrenButton : 'Send'} </ButtonCustom>
         </form>
     );

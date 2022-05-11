@@ -22,8 +22,8 @@ export const Timeline: React.FC<TimelinePropsType> = ({addPost, posts, ...restPr
     const isAuth = useSelector((state: AppStateType) => state.auth.isAuth);
     const authUserId = useSelector((state: AppStateType) => state.auth.id);
     const authUserPhoto = useSelector((state: AppStateType) => state.auth.profile?.photos.small) as string;
-
     const id = useParams().id;
+
 
 /*-- mapping posts from state data --*/
     let mappingPosts = posts.map(p => <Post key={p.id} isParams={profileData?.userId} value={p.whoseMessageItIs} postText={p.postText}

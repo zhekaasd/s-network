@@ -17,6 +17,7 @@ type HeaderPropsType = {
     isAuth: boolean
     id: number | null
     profile: AuthUserProfileWithFakeLocation | null
+    logout: () => void
 }
 
 export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...restProps}) => {
@@ -48,10 +49,13 @@ export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...
             </div>
 
             {
-                isAuth ? <NavLink to={PATH.PROFILE + '/' + id} className={st.headerUserInfo}>
-                    <img src={profile?.photos.small} alt="ava"/>
-                    <> <h4>{login}</h4> <span>^</span> </>
-                </NavLink> : <NavLink className={st.headerUserInfo} to={PATH.LOGIN}><h4>login</h4></NavLink>
+                isAuth ? <>
+                    <NavLink to={PATH.PROFILE + '/' + id} className={st.headerUserInfo}>
+                        <img src={profile?.photos.small} alt="ava"/>
+                        <> <h4>{login}</h4> <span>^</span> </>
+                    </NavLink>
+                    <div onClick={() => restProps.logout()} style={{cursor: 'pointer'}}>log out</div>
+                </> : <NavLink className={st.headerUserInfo} to={PATH.LOGIN}><h4>login</h4></NavLink>
             }
 
         </div>

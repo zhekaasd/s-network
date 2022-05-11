@@ -13,7 +13,7 @@ import './index.scss';
 ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-                    <App/>
+                    <App />
             </Provider>
         </BrowserRouter>,
     document.getElementById('root')

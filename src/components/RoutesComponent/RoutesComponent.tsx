@@ -26,8 +26,9 @@ const RoutesComponent = () => {
                 <Route path={`${PATH.HOME}`} element={<HomePageContainer/>}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.USERS} element={<UsersPageContainer/>}/>
+                <Route path={`${PATH.PROFILE}`} element={ <ProfilePageContainer  /> } />
                 <Route path={`${PATH.PROFILE}/:id`} element={ <ProfilePageContainer  /> } />
-                <Route path={`${PATH.PROFILE}`} element={ <Navigate to={'/'} replace /> }  />
+                {/*<Route path={`${PATH.PROFILE}`} element={ <Navigate to={'/'} replace /> }  />*/}
                 <Route path={`${PATH.MESSAGES}`} element={<ChatPageContainer/>}/>
                 <Route path={`${PATH.MESSAGES}/:id`} element={<ChatPageContainer/>}/>
             </Routes>

@@ -2,7 +2,7 @@ import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
 import {AppStateType} from "../../reducers/store";
-import {authUserProfile, AuthUserProfileWithFakeLocation} from "../../reducers/auth-reducer";
+import {authUserProfile, AuthUserProfileWithFakeLocation, logout} from "../../reducers/auth-reducer";
 
 interface HCI {
     login: string | null
@@ -10,17 +10,9 @@ interface HCI {
     isAuth: boolean
     id: number | null
     profile: AuthUserProfileWithFakeLocation | null
+    logout: () => void
 }
-class HeaderContainer extends React.Component<HCI, any>{
-
-
-    componentDidMount() {
-
-        this.props.authUserProfile();
-
-        console.log('Header Container: ' + this.props.id);
-    }
-
+class HeaderContainer extends React.Component<HCI, any> {
 
 // /*--- set profile after verification authorized ---*/
 //     componentDidUpdate(prevProps: Readonly<HCI>, prevState: Readonly<any>) {
@@ -40,6 +32,7 @@ class HeaderContainer extends React.Component<HCI, any>{
 
 type MDTPType = {
     authUserProfile: () => void
+    logout: () => void
 }
 
 type MSTPType = {
@@ -59,6 +52,6 @@ const mstp = (state: AppStateType): MSTPType => {
 }
 
 export default connect<MSTPType, MDTPType, {}, AppStateType>(mstp, {
-    authUserProfile
+    authUserProfile, logout
 })(HeaderContainer);
 

@@ -3,7 +3,7 @@ import {connect, useSelector} from "react-redux";
 import {addPost} from "../../reducers/newsfeed-reducer";
 import React, {useEffect} from "react";
 import {ProfilePage} from "./ProfilePage";
-import {useParams} from "react-router-dom";
+import {Navigate, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {getStatusProfile, setUserProfile, updateStatus} from "../../reducers/profile-reducer";
 import {compose} from "redux";
 
@@ -31,10 +31,18 @@ const ProfilePageContainer: React.FC<ProfilePageContainerType> = (props) => {
     let authUserId = useSelector((state: AppStateType) => state.auth.id) as number;
 
     let paramsId = useParams().id;
+
+    let navigate = useNavigate();
+
+
     let id = Number(paramsId);
 
     if(!id || null) {
-        id = authUserId
+        id = authUserId;
+        if (!id || null) {
+            navigate('/login');
+        }
+
     }
 
 
@@ -59,4 +67,4 @@ export default compose<React.ComponentType>(
         addPost, setUserProfile, getStatusProfile, updateStatus
     }),
     // withRedirect
-)(ProfilePageContainer)
+)(ProfilePageContainer);

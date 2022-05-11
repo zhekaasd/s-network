@@ -6,6 +6,7 @@ import {
     getRandomBackgroundBanner,
     getRandomLocationCity
 } from "../fakeLocation/fakeLocation";
+import { stopSubmit } from "redux-form";
 
 const AUTH_USER_PROFILE = 'AUTH-USER-PROFILE';
 const SET_AUTH_USER_PROFILE = 'SET-AUTH-USER-PROFILE';
@@ -36,8 +37,7 @@ export const authReducer = (state:InitialAuthStateType = initialAuthState, actio
         case AUTH_USER_PROFILE: {
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
         }
 
@@ -58,33 +58,33 @@ export const authReducer = (state:InitialAuthStateType = initialAuthState, actio
 
 type AuthUserProfileType = {
     type: typeof AUTH_USER_PROFILE
-    data: {login: string, id: number, email: string}
+    payload: {login: string | null, id: number | null, email: string | null, isAuth: boolean}
 }
 
-export const authUserProfileAC = (login: string, id: number, email: string): AuthUserProfileType => {
-    return {type: AUTH_USER_PROFILE, data: {email, id, login} }
+export const authUserProfileAC = (login: string | null, id: number | null, email: string | null, isAuth: boolean): AuthUserProfileType => {
+    return {type: AUTH_USER_PROFILE, payload: {email, id, login, isAuth} }
 }
 
 type SetAuthUserProfile = {
     type: typeof SET_AUTH_USER_PROFILE
     profile: AuthUserProfileWithFakeLocation
 }
-export const setAuthUserProfile = (profile: AuthUserProfileWithFakeLocation): SetAuthUserProfile => {
+export const setAuthUserProfileAC = (profile: AuthUserProfileWithFakeLocation): SetAuthUserProfile => {
     return {type: SET_AUTH_USER_PROFILE, profile}
 }
 
 export const authUserProfile = () => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: any) => {
         authAPI.auth()
             .then((response) => {
 
                 if(response.data.resultCode === 0) {
                     let {email, id, login} = response.data.data;
-                    dispatch(authUserProfileAC(login, id, email));
-                    usersAPI.getUserProfile(id)
+                    dispatch(authUserProfileAC(login, id, email, true));
+/*                    usersAPI.getUserProfile(id)
                         .then((response) => {
 
-                            /*---get user data from server, changed type item, add fake location ---*/
+                            /!*---get user data from server, changed type item, add fake location ---*!/
                             let data = {
                                 ...response.data,
                                 contacts: {...response.data.contacts},
@@ -94,8 +94,49 @@ export const authUserProfile = () => {
                             }
 
                             dispatch(setAuthUserProfile(data));
-                        });
+                        });*/
+
+                    dispatch(setAuthUserProfile(id));
                 }
             })
     }
+};
+
+export const setAuthUserProfile = (id: number) => (dispatch: Dispatch) => {
+    return usersAPI.getUserProfile(id)
+        .then((response) => {
+
+            /*---get user data from server, changed type item, add fake location ---*/
+            let data = {
+                ...response.data,
+                contacts: {...response.data.contacts},
+                photos: {...response.data.photos},
+                locationUser: getRandomLocationCity(),
+                backgroundBanner: getRandomBackgroundBanner()
+            }
+
+            dispatch(setAuthUserProfileAC(data));
+        });
+}
+
+
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+    authAPI.login(email, password, rememberMe)
+        .then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(authUserProfile());
+            } else {
+                let action = stopSubmit('login', {_error: response.data.messages[0]});
+                dispatch(action);
+            }
+        })
+};
+
+export const logout = () => (dispatch: any) => {
+    authAPI.logout()
+        .then((response) => {
+            if(response.data.resultCode === 0) {
+                dispatch(authUserProfileAC(null, null, null, false));
+            }
+        })
 }

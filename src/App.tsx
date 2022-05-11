@@ -1,15 +1,58 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Footer} from "./components/Footer/Footer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import RoutesComponent from "./components/RoutesComponent/RoutesComponent";
+import {connect} from "react-redux";
+import {AppStateType} from "./reducers/store";
+import {authorizationConfirmation} from "./reducers/app-reducer";
+
+import pr from "./other/images/1920x.webp";
+import { compose } from 'redux';
+
+type AppPropsType = {
+    authorizationConfirmation: () => void
+    authorized: boolean
+}
+
+const App: React.FC<AppPropsType> = (props) => {
 
 
-let App = () => {
+
+
+    useEffect( () => {
+        props.authorizationConfirmation();
+    }, []);
+
+
+    if (!props.authorized) {
+        return <div>
+            <img src={pr} alt=""/>
+        </div>
+    }
+
+
+
     return <>
+
         <HeaderContainer />
         <RoutesComponent />
         <Footer />
     </>
 }
 
-export default App;
+
+type MapDispatchPropsType = {
+    authorizationConfirmation: () => void
+}
+
+type MapStatePropsType = { authorized: boolean }
+const MapStateToProps = (state: AppStateType): MapStatePropsType => ({
+    authorized: state.app.authorized
+})
+
+export default compose(
+    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(MapStateToProps, {
+        authorizationConfirmation
+    })(App),
+
+);

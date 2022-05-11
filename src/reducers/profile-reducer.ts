@@ -37,7 +37,7 @@ export type ProfileUserType = {
 export type ProfileUserWithFakeLocationType = ProfileUserType & FakeLocationBannerUserType;
 
 
-type ActionsType = SetUserProfile | SetStatusProfileType | UpdateStatusProfileType;
+export type ActionsType2 = SetUserProfile | SetStatusProfileType | UpdateStatusProfileType;
 
 export type InitialStateProfileType = {
     profile: ProfileUserWithFakeLocationType | null
@@ -49,7 +49,7 @@ const initialState: InitialStateProfileType = {
     status: ''
 }
 
-export const profileReducer = (state: InitialStateProfileType = initialState, action: ActionsType): InitialStateProfileType => {
+export const profileReducer = (state: InitialStateProfileType = initialState, action: ActionsType2): InitialStateProfileType => {
     switch (action.type) {
         case SET_USER_PROFILE: {
             return {...state, profile: {...action.profile}}
