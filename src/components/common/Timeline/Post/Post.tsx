@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import {useSelector} from "react-redux";
-import {AppStateType} from "../../../../reducers/store";
 import {useParams} from "react-router-dom";
+import {AppStateType} from "../../../../redux/store/store";
 
 /*--- css import ---*/
 import avatar2 from "../../../../other/images/icon/users.png";
@@ -11,7 +11,7 @@ import styles from "./Post.module.scss";
 
 type PostPropsType = {
     postText: string,
-    /*--- Значение с помощью которого имитируется пост от другого пользователя ---*/
+/*--- Значение с помощью которого имитируется пост от другого пользователя ---*/
     value?: boolean,
     commentsCount: number,
     likesCount: number,
@@ -30,6 +30,7 @@ export const Post: React.FC<PostPropsType> = ({
 /*--- Params userId data ---*/
     const {id} = useParams();
 
+/*--- changed likes count ---*/
     let [countLikes, setCountLikes] = useState(likesCount);
     let [active, setActive] = useState<boolean>(false);
 
@@ -43,6 +44,7 @@ export const Post: React.FC<PostPropsType> = ({
         }
     }
 
+/*--- data ---*/
     const currentTime = new Date().toLocaleTimeString();
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import {UserWithFakeLocation} from "../../../reducers/users-reducer";
-import ButtonCustom from "../../../components/accets/components/buton/ButtonCustom";
+import ButtonCustom from "../../../components/accets/buton/ButtonCustom";
 import {Line} from "../../../components/common/Line/Line";
 
 /*--- css import ---*/

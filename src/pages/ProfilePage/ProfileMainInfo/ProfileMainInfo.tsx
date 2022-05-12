@@ -1,15 +1,15 @@
 import React from "react";
-import {ProfileUserWithFakeLocationType} from "../../../reducers/profile-reducer";
-import ButtonCustom from "../../../components/accets/components/buton/ButtonCustom";
-
-
-import styles from './ProfileMainInfo.module.scss';
-import profilePhoto from "../../../other/images/icon/users.png";
-import myBanner from "../../../other/images/background/my-banner.jpg";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import {ProfileUserWithFakeLocationType} from "../../../redux/reducers/profile-reducer";
 import ProfileStatus from "./ProfileStatus";
 import {useSelector} from "react-redux";
-import {AppStateType} from "../../../reducers/store";
+import {AppStateType} from "../../../redux/store/store";
+import ButtonCustom from "../../../components/common/Button/ButtonCustom";
+
+/*--- styles import ---*/
+import styles from "./ProfileMainInfo.module.scss";
+import profilePhoto from "../../../other/images/icon/users.png";
+import myBanner from "../../../other/images/background/my-banner.jpg";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 type PMIPropsType = {
     profile: ProfileUserWithFakeLocationType | null
@@ -20,7 +20,7 @@ type PMIPropsType = {
 
 export const ProfileMainInfo:React.FC<PMIPropsType> = ({profile, ...restProps}) => {
 
-
+/*--- First char nickname to up ---*/
     const toUpperFirstCharName = (name: string) => {
         return name.split('').map((char, index) => index === 0 ? char.toUpperCase() : char).join('')
     }

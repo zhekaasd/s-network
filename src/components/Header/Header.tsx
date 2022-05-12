@@ -1,31 +1,29 @@
 import React from "react";
-import st from "./Header.module.scss";
-import {NavLink} from "react-router-dom";
-import InputWithIcon from "../accets/components/inputWithIcon/InputWithIcon";
-import EmailIcon from '@mui/icons-material/Email';
-import FeedIcon from '@mui/icons-material/Feed';
-import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
+import {Link, NavLink} from "react-router-dom";
 import {PATH} from "../RoutesComponent/RoutesComponent";
 import {useSelector} from "react-redux";
-import {AppStateType} from "../../reducers/store";
-import {AuthUserProfileWithFakeLocation} from "../../reducers/auth-reducer";
-import { Link } from "react-router-dom";
+import {AppStateType} from "../../redux/store/store";
+import InputWithIcon from "../common/InputWithIcon/InputWithIcon";
+
+/*--- import styles ---*/
+import st from "./Header.module.scss";
+import EmailIcon from "@mui/icons-material/Email";
+import FeedIcon from "@mui/icons-material/Feed";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+
 
 type HeaderPropsType = {
     login: string | null
     isAuth: boolean
     id: number | null
-    profile: AuthUserProfileWithFakeLocation | null
     logout: () => void
 }
 
-export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...restProps}) => {
+export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, logout, ...restProps}) => {
 
     let profile = useSelector((state: AppStateType) => state.auth.profile);
     let id = useSelector((state: AppStateType) => state.auth.id);
-
-    //console.log(profile);
 
     return <header>
         <div className={st.headerContainer}>
@@ -54,7 +52,7 @@ export const Header: React.FC<HeaderPropsType> = React.memo(({login, isAuth, ...
                         <img src={profile?.photos.small} alt="ava"/>
                         <> <h4>{login}</h4> <span>^</span> </>
                     </NavLink>
-                    <div onClick={() => restProps.logout()} style={{cursor: 'pointer'}}>log out</div>
+                    <div onClick={() => logout()} style={{cursor: 'pointer'}}>log out</div>
                 </> : <NavLink className={st.headerUserInfo} to={PATH.LOGIN}><h4>login</h4></NavLink>
             }
 

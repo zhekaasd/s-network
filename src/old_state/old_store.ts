@@ -42,7 +42,7 @@ type PostType = {
     commentsCount: number
 }
 
-let store: StoreType = {
+let old_store: StoreType = {
     _state: {
         messagesPage: {
             users: [

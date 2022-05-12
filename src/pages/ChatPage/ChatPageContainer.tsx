@@ -1,24 +1,24 @@
 import {connect} from "react-redux";
-import {AppStateType} from "../../reducers/store";
+import {AppStateType} from "../../redux/store/store";
 import {compose, Dispatch} from "redux";
-import {addMessage} from "../../reducers/chat-reducer";
+import {addMessage} from "../../redux/reducers/chat-reducer";
 import ChatPage from "./ChatPage";
-import withRedirect from "../../HOC/Redirect/withRedirect";
 import React from "react";
 
 
-type MSTPType = ReturnType<typeof mstp>;
+type MapStatePropsType = ReturnType<typeof mapStateToProps>;
 
-const mstp = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         messagesPage: state.dialogsPage,
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
     }
 }
 
-type MDTPType = ReturnType<typeof mdtp>;
+type MapDispatchPropsType = ReturnType<typeof mapDispatchToProps>;
 
-const mdtp = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         addMessage(value: string) {
             dispatch(addMessage(value));
@@ -28,6 +28,6 @@ const mdtp = (dispatch: Dispatch) => {
 
 
 export default compose<React.ComponentType>(
-    connect<MSTPType, MDTPType, {}, AppStateType>(mstp, mdtp),
-    withRedirect
+    //withRedirect,
+    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps),
 )(ChatPage);

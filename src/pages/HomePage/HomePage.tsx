@@ -1,17 +1,17 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import {Timeline} from "../../components/common/Timeline/Timeline";
-import RandomUsers from "../../RandomUsers";
+import RandomUsers from "../../components/RandomUsers/RandomUsers";
 import {PATH} from "../../components/RoutesComponent/RoutesComponent";
-import {AppStateType} from "../../reducers/store";
-import {PostType} from "../../reducers/newsfeed-reducer";
 import {useSelector} from "react-redux";
+import Weather from "../../components/Weather/Weather";
+import {PostType} from "../../redux/reducers/newsfeed-reducer";
+import {AppStateType} from "../../redux/store/store";
 
-/*--- css import ---*/
-import styles from "./HomePage.module.scss";
+/*--- import styles ---*/
+import st from "./HomePage.module.scss";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import photo from "../../other/images/1920x.webp";
-import Weather from "../../Weather";
 
 
 type HPPropsType = {
@@ -29,31 +29,32 @@ const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, ...restProps}) 
 
 
 
-    return <div className={styles.homePageContainer}>
+    return <div className={st.homePageContainer}>
 
-        <div className={styles.homePageColumnLeft}>
+        <div className={st.homePageColumnLeft}>
 
-            <div className={styles.homePageAccountBlock}>
+            <div className={st.homePageAccountBlock}>
+{/*--- Random banner profile ---*/}
+                <div className={st.homePageBackgroundBanner}></div>
 
-                <div className={styles.homePageBackgroundBanner}></div>
-
-                <div className={styles.homePageAccountPhoto}>
+                <div className={st.homePageAccountPhoto}>
                     <img src={profileData?.photos.small ? profileData?.photos.small : photo} alt=""/>
                 </div>
 
-                <div className={styles.homePageAccountInfo}>
-                    {/*<p>{profileData?.fullName}</p>*/}
+                <div className={st.homePageAccountInfo}>
                     <p>{profileData?.fullName}</p>
-                    <span> <LocationOnIcon fontSize={'small'} /> 154 Engelsa Prospekt, Suite 226, St. Petersburg</span>
+                    <span>
+                        <LocationOnIcon fontSize={'small'} /> 154 Engelsa Prospekt, Suite 226, St. Petersburg
+                    </span>
 
                 </div>
 
-                <NavLink to={PATH.PROFILE + '/' + authUserId}>
+                <NavLink to={`${PATH.PROFILE}/${authUserId}`}>
                     View Profile
                 </NavLink>
             </div>
 
-            <div className={styles.homePageRandomUsers}>
+            <div className={st.homePageRandomUsers}>
                 <RandomUsers />
             </div>
 
@@ -66,7 +67,7 @@ const HomePage: React.FC<HPPropsType> = ({newsfeedPage, addPost, ...restProps}) 
         />
 
 
-        <div className={styles.homePageColumnRight}>
+        <div className={st.homePageColumnRight}>
             <RandomUsers />
             <Weather />
         </div>

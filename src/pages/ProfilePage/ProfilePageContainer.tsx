@@ -1,11 +1,11 @@
-import {AppStateType} from "../../reducers/store";
 import {connect, useSelector} from "react-redux";
-import {addPost} from "../../reducers/newsfeed-reducer";
 import React, {useEffect} from "react";
 import {ProfilePage} from "./ProfilePage";
-import {Navigate, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
-import {getStatusProfile, setUserProfile, updateStatus} from "../../reducers/profile-reducer";
+import {useNavigate, useParams} from "react-router-dom";
+import {getStatusProfile, setUserProfile, updateStatus} from "../../redux/reducers/profile-reducer";
 import {compose} from "redux";
+import {AppStateType} from "../../redux/store/store";
+import {addPost} from "../../redux/reducers/newsfeed-reducer";
 
 type MDTPType = {
     addPost: (value: string) => void
@@ -13,8 +13,8 @@ type MDTPType = {
     getStatusProfile: (userId: number) => void
     updateStatus: (status: string) => void
 }
-type MSTPType = ReturnType<typeof mstp>;
-const mstp = (state: AppStateType) => {
+type MapStatePropsType = ReturnType<typeof mapStateToProps>;
+const mapStateToProps = (state: AppStateType) => {
     return {
         posts: state.newsfeedPage.posts.filter(p => p.whoseMessageItIs),
         profile: state.profilePage.profile,
@@ -23,34 +23,32 @@ const mstp = (state: AppStateType) => {
     }
 }
 
-type ProfilePageContainerType = MSTPType & MDTPType;
+type ProfilePageContainerType = MapStatePropsType & MDTPType;
 
 
 const ProfilePageContainer: React.FC<ProfilePageContainerType> = (props) => {
 
     let authUserId = useSelector((state: AppStateType) => state.auth.id) as number;
 
-    let paramsId = useParams().id;
-
+    let {id} = useParams();
+    let paramId = Number(id);
     let navigate = useNavigate();
 
 
-    let id = Number(paramsId);
-
-    if(!id || null) {
-        id = authUserId;
-        if (!id || null) {
-            navigate('/login');
-        }
-
+    if(!paramId || null) {
+        paramId = authUserId;
     }
 
 
     useEffect(() => {
-        props.setUserProfile(id);
-        props.getStatusProfile(id);
+        props.setUserProfile(paramId);
+        props.getStatusProfile(paramId);
 
-    }, [id]);
+        if (!paramId || null) {
+            navigate('/login');
+        }
+
+    }, [paramId]);
 
 
 
@@ -63,7 +61,7 @@ const ProfilePageContainer: React.FC<ProfilePageContainerType> = (props) => {
 
 
 export default compose<React.ComponentType>(
-    connect<MSTPType, MDTPType, {}, AppStateType>(mstp, {
+    connect<MapStatePropsType, MDTPType, {}, AppStateType>(mapStateToProps, {
         addPost, setUserProfile, getStatusProfile, updateStatus
     }),
     // withRedirect

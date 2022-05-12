@@ -1,14 +1,14 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {newsfeedReducer} from "./newsfeed-reducer";
-import {chatReducer} from "./chat-reducer";
-import {usersReducer} from "./users-reducer";
-import {profileReducer} from "./profile-reducer";
-import {authReducer} from "./auth-reducer";
 import thunk from "redux-thunk";
-import {weatherReducer} from "./weather-reducer";
-import {appReducer} from "./app-reducer";
 
 import { reducer as formReducer } from 'redux-form';
+import { newsfeedReducer } from "../reducers/newsfeed-reducer";
+import { chatReducer } from "../reducers/chat-reducer";
+import { usersReducer } from "../reducers/users-reducer";
+import { profileReducer } from "../reducers/profile-reducer";
+import { authReducer } from "../reducers/auth-reducer";
+import { weatherReducer } from "../reducers/weather-reducer";
+import { appReducer } from "../reducers/app-reducer";
 
 
 export type AppStateType = ReturnType<typeof reducers>;

@@ -1,4 +1,3 @@
-import {AppStateType} from "../../reducers/store";
 import {connect} from "react-redux";
 import {
     changePageNumberUsers,
@@ -6,8 +5,9 @@ import {
     getUsers,
     unfollowUser,
     UserWithFakeLocation
-} from "../../reducers/users-reducer";
+} from "../../redux/reducers/users-reducer";
 import UsersPage from "./UsersPage";
+import {AppStateType} from "../../redux/store/store";
 
 
 type MDTPType = {
@@ -34,8 +34,6 @@ const mapStateToProps = (state: AppStateType): MSTPType => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-
-
 
 export default connect<MSTPType, MDTPType, {}, AppStateType>(mapStateToProps, {
     getUsers, followUser, unfollowUser, changePageNumberUsers

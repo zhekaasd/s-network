@@ -1,13 +1,14 @@
 import {SocialAccounts} from "../../components/common/SocialAccounts/SocialAccounts";
 import {Timeline} from "../../components/common/Timeline/Timeline";
 import React from "react";
-
-/*--- css import ---*/
-import styles from "./ProfilePage.module.scss";
-import {PostType} from "../../reducers/newsfeed-reducer";
+import {PostType} from "../../redux/reducers/newsfeed-reducer";
 import Navigation from "../../components/common/Navigation/Navigation";
 import {ProfileMainInfo} from "./ProfileMainInfo/ProfileMainInfo";
-import {ProfileUserWithFakeLocationType} from "../../reducers/profile-reducer";
+import {ProfileUserWithFakeLocationType} from "../../redux/reducers/profile-reducer";
+
+/*--- styles import ---*/
+import styles from "./ProfilePage.module.scss";
+import RandomUsers from "../../components/RandomUsers/RandomUsers";
 
 type ProfilePropsType = {
     addPost: (value: string) => void
@@ -22,11 +23,6 @@ type ProfilePropsType = {
 export const ProfilePage: React.FC<ProfilePropsType> = ({addPost, posts, status, profile,
                                                             isAuth, updateStatus, ...restProps}) => {
 
-
-
-
-
-
     return <div>
         <ProfileMainInfo profile={profile} status={status}
                          updateStatus={updateStatus} />
@@ -34,7 +30,7 @@ export const ProfilePage: React.FC<ProfilePropsType> = ({addPost, posts, status,
         <div className={styles.mainContainer}>
 {/*            <div>*/}
             <SocialAccounts/>
-            {/*<RandomUsers/>*/}
+            <RandomUsers/>
 {/*            </div>*/}
 
             <Timeline addPost={addPost} posts={posts}/>

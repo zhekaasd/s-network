@@ -29,7 +29,7 @@ const TextareaCustom: React.FC<TextareaCustomPropsType> = ({value, onChange, num
 
     console.log(restProps);
 
-/*--- size of textarea field ---*/
+/*--- size of Textarea field ---*/
     const rows = numberRows ? numberRows : 1;
 
 

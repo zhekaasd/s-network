@@ -75,7 +75,7 @@ export const setAuthUserProfileAC = (profile: AuthUserProfileWithFakeLocation): 
 
 export const authUserProfile = () => {
     return (dispatch: any) => {
-        authAPI.auth()
+        return authAPI.auth()
             .then((response) => {
 
                 if(response.data.resultCode === 0) {
@@ -103,7 +103,7 @@ export const authUserProfile = () => {
 };
 
 export const setAuthUserProfile = (id: number) => (dispatch: Dispatch) => {
-    return usersAPI.getUserProfile(id)
+    usersAPI.getUserProfile(id)
         .then((response) => {
 
             /*---get user data from server, changed type item, add fake location ---*/

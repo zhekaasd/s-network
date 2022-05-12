@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from "react";
 import {Footer} from "./components/Footer/Footer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import RoutesComponent from "./components/RoutesComponent/RoutesComponent";
 import {connect} from "react-redux";
-import {AppStateType} from "./reducers/store";
-import {authorizationConfirmation} from "./reducers/app-reducer";
+import {AppStateType} from "./redux/store/store";
+import {authorizationConfirmation} from "./redux/reducers/app-reducer";
+import {compose} from "redux";
 
+/*--- import styles ---*/
 import pr from "./other/images/1920x.webp";
-import { compose } from 'redux';
+
 
 type AppPropsType = {
     authorizationConfirmation: () => void
@@ -16,10 +18,7 @@ type AppPropsType = {
 
 const App: React.FC<AppPropsType> = (props) => {
 
-
-
-
-    useEffect( () => {
+    useEffect(() => {
         props.authorizationConfirmation();
     }, []);
 
@@ -30,13 +29,10 @@ const App: React.FC<AppPropsType> = (props) => {
         </div>
     }
 
-
-
     return <>
-
-        <HeaderContainer />
-        <RoutesComponent />
-        <Footer />
+        <HeaderContainer/>
+        <RoutesComponent/>
+        <Footer/>
     </>
 }
 
@@ -54,5 +50,4 @@ export default compose(
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(MapStateToProps, {
         authorizationConfirmation
     })(App),
-
 );

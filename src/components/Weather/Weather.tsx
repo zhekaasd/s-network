@@ -1,10 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import st from './Weather.module.scss';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import {weatherAPI} from "./dal/api";
+import {weatherAPI} from "../../dal/api";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "./reducers/store";
-import {changeWeatherCity, setWeather} from "./reducers/weather-reducer";
 import AirIcon from '@mui/icons-material/Air';
 import OpacityIcon from '@mui/icons-material/Opacity';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
@@ -12,6 +9,11 @@ import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import CloudIcon from '@mui/icons-material/Cloud';
 import SettingsIcon from '@mui/icons-material/Settings';
+import {changeWeatherCity, setWeather} from '../../redux/reducers/weather-reducer';
+import { AppStateType } from '../../redux/store/store';
+
+/*--- import styles ---*/
+import st from './Weather.module.scss';
 
 const Weather = () => {
 

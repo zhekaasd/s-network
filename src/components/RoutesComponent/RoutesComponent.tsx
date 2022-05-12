@@ -1,5 +1,5 @@
-import React from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
+import React from "react";
+import {Route, Routes} from "react-router-dom";
 import HomePageContainer from "../../pages/HomePage/HomePageContainer";
 import NotFound from "../../pages/NotFound/NotFound";
 import Login from "../../pages/Login/Login";
@@ -9,11 +9,11 @@ import ChatPageContainer from "../../pages/ChatPage/ChatPageContainer";
 
 
 export const PATH = {
-    PROFILE: '/profile',
-    USERS: '/users',
-    MESSAGES: '/messages',
-    LOGIN: '/login',
-    HOME: '/'
+    PROFILE: "/profile",
+    USERS: "/users",
+    MESSAGES: "/messages",
+    LOGIN: "/login",
+    HOME: "/"
 }
 
 const RoutesComponent = () => {
@@ -23,6 +23,7 @@ const RoutesComponent = () => {
                 {/*<Route path={'/*'} element={ <NotFound /> }  />*/}
 
                 <Route path={'*'} element={<NotFound/>}/>
+
                 <Route path={`${PATH.HOME}`} element={<HomePageContainer/>}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.USERS} element={<UsersPageContainer/>}/>
@@ -31,6 +32,7 @@ const RoutesComponent = () => {
                 {/*<Route path={`${PATH.PROFILE}`} element={ <Navigate to={'/'} replace /> }  />*/}
                 <Route path={`${PATH.MESSAGES}`} element={<ChatPageContainer/>}/>
                 <Route path={`${PATH.MESSAGES}/:id`} element={<ChatPageContainer/>}/>
+                {/*<Route path={`${PATH.MESSAGES}/*`} element={<NotFound /> }/>*/}
             </Routes>
         </>
     );

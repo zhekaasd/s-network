@@ -1,11 +1,11 @@
 import React from 'react';
-import TextareaCustom from "../../accets/components/textarea/TextareaCustom";
-import ButtonCustom from "../../accets/components/buton/ButtonCustom";
 
 import styles from "./MUIaddItemForm.module.scss";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {FormControlHOC} from "../../../HOC/FormControlHOC";
-import {maxLength, required} from "../../../utils/validators";
+import {maxLength} from "../../../../utils/validators";
+import ButtonCustom from '../../Button/ButtonCustom';
+import TextareaCustom from "../../Textarea/TextareaCustom";
+import {FormControlHOC} from "../../../../hocs/FormControl/FormControlHOC";
 
 // type MUIAddItemFormPropsType = InjectedFormProps & {
 //     value: string

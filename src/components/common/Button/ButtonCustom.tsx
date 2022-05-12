@@ -1,14 +1,14 @@
 import React from 'react';
-import {Button} from "@mui/material";
 
+/*--- import styles ---*/
 import s from "./ButtonCustom.module.scss";
-import {connect} from "react-redux";
-import {AppStateType} from "../../../../reducers/store";
+import {Button} from "@mui/material";
 
 type ButtonCustomPropsType = {
     onClick?: () => void
     disabled?: boolean
     sizeButton?: "small" | "medium" | "large"
+    /*-- test onSubmit ?!?!?!?!? --*/
     onSubmit?: any
     type?: "button" | "submit" | "reset"
 }

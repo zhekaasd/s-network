@@ -1,28 +1,28 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {AppStateType} from "../../reducers/store";
-import {authUserProfile, AuthUserProfileWithFakeLocation, logout} from "../../reducers/auth-reducer";
+import {logout} from "../../redux/reducers/auth-reducer";
+import {AppStateType} from "../../redux/store/store";
 
 interface HCI {
     login: string | null
-    authUserProfile: () => void
     isAuth: boolean
     id: number | null
-    profile: AuthUserProfileWithFakeLocation | null
     logout: () => void
 }
+
+type MapDispatchPropsType = {
+    logout: () => void
+}
+
+type MapStatePropsType = {
+    login: string | null
+    isAuth: boolean
+    id: number | null
+}
+
+
 class HeaderContainer extends React.Component<HCI, any> {
-
-// /*--- set profile after verification authorized ---*/
-//     componentDidUpdate(prevProps: Readonly<HCI>, prevState: Readonly<any>) {
-//             if (this.props !== prevProps) {
-//                 this.props.setUserProfile(this.props.id as number);
-//             }
-//
-//     }
-
-
 
     render() {
         return <Header {...this.props}  />
@@ -30,28 +30,15 @@ class HeaderContainer extends React.Component<HCI, any> {
 }
 
 
-type MDTPType = {
-    authUserProfile: () => void
-    logout: () => void
-}
-
-type MSTPType = {
-    login: string | null
-    isAuth: boolean
-    id: number | null
-    profile: AuthUserProfileWithFakeLocation | null
-}
-
-const mstp = (state: AppStateType): MSTPType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         login: state.auth.login,
         isAuth: state.auth.isAuth,
-        id: state.auth.id,
-        profile: state.auth.profile
+        id: state.auth.id
     }
 }
 
-export default connect<MSTPType, MDTPType, {}, AppStateType>(mstp, {
-    authUserProfile, logout
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
+    logout
 })(HeaderContainer);
 
