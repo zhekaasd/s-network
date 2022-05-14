@@ -1,13 +1,12 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {UserWithFakeLocation} from "../../../reducers/users-reducer";
-import ButtonCustom from "../../../components/accets/buton/ButtonCustom";
+import {UserWithFakeLocation} from "../../../redux/reducers/users-reducer";
 import {Line} from "../../../components/common/Line/Line";
+import ButtonCustom from "../../../components/common/Button/ButtonCustom";
 
 /*--- css import ---*/
 import styles from "./UserItem.module.scss";
-
-import photo from "../../../other/images/icon/users.png";
+import photo from "../../../accets/images/icons/users.png";
 
 
 type UserItemPropsType = {

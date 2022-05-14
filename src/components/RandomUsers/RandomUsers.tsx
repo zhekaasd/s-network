@@ -10,7 +10,7 @@ import {AppStateType} from "../../redux/store/store";
 import {RandomItem} from "./RandomItem/RandomItem";
 
 /*--- import styles ---*/
-import st from "./randomUsers.module.scss";
+import st from "./RandomUsers.module.scss";
 
 
 type MapDispatchPropsType = {
@@ -35,6 +35,14 @@ type RandomUsersPropsType = {
     followingInProgress: number[]
 }
 
+/*--- Expand default user profile from server ---*/
+export const expandDefaultUserObjectFromServer = (obj: User) => {
+    return {
+        ...obj,
+        locationUser: getRandomLocationCity(),
+        backgroundBanner: getRandomBackgroundBanner()
+    }
+}
 
 const RandomUsers: React.FC<RandomUsersPropsType> = (props) => {
 
@@ -46,24 +54,12 @@ const RandomUsers: React.FC<RandomUsersPropsType> = (props) => {
             .then((resp) => {
                 usersAPI.changeNumberPage(Math.ceil(resp.data.totalCount / 100 ), 100)
                     .then((resp) => {
-
-                        /*---get user data from server, changed type item, add fake location ---*/
-                        let data = [...resp.data.items.map( (u: User) => ({
-                            ...u,
-                            locationUser: getRandomLocationCity(),
-                            backgroundBanner: getRandomBackgroundBanner()
-                        }))];
+                        let data = [...resp.data.items.map(expandDefaultUserObjectFromServer)];
 
                         if(data.length < 5) {
                             usersAPI.changeNumberPage(Math.ceil(resp.data.totalCount / 100 ) - 1, 100)
                                 .then( (resp) => {
-                                    /*---get user data from server, changed type item, add fake location ---*/
-                                    let data = [...resp.data.items.map( (u: User) => ({
-                                        ...u,
-                                        locationUser: getRandomLocationCity(),
-                                        backgroundBanner: getRandomBackgroundBanner()
-                                    }))];
-
+                                    let data = [...resp.data.items.map(expandDefaultUserObjectFromServer)];
                                     let randomUsers = getRandomUsers(data);
                                     dispatch(setUsers(randomUsers));
                                 })
@@ -84,7 +80,11 @@ const RandomUsers: React.FC<RandomUsersPropsType> = (props) => {
                     <NavLink to={PATH.USERS}>See All</NavLink>
                 </div>
                 {
-                    props.usersRandom.map( el => <RandomItem followingInProgress={props.followingInProgress} key={el.id} followUser={props.followUser} unfollowUser={props.unfollowUser} followed={el.followed} id={el.id} photo={el.photos.small} name={el.name} />)
+                    props.usersRandom.map( el => <RandomItem followingInProgress={props.followingInProgress}
+                                                             key={el.id} followUser={props.followUser}
+                                                             unfollowUser={props.unfollowUser}
+                                                             followed={el.followed} id={el.id}
+                                                             photo={el.photos.small} name={el.name} />)
                 }
             </div>
 
@@ -95,5 +95,7 @@ const RandomUsers: React.FC<RandomUsersPropsType> = (props) => {
 export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
     unfollowUser, followUser
 })(RandomUsers);
+
+
 
 

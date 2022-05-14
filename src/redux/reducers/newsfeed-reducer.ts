@@ -1,4 +1,5 @@
-import {randomNumber} from "../fakeLocation/fakeLocation";
+import {randomNumber} from "../../utils/utils";
+
 
 const ADD_POST = 'ADD-POST';
 

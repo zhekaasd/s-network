@@ -3,10 +3,9 @@ import UserItem from "./UserItem/UserItem";
 
 
 /*--- css import ---*/
-import s from "./UsersPage.module.scss"
-//import {User} from "../../reducers/users-reducer";
+import s from "./UsersPage.module.scss";
 import Preloader from "../../components/common/Preloader/Preloader";
-import {UserWithFakeLocation} from "../../reducers/users-reducer";
+import {UserWithFakeLocation} from "../../redux/reducers/users-reducer";
 
 interface UsersPropsType {
     getUsers: (currentPage: number, pageSize: number) => void

@@ -1,10 +1,7 @@
 import {Dispatch} from "redux";
-import {profileAPI, usersAPI} from "../dal/api";
-import {
-    FakeLocationBannerUserType,
-    getRandomBackgroundBanner,
-    getRandomLocationCity
-} from "../fakeLocation/fakeLocation";
+import {profileAPI, usersAPI} from "../../dal/api";
+import {getRandomBackgroundBanner, getRandomLocationCity} from "../../utils/utils";
+import {FakeLocationBannerUserType} from "../../utils/fakeLocationData";
 
 
 const SET_USER_PROFILE = 'SET-USER-PROFILE';

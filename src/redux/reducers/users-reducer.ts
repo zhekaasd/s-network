@@ -1,10 +1,8 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../dal/api";
-import {
-    FakeLocationBannerUserType,
-    getRandomBackgroundBanner,
-    getRandomLocationCity
-} from "../fakeLocation/fakeLocation";
+import {usersAPI} from "../../dal/api";
+import {FakeLocationBannerUserType} from "../../utils/fakeLocationData";
+import {getRandomBackgroundBanner, getRandomLocationCity} from "../../utils/utils";
+
 
 const SET_USERS = 'SET-USERS';
 const TOGGLE_USER = 'TOGGLE-USER';
@@ -205,7 +203,7 @@ export const followUser = (userId: number) => (dispatch: Dispatch) => {
 export const unfollowUser = (userId: number) => (dispatch: Dispatch) => {
     dispatch(toggleIsFollowingInProgress(true, userId));
     usersAPI.unfollowUser(userId)
-        .then((response) => { debugger
+        .then((response) => {
             if(response.data.resultCode === 0) {
                 dispatch(followingToggle(userId));
                 dispatch(toggleIsFollowingInProgress(false, userId));

@@ -1,12 +1,9 @@
 import {Dispatch} from "redux";
-import {authAPI, usersAPI} from "../dal/api";
+import {authAPI, usersAPI} from "../../dal/api";
 import {ProfileUserType} from "./profile-reducer";
-import {
-    FakeLocationBannerUserType,
-    getRandomBackgroundBanner,
-    getRandomLocationCity
-} from "../fakeLocation/fakeLocation";
 import { stopSubmit } from "redux-form";
+import { FakeLocationBannerUserType } from "../../utils/fakeLocationData";
+import {getRandomBackgroundBanner, getRandomLocationCity} from "../../utils/utils";
 
 const AUTH_USER_PROFILE = 'AUTH-USER-PROFILE';
 const SET_AUTH_USER_PROFILE = 'SET-AUTH-USER-PROFILE';
@@ -81,21 +78,6 @@ export const authUserProfile = () => {
                 if(response.data.resultCode === 0) {
                     let {email, id, login} = response.data.data;
                     dispatch(authUserProfileAC(login, id, email, true));
-/*                    usersAPI.getUserProfile(id)
-                        .then((response) => {
-
-                            /!*---get user data from server, changed type item, add fake location ---*!/
-                            let data = {
-                                ...response.data,
-                                contacts: {...response.data.contacts},
-                                photos: {...response.data.photos},
-                                locationUser: getRandomLocationCity(),
-                                backgroundBanner: getRandomBackgroundBanner()
-                            }
-
-                            dispatch(setAuthUserProfile(data));
-                        });*/
-
                     dispatch(setAuthUserProfile(id));
                 }
             })

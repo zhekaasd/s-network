@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {AppStateType} from "../../reducers/store";
 import {Navigate} from "react-router-dom";
 import {PATH} from "../../components/RoutesComponent/RoutesComponent";
+import {AppStateType} from "../../redux/store/store";
 
 type MSTPType = ReturnType<typeof mstp>;
 const mstp = (state: AppStateType) => {

@@ -1,12 +1,9 @@
 .weatherContainer {
-
-  margin-top: 50px;
   position: relative;
-  width: 300px;
 
   .weatherContent {
     background: greenyellow;
-    padding: 2rem;
+    padding: 1.4rem;
 
     border-radius: var(--border-radius-main-box);
     box-shadow: var(--box-shadow);
@@ -37,8 +34,7 @@
 
     .iconWeather {
       text-align: center;
-
-      margin: 40px 0;
+      margin: 20px 0;
 
       & svg {
         font-size: 8rem;
@@ -52,11 +48,10 @@
 
       & ul {
 
-
-
         & span {
           display: flex;
           align-items: center;
+          font-size: .8rem;
 
           & svg {
 
@@ -66,5 +61,36 @@
         }
       }
     }
+  }
+}
+
+
+/* --------------- MEDIA REQUEST: [1200] --------------- */
+@media screen and (max-width: 1200px) {
+  .weatherContainer {
+    .weatherContent {
+      .iconWeather {
+        margin: 10px 0;
+
+        & svg {
+          font-size: 6rem;
+
+        }
+      }
+
+      .temp {
+        align-items: center;
+        & h1 {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+/* --------------- MEDIA REQUEST: [1024] --------------- */
+@media screen and (max-width: 1024px) {
+  .weatherContainer {
+    display: none;
   }
 }

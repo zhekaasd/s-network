@@ -1,19 +1,19 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import LightModeIcon from '@mui/icons-material/LightMode';
 import {weatherAPI} from "../../dal/api";
 import {useDispatch, useSelector} from "react-redux";
-import AirIcon from '@mui/icons-material/Air';
-import OpacityIcon from '@mui/icons-material/Opacity';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import CloudIcon from '@mui/icons-material/Cloud';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {changeWeatherCity, setWeather} from '../../redux/reducers/weather-reducer';
 import { AppStateType } from '../../redux/store/store';
 
 /*--- import styles ---*/
 import st from './Weather.module.scss';
+import SpeedIcon from '@mui/icons-material/Speed';
+import AirIcon from '@mui/icons-material/Air';
+import OpacityIcon from '@mui/icons-material/Opacity';
+import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import CloudIcon from '@mui/icons-material/Cloud';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 const Weather = () => {
 
@@ -33,6 +33,7 @@ const Weather = () => {
 
     }, []);
 
+
     const onBlurHandler = () => {
         dispatch(changeWeatherCity(city));
         setChangeMode(false);
@@ -42,8 +43,10 @@ const Weather = () => {
         setCity(e.currentTarget.value);
     }
 
-
-    let currentTime = new Date().getHours() + ':' + new Date().getMinutes();
+/*--- Time settings ---*/
+    const hours = new Date().getHours();
+    const minutes = new Date().getMinutes();
+    let currentTime = hours + ':' + (minutes < 10 && minutes > 0 ?  '0' + minutes : minutes);
 
 
     return (
@@ -59,7 +62,7 @@ const Weather = () => {
                             <SettingsIcon onClick={() => setChangeMode(true)} fontSize={'small'} />
                         </div>
 
-                        <span>
+                        <span className={st.currentTime}>
                             {currentTime}
                         </span>
                     </div>
@@ -75,13 +78,13 @@ const Weather = () => {
                         }
 
 
-                        <p>{weather.weather?.main}</p>
+                        <h3>{weather.weather?.description}</h3>
                     </div>
                     <div className={st.temp}>
                         <ul>
                             <span> <OpacityIcon fontSize={'small'}/> {weather.main?.humidity}% </span>
                             <span> <AirIcon/> {weather.wind?.speed} m/s</span>
-                            <span> <BeachAccessIcon/> {weather.weather?.description}</span>
+                            <span> <SpeedIcon/> {weather.main?.pressure}</span>
                         </ul>
                         <h1>{Math.floor(weather.main?.temp as number)}°</h1>
                     </div>

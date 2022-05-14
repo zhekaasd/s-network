@@ -31,7 +31,7 @@
       position: relative;
 
       .homePageBackgroundBanner {
-        background: url('../../other/images/background/my-banner.jpg') no-repeat;
+        background: url('../../accets/images/backgrounds/my-banner.jpg') no-repeat;
         background-size: cover;
         height: 132px;
         width: 100%;
@@ -142,10 +142,18 @@
       display: none;
     }
 
-    .homePageAccountBlock {
-      .homePageBackgroundBanner {
-        background-position: bottom;
+    .homePageColumnLeft {
+      .homePageAccountBlock {
+        .homePageBackgroundBanner {
+          background-position: bottom;
+        }
+      }
+
+      .homePageRandomUsers {
+        display: none;
       }
     }
+
+
   }
 }

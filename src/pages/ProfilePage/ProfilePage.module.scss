@@ -5,15 +5,20 @@
   @extend .container;
   margin-top: 25px;
   display: grid;
-  grid-template-columns: 25% 1fr;
+  grid-template-columns: 20% 1fr 20%;
   column-gap: 3.6rem;
+
+  .randomUsers {
+    margin-top: 20px;
+  }
+
 }
 
 
 /* --------------- MEDIA REQUEST : [1024] --------------- */
 @media screen and (max-width: 1024px) {
   .mainContainer {
-
+    grid-template-columns: 25% 1fr;
   }
 }
 
@@ -22,6 +27,10 @@
   .mainContainer {
     grid-template-columns: 1fr;
     column-gap: 2.6rem;
+
+    .randomUsers {
+      display: none;
+    }
   }
 }
 

@@ -4,6 +4,7 @@ import {compose, Dispatch} from "redux";
 import {addMessage} from "../../redux/reducers/chat-reducer";
 import ChatPage from "./ChatPage";
 import React from "react";
+import withRedirect from "../../hocs/Redirect/withRedirect";
 
 
 type MapStatePropsType = ReturnType<typeof mapStateToProps>;
@@ -28,6 +29,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 
 
 export default compose<React.ComponentType>(
-    //withRedirect,
+    withRedirect,
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps),
 )(ChatPage);

@@ -7,8 +7,8 @@ import ButtonCustom from "../../../components/common/Button/ButtonCustom";
 
 /*--- styles import ---*/
 import styles from "./ProfileMainInfo.module.scss";
-import profilePhoto from "../../../other/images/icon/users.png";
-import myBanner from "../../../other/images/background/my-banner.jpg";
+import profilePhoto from "../../../accets/images/icons/users.png";
+import myBanner from "../../../accets/images/backgrounds/my-banner.jpg";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 type PMIPropsType = {

@@ -11,7 +11,7 @@ import {AppStateType} from "../../redux/store/store";
 /*--- import styles ---*/
 import st from "./HomePage.module.scss";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import photo from "../../other/images/1920x.webp";
+import photo from "../../accets/images/1920x.webp";
 
 
 type HPPropsType = {

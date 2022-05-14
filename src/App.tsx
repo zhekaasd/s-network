@@ -8,7 +8,7 @@ import {authorizationConfirmation} from "./redux/reducers/app-reducer";
 import {compose} from "redux";
 
 /*--- import styles ---*/
-import pr from "./other/images/1920x.webp";
+import pr from "./accets/images/1920x.webp";
 
 
 type AppPropsType = {

@@ -1,11 +1,11 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import React from "react";
 import {PATH} from "../../RoutesComponent/RoutesComponent";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/store/store";
 
 /*--- styles import ---*/
-import styles from "./Navigation.module.scss";
+import st from "./Navigation.module.scss";
 
 type ArrNavigationType = {
     id: number
@@ -15,23 +15,26 @@ type ArrNavigationType = {
 
 function Navigation() {
 
-    let id = useSelector((state: AppStateType) => state.auth.id);
+    let authId = useSelector((state: AppStateType) => state.auth.id);
+    let {id} = useParams();
+    const paramId = Number(id);
 
     const arrNavigation: ArrNavigationType[] = [
-        {id: 1, title: 'Profile', path: `${PATH.PROFILE}/${id}`},
+        {id: 1, title: 'Profile', path: `${PATH.PROFILE}/${authId}`},
         {id: 3, title: 'Messages', path: `${PATH.MESSAGES}`},
         {id: 4, title: 'Users', path: `${PATH.USERS}`},
     ]
 
-    return <nav className={styles.navigationContainer}>
+/*--- change display navigation panel ---*/
+    return authId === paramId || !paramId ? <nav className={st.navigationContainer}>
         {
             arrNavigation.map((el) => <NavLink
-                className={({isActive}) => isActive ? `${styles.active} ${styles.item}` : styles.item}
+                className={({isActive}) => isActive ? `${st.active} ${st.item}` : st.item}
                 key={el.id}
                 to={el.path}
             >{el.title}</NavLink>)
         }
-    </nav>
+    </nav> : <></>;
 }
 
 export default Navigation;

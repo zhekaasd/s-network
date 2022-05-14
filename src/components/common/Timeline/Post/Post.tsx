@@ -6,7 +6,7 @@ import {useParams} from "react-router-dom";
 import {AppStateType} from "../../../../redux/store/store";
 
 /*--- css import ---*/
-import avatar2 from "../../../../other/images/icon/users.png";
+import avatar2 from "../../../../accets/images/icons/users.png";
 import styles from "./Post.module.scss";
 
 type PostPropsType = {

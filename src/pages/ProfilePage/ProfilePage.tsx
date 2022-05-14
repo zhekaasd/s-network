@@ -7,8 +7,9 @@ import {ProfileMainInfo} from "./ProfileMainInfo/ProfileMainInfo";
 import {ProfileUserWithFakeLocationType} from "../../redux/reducers/profile-reducer";
 
 /*--- styles import ---*/
-import styles from "./ProfilePage.module.scss";
+import st from "./ProfilePage.module.scss";
 import RandomUsers from "../../components/RandomUsers/RandomUsers";
+import Weather from "../../components/Weather/Weather";
 
 type ProfilePropsType = {
     addPost: (value: string) => void
@@ -27,13 +28,19 @@ export const ProfilePage: React.FC<ProfilePropsType> = ({addPost, posts, status,
         <ProfileMainInfo profile={profile} status={status}
                          updateStatus={updateStatus} />
         <Navigation />
-        <div className={styles.mainContainer}>
-{/*            <div>*/}
-            <SocialAccounts/>
-            <RandomUsers/>
-{/*            </div>*/}
+        <div className={st.mainContainer}>
+            <aside>
+                <SocialAccounts/>
+
+                <div className={st.randomUsers}>
+                    <RandomUsers />
+                </div>
+            </aside>
 
             <Timeline addPost={addPost} posts={posts}/>
+            <aside>
+                <Weather />
+            </aside>
         </div>
     </div>
 }

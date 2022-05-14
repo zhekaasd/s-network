@@ -12,7 +12,7 @@ import {AppStateType} from "../../redux/store/store";
 
 /*--- css import ---*/
 import st from "./ChatPage.module.scss";
-import photo from "../../other/images/1920x.webp";
+import photo from "../../accets/images/1920x.webp";
 import InputCustom from "../../components/common/Input/InputCustom";
 
 type ChatPagePropsType = {
@@ -55,7 +55,7 @@ const ChatPage: React.FC<ChatPagePropsType> = ({messagesPage, addMessage, profil
 
         <ProfileMainInfo profile={prof} status={'status'}
                          updateStatus={updateStatus} />
-        <Navigation />
+        <Navigation  />
 
 {/*--- Messages list ---*/}
         <div className={st.chatPageContainer}>
