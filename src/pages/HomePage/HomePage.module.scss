@@ -97,6 +97,12 @@
     align-self: start;
     background: #ad5178;
   }
+
+  .homePageColumnRight {
+    & div:first-child {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 /* --------------- MEDIA REQUEST: [1200] --------------- */
